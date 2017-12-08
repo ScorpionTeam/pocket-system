@@ -126,6 +126,7 @@ import {RoleComponent} from "../page/system/role/detail/Role.component";
 import {CheckBoxGroup} from "../common/checkbox/CheckBoxGroup";
 import {PictureListComponent} from "../page/picture/list/PictureList.component";
 import {HMenu} from "../common/menu/HMenu";
+import '../styles/styles.scss';
 @NgModule({
   declarations: [
     HMenu,

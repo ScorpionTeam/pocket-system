@@ -54,6 +54,7 @@
   background: #5971e8;
 }
 
+
 .menu_item_selected{
   background-color: transparent!important;
 }
@@ -73,7 +74,18 @@
 }
 .menu_item_open .sub_menu{
   display: block;
+  animation: show 500ms;
 }
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .sub_menu_item:first-child{
   border-top:2px solid #434655 ;
 }
