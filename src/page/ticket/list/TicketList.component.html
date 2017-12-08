@@ -1,0 +1,170 @@
+<div class="ticketList_tool">
+  <nz-input [nzType]="'text'" [nzPlaceHolder]="'输入优惠券名称'" [nzSize]="'large'"
+            [(ngModel)]="searchKey" [class]="'search_input'">
+    <ng-template #addOnAfter>
+      <i class="anticon anticon-search search" (click)="search()"></i>
+    </ng-template>
+  </nz-input>
+  <button nz-button [nzType]="'danger'" class="btn_search_tool  btn-danger hk_btn_default" (click)="outStore()">
+    <span>删除</span>
+  </button>
+  <button nz-button [nzType]="'primary'" class="btn_search_tool hk_btn_default" (click)="skipToPage('/ticket-add')">
+    <span>新增</span>
+  </button>
+<!--条件-->
+<!--  <a style="margin-left:8px;font-size:12px;" (click)="isCollapse =!isCollapse">
+    条件
+    <i  [class]="!isCollapse?'anticon anticon-down':'anticon anticon-up'"></i>
+  </a>-->
+</div>
+<!--条件面板-->
+<!--<nz-card class="condition_template" [class.hide]="!isCollapse">
+  <ng-template #body>
+    <form nz-form>
+      <div nz-row [nzGutter]="40">
+        <div nz-col [nzSpan]="8">
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSpan]="5">
+              <label>商品编号</label>
+            </div>
+            <div nz-form-control nz-col [nzSpan]="19">
+              <nz-input [nzSize]="'large'" [nzPlaceHolder]="'订单编号'" [(ngModel)]="condition.ticketNo" name="ticketNo"></nz-input>
+            </div>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSpan]="5">
+              <label >时间</label>
+            </div>
+            <div nz-form-control nz-col [nzSpan]="19">
+              <nz-datepicker style="width: 50%;"  [(ngModel)]="condition.startDate" [nzDisabledDate]="disabledStartDate" [nzFormat]="'YYYY-MM-DD'" [nzPlaceHolder]="'开始时间'" name="start"></nz-datepicker>
+              <nz-datepicker style="width: 47%;"  [(ngModel)]="condition.endDate" [nzDisabledDate]="disabledEndDate" [nzFormat]="'YYYY-MM-DD'" [nzPlaceHolder]="'结束时间'" name="end"></nz-datepicker>`
+            </div>
+          </div>
+        </div>
+        &lt;!&ndash; <div nz-col [nzSpan]="8">
+           <div nz-form-item nz-row>
+             <div nz-form-label nz-col [nzSpan]="5">
+               <label>收件人</label>
+             </div>
+             <div nz-form-control nz-col [nzSpan]="19">
+               <nz-input [nzSize]="'large'" [(ngModel)]="condition.recipient" name="recipient" [nzPlaceHolder]="'收件人'"></nz-input>
+             </div>
+           </div>
+         </div>&ndash;&gt;
+        <div nz-col [nzSpan]="8">
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSpan]="5">
+              <label>收件人手机号</label>
+            </div>
+            <div nz-form-control nz-col [nzSpan]="19">
+              <nz-input [(ngModel)]="condition.phone" [nzPlaceHolder]="'收件人手机号'" name="phone"></nz-input>
+            </div>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSpan]="5">
+              <label >支付类型</label>
+            </div>
+            <div nz-form-control nz-col [nzSpan]="19">
+              <nz-select [nzSize]="'large'" [(ngModel)]="condition.payType"
+                         [nzPlaceHolder]="'支付类型'"
+                         nzAllowClear
+                         [style.height]="'29px'" name="payType">
+                <nz-option [nzLabel]="'支付宝'" [nzValue]="'0'"></nz-option>
+                <nz-option [nzLabel]="'微信 '" [nzValue]="'1'"></nz-option>
+                <nz-option [nzLabel]="'信用卡'" [nzValue]="'2'"></nz-option>
+                <nz-option [nzLabel]="'储蓄卡'" [nzValue]="'3'"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSpan]="5">
+              <label >订单状态</label>
+            </div>
+            <div nz-form-control nz-col [nzSpan]="19">
+              <nz-select [nzSize]="'large'" [(ngModel)]="condition.ticketStatus"
+                         [nzPlaceHolder]="'订单状态'"
+                         nzAllowClear
+                         [style.height]="'29px'" name="ticketStatus">
+                <nz-option [nzLabel]="'全部'" [nzValue]="'0'"></nz-option>
+                <nz-option [nzLabel]="'待付款 '" [nzValue]="'1'"></nz-option>
+                <nz-option [nzLabel]="'待发货'" [nzValue]="'2'"></nz-option>
+                <nz-option [nzLabel]="'待收货'" [nzValue]="'3'"></nz-option>
+                <nz-option [nzLabel]="'已完成'" [nzValue]="'4'"></nz-option>
+                <nz-option [nzLabel]="'申请退款'" [nzValue]="'5'"></nz-option>
+                <nz-option [nzLabel]="'已退款'" [nzValue]="'6'"></nz-option>
+                <nz-option [nzLabel]="'退款拒绝'" [nzValue]="'7'"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSpan]="5">
+              <label >订单类型</label>
+            </div>
+            <div nz-form-control nz-col [nzSpan]="19">
+              <nz-select [nzSize]="'large'" nzAllowClear [(ngModel)]="condition.ticketType"  [nzPlaceHolder]="'订单类型'"  [style.height]="'29px'" name="ticketType">
+                <nz-option [nzLabel]="'pc订单'" [nzValue]="'1'"></nz-option>
+                <nz-option [nzLabel]="'手机订单'" [nzValue]="'2'"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div style="text-align: center">
+      <button nz-button [nzType]="'primary'" (click)="search()">
+        <i class="anticon anticon-search"></i><span>搜索</span>
+      </button>
+    </div>
+  </ng-template>
+</nz-card>-->
+<nz-table #ticketListTable [nzAjaxData]="ticketList" [nzPageSize]="page.pageSize"
+          [nzPageIndex]="page.pageNo" [nzShowSizeChanger]="true" [nzShowTotal]="true"
+          (nzPageIndexChange)="pageChangeHandler($event)" [nzTotal]="page.total"
+          [nzShowQuickJumper]="true" (nzPageSizeChange)="pageSizeChangeHandler($event)">
+  <thead nz-thead>
+  <tr>
+    <th nz-th [nzCheckbox]="true">
+      <label #checkboxAll nz-checkbox  [(ngModel)]="checkAll"  (ngModelChange)="selectItem(checkAll,ticketList,0)">
+      </label>
+    </th>
+    <th nz-th><span>券编码</span></th>
+    <th nz-th><span>券名称</span></th>
+    <th nz-th><span>类型</span></th>
+    <th nz-th><span>开始时间</span></th>
+    <th nz-th><span>结束时间</span></th>
+    <th nz-th><span>优惠金额</span></th>
+    <th nz-th><span>使用金额</span></th>
+    <th nz-th><span>数量</span></th>
+    <th nz-th><span>状态</span></th>
+    <th nz-th><span>操作</span></th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let data of ticketListTable.data;let index = index;">
+    <td nz-td [nzCheckbox]="true">
+      <label #checkbox  nz-checkbox [(ngModel)]="data.checked"  (ngModelChange)="selectItem(data.checked,data.id,1,index)">
+      </label>
+    </td>
+    <td nz-td>{{data.ticket_no}}</td>
+    <td nz-td>{{data.ticket_name}}</td>
+    <td nz-td>{{data.type=="PLATFORM"?"平台":"商家"}}</td>
+    <td nz-td>{{data.start_date}}</td>
+    <td nz-td>{{data.end_date}}</td>
+    <td nz-td>{{dataTool.fTransYuan(data.reduce_money)}}</td>
+    <td nz-td>{{dataTool.fTransYuan(data.money)}}</td>
+    <td nz-td>{{data.num}}</td>
+    <td nz-td [class]="dataTool.strTransBool(data.status,'status')?'sta_normal':'sta_del'">{{data.status=="NORMAL"?"正常":"删除"}}</td>
+    <td nz-td class="ticket_list_action">
+      <span><a (click)="skipToPage('/ticket-detail',data.id)">编辑</a></span>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

@@ -1,0 +1,63 @@
+/*内容页*/
+.good_content{
+  padding:0 220px
+}
+/*表单样式*/
+.ant-advanced-search-form {
+  padding: 24px;
+  background: #fbfbfb;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+}
+
+.search-result-list {
+  margin-top: 16px;
+  border: 1px dashed #e9e9e9;
+  border-radius: 6px;
+  background-color: #fafafa;
+  min-height: 200px;
+  text-align: center;
+  padding-top: 80px;
+}
+/*表单提示样式*/
+.form_tip{
+  height: 30px;
+  line-height: 30px;
+  color:red;
+  text-align: center;
+}
+
+/*底部按钮*/
+.good_foot{
+  text-align: center;
+  margin-top: 20px;
+}
+
+/*规格标题*/
+.good_attr_tit{
+  font-size: 14px;
+  font-weight: 500;
+
+}
+/*规格*/
+.good_attr{
+  margin-bottom: 50px;
+}
+
+.good_attrValueList_warpper{
+  overflow: hidden;
+}
+.good_attrValueList{
+  width: calc(100% + 17px);
+  padding: 10px;
+  background: #f1f1f1;
+  height: 140px;
+  overflow-y: scroll;
+}
+.good_attrValueList_add{
+  width: 100px;
+  height: 35px;
+}
+.good_attrValueList_del{
+  margin: 15px;
+}

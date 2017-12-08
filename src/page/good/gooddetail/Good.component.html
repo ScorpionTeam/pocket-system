@@ -1,0 +1,179 @@
+<div class="good_content">
+  <div class="hk_form_title">主图信息</div>
+  <upload-pic [type]="'0'"  [initUrl]="initUrl" (uploadSuccess)="imgUpload($event,0)" (delSuccess)="delPic($event)" [alt]="'上传主图'"></upload-pic>
+  <div class="hk_form_title">辅图信息</div>
+  <div nz-row>
+    <upload-pic [type]="'1'"  [initUrl]="initLittleUrl.length>=2?initLittleUrl[1].url:undefined"
+                (uploadSuccess)="imgUpload($event,1)" (delSuccess)="delPic($event)" [alt]="'上传辅图'"
+                nz-col [nzSpan]="5" [nzOffset]="1"></upload-pic>
+    <upload-pic [type]="'1'"  [initUrl]="initLittleUrl.length>=3?initLittleUrl[2].url:undefined"
+                (uploadSuccess)="imgUpload($event,1)" (delSuccess)="delPic($event)" [alt]="'上传辅图'"
+                nz-col [nzSpan]="5" [nzOffset]="1"></upload-pic>
+    <upload-pic [type]="'1'"  [initUrl]="initLittleUrl.length>=4?initLittleUrl[3].url:undefined"
+                (uploadSuccess)="imgUpload($event,1)" (delSuccess)="delPic($event)" [alt]="'上传辅图'"
+                nz-col [nzSpan]="5" [nzOffset]="1"></upload-pic>
+    <upload-pic [type]="'1'"  [initUrl]="initLittleUrl.length>=5?initLittleUrl[4].url:undefined"
+                (uploadSuccess)="imgUpload($event,1)" (delSuccess)="delPic($event)" [alt]="'上传辅图'"
+                nz-col [nzSpan]="5"></upload-pic>
+  </div>
+  <div class="hk_form_title">基本信息</div>
+  <form nz-form  [formGroup]="validateForm">
+    <div nz-form-item>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">名称</label>
+        <div nz-col [nzSpan]="12"  [nzOffset]="1" nz-form-control>
+          <nz-input [(ngModel)]="good.good_name" formControlName="name"></nz-input>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item" style="line-height: 0;">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">商品描述</label>
+        <div nz-col [nzSpan]="12"  [nzOffset]="1">
+          <nz-input [nzType]="'textarea'" [nzRows]="'4'" [(ngModel)]="good.description" formControlName="description" name="describe"></nz-input>`
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">SEO</label>
+        <div nz-col [nzSpan]="12"  [nzOffset]="1" nz-form-control>
+          <nz-input [nzType]="'textarea'" [nzRows]="'4'" [(ngModel)]="good.seo" formControlName="seo" ></nz-input>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">商品编码</label>
+        <div nz-col [nzSpan]="12"  [nzOffset]="1" nz-form-control>
+          <nz-input [(ngModel)]="good.good_no " formControlName="goodNo"></nz-input>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">类目</label>
+        <div nz-col [nzSpan]="8"  [nzOffset]="1" nz-form-control>
+          <nz-select  [nzPlaceHolder]="'请选择'" [(ngModel)]="good.category_id" name="categoryId" formControlName="categoryId">
+            <nz-option [nzLabel]="data.category_name" [nzValue]="data.id" *ngFor="let data of categoryList"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">品牌</label>
+        <div nz-col [nzSpan]="8"  [nzOffset]="1" nz-form-control>
+          <nz-select  [nzPlaceHolder]="'请选择'" [(ngModel)]="good.brand_id" name="brandId" formControlName="brandId">
+            <nz-option [nzLabel]="'耐克'" [nzValue]="1"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">单价</label>
+        <div nz-col [nzSpan]="6"  [nzOffset]="1" nz-form-control>
+          <nz-input-number [style.width]="'100%'" [nzSize]="'large'" [nzMin]="0" [nzPlaceHolder]="'输入单价'" [(ngModel)]="good.price"  name="price" formControlName="price" (nzBlur)="priceChange()"></nz-input-number>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">折扣</label>
+        <div nz-col [nzSpan]="6"  [nzOffset]="1" nz-form-control>
+          <nz-input-number [nzSize]="'large'"  [nzPlaceHolder]="'折扣'" [nzMin]="0" [(ngModel)]="good.discount"  formControlName="discount" name="discount" [style.width]="'100%'" (nzBlur)="priceChange()"></nz-input-number>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">促销价</label>
+        <div nz-col [nzSpan]="6"  [nzOffset]="1" nz-form-control>
+          <nz-input-number [nzSize]="'large'" [style.width]="'100%'" [nzMin]="0" [nzDisabled]="true" [nzPlaceHolder]="'促销价'"  [(ngModel)]="good.promotion"  formControlName="promotion" name="promotion" ></nz-input-number>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">库存</label>
+        <div nz-col [nzSpan]="6"  [nzOffset]="1" nz-form-control>
+          <nz-input-number [style.width]="'100%'" [nzSize]="'large'" [nzMin]="0" [nzPlaceHolder]="'库存'"  [(ngModel)]="good.stock" name="stock" formControlName="stock"></nz-input-number>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">上架状态</label>
+        <div nz-col [nzSpan]="6"  [nzOffset]="1" nz-form-control>
+          <nz-switch [(ngModel)]="good.on_sale" formControlName="isOnSale" name="OnSale">
+            <span checked>是</span>
+            <span unchecked>否</span>
+          </nz-switch>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">热销</label>
+        <div nz-col [nzSpan]="6"  [nzOffset]="1" nz-form-control>
+          <nz-switch [(ngModel)]="good.hot"formControlName="isHot" name="hot">
+            <span checked>是</span>
+            <span unchecked>否</span>
+          </nz-switch>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">新品</label>
+        <div nz-col [nzSpan]="6"  [nzOffset]="1" nz-form-control>
+          <nz-switch [(ngModel)]="good.is_new"formControlName="isNew" name="new">
+            <span checked>是</span>
+            <span unchecked>否</span>
+          </nz-switch>
+        </div>
+      </div>
+      <div nz-row class="hk_form_item">
+        <label nz-form-label nz-form-item-required nz-col [nzSpan]="2">包邮</label>
+        <div nz-col [nzSpan]="6"  [nzOffset]="1" nz-form-control>
+          <nz-switch [(ngModel)]="good.freight" formControlName="isFreight" name="mail">
+            <span checked>是</span>
+            <span unchecked>否</span>
+          </nz-switch>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="hk_form_title">产品信息</div>
+  <hk-editor [ckeditorContent]="good.rich_content" (change)="getRitchContent($event)"></hk-editor>
+  <div class="good_foot">
+    <button nz-button [nzType]="'primary'" (click)="save()">保存</button>
+    <button nz-button (click)="back()">返回</button>
+  </div>
+</div>
+<nz-modal [nzVisible]="isAttrShow" [nzContent]="modalContent"
+          [nzFooter]="modalFooter" [nzMaskClosable]="false"
+          [nzTitle]="AttrModalTit" (nzOnCancel)="closeModal()">
+  <ng-template #modalContent>
+    <div class="content_attr">
+      <form nz-form>
+        <div nz-row class="hk_form_item">
+          <label nz-form-label nz-form-item-required nz-col [nzSpan]="5">属性名</label>
+          <div nz-form-control nz-form-item nz-col [nzSpan]="13" [nzOffset]="1">
+            <nz-input [(ngModel)]="modalObj.attrName" name="name"></nz-input>
+          </div>
+        </div>
+        <div nz-row class="hk_form_item">
+          <label nz-form-label nz-form-item-required nz-col [nzSpan]="5">版本号</label>
+          <div nz-form-control nz-form-item nz-col [nzSpan]="13" [nzOffset]="1">
+            <nz-input [(ngModel)]="modalObj.verNo" name="verNo"></nz-input>
+          </div>
+        </div>
+        <div nz-row class="hk_form_item">
+          <label nz-form-label nz-form-item-required nz-col [nzSpan]="5">属性值</label>
+          <div class="good_attrValueList_warpper" nz-col [nzSpan]="15" [nzOffset]="1">
+            <div class="good_attrValueList">
+              <div nz-row *ngFor="let attrVData of modalArray;let i = index;">
+                <div class="hk_form_item" nz-col [nzSpan]="5">
+                  <nz-input [(ngModel)]="modalArray[i].attrValue" [name]="'attrValue'+i" [nzPlaceHolder]="'属性值'"></nz-input>
+                </div>
+                <div class="hk_form_item" nz-col [nzSpan]="13" [nzOffset]="1">
+                  <nz-input [(ngModel)]="modalArray[i].attrValueName" [name]="'attrValueName'+i" [nzPlaceHolder]="'属性值名称'"></nz-input>
+                </div>
+                <button nz-button [nzShape]="'circle'" class="good_attrValueList_del" (click)="delAttr(1,i)">
+                  <i class="anticon anticon-minus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="hk_detail_form_footer">
+        <button nz-button [nzSize]="large" class="good_attrValueList_add" (click)="addAttr(1)">
+          <span>新增属性值</span>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button [nzType]="'primary'" (click)="saveAttr()">确认</button>
+    <button nz-button [nzType]="'default'" (click)="closeModal()">取消</button>
+  </ng-template>
+</nz-modal>

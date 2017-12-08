@@ -1,0 +1,56 @@
+<div class="hk_detail_form">
+  <form nz-form [formGroup]="validateForm">
+    <div nz-row [nzGutter]="40">
+      <div nz-col [nzSpan]="12" nz-row [nzOffset]="6">
+        <div nz-col nz-form-label [nzSpan]="5">
+          <label nz-form-item-required>图片</label>
+        </div>
+        <div nz-col nz-form-item [nzSpan]="12">
+          <upload-pic [type]="'4'"  [initUrl]="initPicUrl" (uploadSuccess)="uploadPic($event)" (delSuccess)="delPic()"  [alt]="'上传图片'"></upload-pic>
+        </div>
+      </div>
+      <div nz-col [nzSpan]="12" nz-row [nzOffset]="6">
+        <div nz-col nz-form-label [nzSpan]="5">
+          <label nz-form-item-required>名称</label>
+        </div>
+        <div nz-col nz-form-item [nzSpan]="12">
+          <nz-input type="text" [(ngModel)]="banner.name" formControlName="name"></nz-input>
+        </div>
+      </div>
+      <div nz-col [nzSpan]="12" nz-row [nzOffset]="6">
+        <div nz-col nz-form-label [nzSpan]="5">
+          <label nz-form-item-required>跳转链接</label>
+        </div>
+        <div nz-col nz-form-item [nzSpan]="12">
+          <nz-input type="text" [(ngModel)]="banner.action_url" formControlName="actionUrl"></nz-input>
+        </div>
+      </div>
+      <div nz-col [nzSpan]="12" nz-row [nzOffset]="6">
+        <div nz-col nz-form-label [nzSpan]="5">
+          <label nz-form-item-required>排序</label>
+        </div>
+        <div nz-col nz-form-item [nzSpan]="12">
+          <nz-input-number [nzMin]="0" [(ngModel)]="banner.sort" formControlName="sort"></nz-input-number>
+        </div>
+      </div>
+      <div nz-col [nzSpan]="12" nz-row [nzOffset]="6">
+        <div nz-col nz-form-label [nzSpan]="5">
+          <label nz-form-item-required>状态</label>
+        </div>
+        <div nz-col nz-form-item [nzSpan]="12">
+          <nz-switch [(ngModel)]="banner.status" formControlName="status">
+            <span checked>正常</span>
+            <span unchecked>停用</span>
+          </nz-switch>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div nz-row>
+  <div nz-col [nzSpan]="24" style="text-align: center;">
+    <button nz-button [nzType]="'primary'" (click)="save()">保存</button>
+    <button nz-button (click)="back()">返回</button>
+  </div>
+</div>
+

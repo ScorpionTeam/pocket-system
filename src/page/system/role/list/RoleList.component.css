@@ -1,0 +1,5 @@
+/*消除模态内容层的边距*/
+.modal-body{
+  margin-left: -42px;
+  margin-top: 20px;
+}

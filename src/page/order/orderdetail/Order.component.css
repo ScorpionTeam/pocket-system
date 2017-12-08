@@ -1,0 +1,23 @@
+.order_item{
+  color: rgba(0, 0, 0, 0.65)!important;
+  width: 100%;
+  display: inline-block;
+  font-size: 14px;
+}
+.card{
+  margin-bottom: 50px;
+  background: #f3f3f3;
+}
+.card_title{
+  text-align: center;
+  font-size: 18px;
+}
+.card_log{
+  margin-bottom: 50px;
+}
+.card_log_title{
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  font-size: 18px;
+}
