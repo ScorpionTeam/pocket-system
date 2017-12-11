@@ -5,12 +5,13 @@ import {DataTool} from "../../../common/data/DataTool";
 import {UserService} from "../../../service/user/User.service";
 import {RoleService} from "../../../service/role/Role.service";
 import {isUndefined} from "util";
+import {TableTool} from "../../../common/list/TableTool";
 
 @Component({
   selector:'user-list',
   templateUrl:'UserList.component.html',
   styleUrls:['UserList.component.css'],
-  providers:[UserService,RoleService]
+  providers:[UserService,RoleService,TableTool]
 })
 
 export class UserListComponent{
@@ -26,7 +27,7 @@ export class UserListComponent{
   roleList:any=[];
   constructor(private roleService:RoleService,private dataTool:DataTool,private nzMessage:NzMessageService,
               private router:Router,private route :ActivatedRoute,private userService:UserService,
-              private nzService :NzModalService,private nzModal:NzModalService){
+              private nzService :NzModalService,private nzModal:NzModalService,private table:TableTool){
   }
 
   ngOnInit(){
@@ -124,31 +125,18 @@ export class UserListComponent{
         let index = this.idList.indexOf(val);
         this.idList.splice(index,1);
       }
-    }else {
-      /*全选或全不选*/
-      if(!flag._checked){
-        for(let i =1;i<=val.length;i++){
-          this.userList['checked']=true;
-          this.idList.push(i);
-        }
-      }else {
-        for(let i =1;i<=val.length;i++){
-          this.userList['checked']=false;
-        }
-        this.idList=[]
-      }
     }
     console.log(this.idList);
   };
 
   /**
-   * 删除商品
+   * 删除提示
    */
   delete(){
     if(this.idList.length==0){
       this.nzService.warning({
         title:"提示",
-        content:"请先选择要删除的商品!"
+        content:"请先选择要删除的用户!"
       });
       return;
     }

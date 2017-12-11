@@ -3,10 +3,11 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NzMessageService, NzModalService} from "ng-zorro-antd";
 import {DataTool} from "../../../common/data/DataTool";
 import {AdvertisementService} from "../../../service/advertisement/Advertisement.service";
+import {TableTool} from "../../../common/list/TableTool";
 @Component({
   selector:"banner-list",
   templateUrl:"./AdvertisementList.component.html",
-  providers:[AdvertisementService]
+  providers:[AdvertisementService,TableTool]
 })
 
 export class AdvertisementListComonent{
@@ -21,7 +22,7 @@ export class AdvertisementListComonent{
   condition:any={};
   idList:any=[];//批量操作id集合
   checkAll:boolean=false;
-  constructor(private router:Router,private dataTool:DataTool,
+  constructor(private router:Router,private dataTool:DataTool,private table : TableTool,
               private route:ActivatedRoute,private nzMessage:NzMessageService,private nzModal:NzModalService,
               private advertisementService:AdvertisementService){}
 
@@ -145,42 +146,13 @@ export class AdvertisementListComonent{
    * @param val 广告id
    * @param type 类型 0:全选，1:单选
    */
-  selectItem(flag:any,val:any,type:any,index?:any){
-    if(type==1){
-      if(flag){
-        this.idList.push(val);
-      }else {
-        let index = this.idList.indexOf(val);
-        this.idList.splice(index,1);
-      }
+  selectItem(flag:boolean,type:number,idList:any[],dataList:any[],val?:any,index?:any){
+    if(type==0){
+      this.table.selectItem(flag,type,idList,dataList);
     }else {
-      /*全选或全不选*/
-      if(flag){
-        for(let i =0;i<val.length;i++){
-          if(this.idList.length==0){
-            this.bannerList[i]['checked']=true;
-            this.idList.push(val[i].id);
-            continue;
-          }
-          //检测是否在idList中已存在
-          for(let index in this.idList){
-            if(val[i].id==this.idList[index]){
-              break;
-            }else if((Number(index)+1)==this.idList.length){
-              this.bannerList[i]['checked']=true;
-              this.idList.push(val[i].id);
-            }
-          }
-        }
-      }else {
-        for(let i =0;i<val.length;i++){
-          this.bannerList[i]['checked']=false;
-        }
-        this.idList=[]
-      }
+      this.checkAll = this.table.selectItem(flag,type,idList,dataList,val);
     }
-    console.log(this.idList);
-  };
+  }
 
   /**
    * 改变广告状态

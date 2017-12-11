@@ -1,5 +1,4 @@
 /*列表页面,工具栏样式*/
-
 .search_tool{
   margin-bottom: 20px;
 }
@@ -63,4 +62,32 @@
   width: 60px;
   height: 60px;
   object-fit: cover;
+}
+
+/*列表搜索栏输入框样式*/
+.search_input{
+  display:inline-table;
+  width: 300px;
+  vertical-align: middle;
+}
+.search{
+  cursor: pointer;
+}
+
+
+/*表单*/
+.hk_form_title{
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 20px;
+  color: #000;
+}
+.hk_form_item{
+  margin: 15px 0;
+}
+.hk_detail_form{
+  padding:0 160px
+}
+.hk_detail_form_footer{
+  text-align: center;
 }

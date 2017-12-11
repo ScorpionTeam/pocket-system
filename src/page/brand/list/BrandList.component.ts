@@ -5,11 +5,12 @@ import {HttpData} from "../../../http/HttpData";
 import {DataTool} from "../../../common/data/DataTool";
 import {BrandService} from "../../../service/brand/Brand.service";
 import {TimePick} from "../../../common/data/TimePick";
+import {TableTool} from "../../../common/list/TableTool";
 @Component({
   selector:"brand-list",
   templateUrl:"./BrandList.component.html",
   styleUrls:["./BrandList.component.css"],
-  providers:[BrandService]
+  providers:[BrandService,TableTool]
 })
 
 export class BrandListComponent{
@@ -26,7 +27,7 @@ export class BrandListComponent{
     total:0
   };
   condition:any={};
-  constructor(private router:Router,private PicUrl:HttpData,private timePickerTool:TimePick,
+  constructor(private router:Router,private PicUrl:HttpData,private timePickerTool:TimePick,private table:TableTool,
               private route:ActivatedRoute,private nzMessage:NzMessageService,private brandService:BrandService,
               private dataTool:DataTool,private nzModal:NzModalService){}
 
@@ -137,49 +138,16 @@ export class BrandListComponent{
   /**
    * 选择
    * @param flag 选中标志
-   * @param val 商品id
+   * @param val id
    * @param type 类型 0:全选，1:单选
    */
-  selectItem(flag:any,val:any,type:any,index?:any){
-    if(type==1){
-      if(flag){
-        this.idList.push(val);
-        if(this.idList.length==this.brandList.length){
-          this.checkAll = true;
-        }
-      }else {
-        let index = this.idList.indexOf(val);
-        this.idList.splice(index,1);
-        this.checkAll=false;
-      }
+  selectItem(flag:boolean,type:number,idList:any[],dataList:any[],val?:any,index?:any){
+    if(type==0){
+      this.table.selectItem(flag,type,idList,dataList);
     }else {
-      /*全选或全不选*/
-      if(flag){
-        for(let i =0;i<val.length;i++){
-          if(this.idList.length==0){
-            this.brandList[i]['checked']=true;
-            this.idList.push(val[i].id);
-            continue;
-          }
-          //检测是否在idList中已存在
-          for(let index in this.idList){
-            if(val[i].id==this.idList[index]){
-              break;
-            }else if((Number(index)+1)==this.idList.length){
-              this.brandList[i]['checked']=true;
-              this.idList.push(val[i].id);
-            }
-          }
-        }
-      }else {
-        for(let i =0;i<val.length;i++){
-          this.brandList[i]['checked']=false;
-        }
-        this.idList=[]
-      }
+      this.checkAll = this.table.selectItem(flag,type,idList,dataList,val);
     }
-    console.log(this.idList);
-  };
+  }
 
   /**
    * 批量上架

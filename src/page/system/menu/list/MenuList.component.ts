@@ -5,10 +5,11 @@ import {RouterTool} from "../../../../common/routertool/RouterTool";
 import {DataTool} from "../../../../common/data/DataTool";
 import {MenuService} from "../../../../service/menu/Menu.service";
 import {NzMessageService} from "ng-zorro-antd";
+import {TableTool} from "../../../../common/list/TableTool";
 @Component({
   selector:"menu-list",
   templateUrl:"MenuList.component.html",
-  providers:[MenuService]
+  providers:[MenuService,TableTool]
 })
 
 export class MenuListComponent implements OnInit{
@@ -21,7 +22,7 @@ export class MenuListComponent implements OnInit{
   idList:any=[];
   checkAll:boolean=false;
   searchKey:string='';
-  constructor(private http:Http,public routerTool:RouterTool,public route:ActivatedRoute,
+  constructor(private http:Http,public routerTool:RouterTool,public route:ActivatedRoute,private table:TableTool,
                 private dataTool:DataTool,private menuService:MenuService,private nzMessage:NzMessageService){}
   ngOnInit(){
     this.pageChangeHandler(1);
@@ -84,49 +85,16 @@ export class MenuListComponent implements OnInit{
   /**
    * 选择
    * @param flag 选中标志
-   * @param val 商品id
+   * @param val id
    * @param type 类型 0:全选，1:单选
    */
-  selectItem(flag:any,val:any,type:any,index?:any){
-    if(type==1){
-      if(flag){
-        this.idList.push(val);
-        if(this.idList.length==this.menuList.length){
-          this.checkAll = true;
-        }
-      }else {
-        let index = this.idList.indexOf(val);
-        this.idList.splice(index,1);
-        this.checkAll=false;
-      }
+  selectItem(flag:boolean,type:number,idList:any[],dataList:any[],val?:any,index?:any){
+    if(type==0){
+      this.table.selectItem(flag,type,idList,dataList);
     }else {
-      /*全选或全不选*/
-      if(flag){
-        for(let i =0;i<val.length;i++){
-          if(this.idList.length==0){
-            this.menuList[i]['checked']=true;
-            this.idList.push(val[i].id);
-            continue;
-          }
-          //检测是否在idList中已存在
-          for(let index in this.idList){
-            if(val[i].id==this.idList[index]){
-              break;
-            }else if((Number(index)+1)==this.idList.length){
-              this.menuList[i]['checked']=true;
-              this.idList.push(val[i].id);
-            }
-          }
-        }
-      }else {
-        for(let i =0;i<val.length;i++){
-          this.menuList[i]['checked']=false;
-        }
-        this.idList=[]
-      }
+      this.checkAll = this.table.selectItem(flag,type,idList,dataList,val);
     }
-    console.log(this.idList);
-  };
+  }
 
   /**
    * 删除菜单
