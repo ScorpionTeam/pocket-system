@@ -6,11 +6,12 @@ import {DataTool} from "../../../common/data/DataTool";
 import {GoodService} from "../../../service/good/Good.service";
 import {CategoryService} from "../../../service/category/Category.service";
 import {TimePick} from "../../../common/data/TimePick";
+import {TableTool} from "../../../common/list/TableTool";
 @Component({
   selector:"good-list",
   templateUrl:"GoodList.component.html",
   styleUrls:["GoodList.component.css"],
-  providers:[GoodService,CategoryService]
+  providers:[GoodService,CategoryService,TableTool]
 })
 
 export class GoodListComponent implements OnInit{
@@ -31,7 +32,8 @@ export class GoodListComponent implements OnInit{
   idList:any=[];//id集合
   constructor(private dataTool:DataTool,private goodService:GoodService,private categoryService:CategoryService,
               private router:Router,private route :ActivatedRoute,private  PicUrl:HttpData,
-              private nzService :NzModalService ,private nzMessage:NzMessageService,private timePickTool:TimePick){}
+              private nzService :NzModalService ,private nzMessage:NzMessageService,
+              private timePickTool:TimePick,private tableTool:TableTool){}
 
   ngOnInit(){
     this.picUrl = this.PicUrl.PicUrl;
@@ -148,44 +150,14 @@ export class GoodListComponent implements OnInit{
    * @param val 商品id
    * @param type 类型 0:全选，1:单选
    */
-  selectItem(flag:any,val:any,type:any,index?:any){
-    if(type==1){
-      if(flag){
-        this.idList.push(val);
-        if(this.idList.length==this.goodList.length){
-          this.checkAll = true;
-        }
-      }else {
-        let index = this.idList.indexOf(val);
-        this.idList.splice(index,1);
-        this.checkAll = false;
-      }
+  selectItem(flag:boolean,type:number,idList:any[],dataList:any[],val?:any,index?:any){
+    if(type==0){
+      this.tableTool.selectItem(flag,type,idList,dataList);
     }else {
-      /*全选或全不选*/
-      if(flag){
-        for(let i =0;i<val.length;i++){
-          if(this.idList.length==0){
-            this.goodList[i]['checked']=true;
-            this.idList.push(val[i].id);
-            continue;
-          }
-          //检测是否在idList中已存在
-          if(this.idList.indexOf(val[i].id)!=-1){
-            continue;
-          }else {
-            this.goodList[i]['checked']=true;
-            this.idList.push(val[i].id);
-          }
-        }
-      }else {
-        this.goodList.forEach(
-          item=>{item.checked=false}
-        );
-        this.idList=[]
-      }
+      this.checkAll = this.tableTool.selectItem(flag,type,idList,dataList,val);
     }
     console.log(this.idList);
-  };
+  }
 
   /**
    * 禁止全选
