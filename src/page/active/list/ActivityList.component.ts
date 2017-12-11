@@ -2,14 +2,14 @@ import {Component} from "@angular/core";
 import {PageService} from "../../../service/page/Page.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NzMessageService, NzModalService} from "ng-zorro-antd";
-import {Http} from "../../../common/http/Http";
 import {DataTool} from "../../../common/data/DataTool";
 import {ActivityService} from "../../../service/active/Activity.service";
+import {TableTool} from "../../../common/list/TableTool";
 @Component({
   selector:"activity-list",
   templateUrl:"./ActivityList.component.html",
   styleUrls:["./ActivityList.component.css"],
-  providers:[ActivityService]
+  providers:[ActivityService,TableTool]
 })
 
 export class ActivityListComponent{
@@ -25,7 +25,7 @@ export class ActivityListComponent{
   condition:any={};
   idList:any=[];//批量操作id集合
   checkAll:boolean=false;
-  constructor(private pageObj:PageService,private router:Router,private http:Http,private dataTool:DataTool,
+  constructor(private pageObj:PageService,private router:Router,private dataTool:DataTool,private table : TableTool,
               private route:ActivatedRoute,private nzMessage:NzMessageService,private nzModal:NzModalService,
               private service:ActivityService){}
 
@@ -71,9 +71,6 @@ export class ActivityListComponent{
           this.activityList = res["list"];
           this.page.total = res["total"];
         }
-      },
-      err => {
-        console.log(err);
       });
   }
   /*size改变*/
@@ -87,9 +84,6 @@ export class ActivityListComponent{
           this.activityList = res["list"];
           this.page.total = res["total"];
         }
-      },
-      err=>{
-        console.log(err);
       });
   };
 
@@ -106,9 +100,6 @@ export class ActivityListComponent{
           this.activityList = res["list"];
           this.page.total = res["total"];
         }
-      },
-      err=>{
-        console.log(err);
       });
   }
 
@@ -122,7 +113,7 @@ export class ActivityListComponent{
       return false;
     }
     return startValue.getTime()>=this.condition.endDate.getTime();
-  }
+  };
   /**
    * 禁止结束时间
    * @param endValue
@@ -142,47 +133,13 @@ export class ActivityListComponent{
    * @param val 商品id
    * @param type 类型 0:全选，1:单选
    */
-  selectItem(flag:any,val:any,type:any,index?:any){
-    if(type==1){
-      if(flag){
-        this.idList.push(val);
-        if(this.idList.length==this.activityList.length){
-          this.checkAll=true;
-        }
-      }else {
-        let index = this.idList.indexOf(val);
-        this.idList.splice(index,1);
-        this.checkAll=false;
-      }
+  selectItem(flag:boolean,type:number,idList:any[],dataList:any[],val?:any,index?:any){
+    if(type==0){
+      this.table.selectItem(flag,type,idList,dataList);
     }else {
-      /*全选或全不选*/
-      if(flag){
-        for(let i =0;i<val.length;i++){
-          if(this.idList.length==0){
-            this.activityList[i]['checked']=true;
-            this.idList.push(val[i].id);
-            continue;
-          }
-          //检测是否在idList中已存在
-          for(let index in this.idList){
-            if(val[i].id==this.idList[index]){
-              break;
-            }else if((Number(index)+1)==this.idList.length){
-              this.activityList[i]['checked']=true;
-              this.idList.push(val[i].id);
-            }
-          }
-        }
-      }else {
-        for(let i =0;i<val.length;i++){
-          this.activityList[i]['checked']=false;
-        }
-        this.idList=[]
-      }
+      this.checkAll = this.table.selectItem(flag,type,idList,dataList,val);
     }
-    console.log(this.idList);
-  };
-
+  }
   /**
    * 改变活动状态
    * @param status
@@ -192,7 +149,7 @@ export class ActivityListComponent{
       this.nzMessage.warning("请勾选要开启/结束的活动");
       return
     }
-    this.http.post("backstage/activity/batchModifyStatus",{status:status,idList:this.idList}).subscribe(
+    this.service.changeActStatus({status:status,idList:this.idList}).subscribe(
       res=>{
         if(res["result"]==1){
           this.nzMessage.success("操作成功");
@@ -200,10 +157,6 @@ export class ActivityListComponent{
           this.checkAll=false;
           this.idList=[];
         }
-      },
-      err=>{
-        console.log(err);
-      }
-    )
+      })
   }
 }

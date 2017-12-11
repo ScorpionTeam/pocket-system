@@ -23,7 +23,7 @@
   border-radius: 50%;
   border: 3px solid #323442;
   display: block;
-  margin:0 auto;
+  margin:0 auto 5px;
 }
 
 .userlog_text{

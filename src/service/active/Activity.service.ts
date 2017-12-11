@@ -49,6 +49,18 @@ export class  ActivityService{
   }
 
   /**
+   * 改变活动状态
+   * @param obj:{
+   *        status:UN_NORMAL:结束  NORMAL:正常
+   *        idList:活动id数组
+   *            }
+   *
+   */
+  changeActStatus(obj:any){
+    return this.http.post("backstage/activity/batchModifyStatus",obj);
+  }
+
+  /**
    * 绑定活动商品
    * @param activityId
    * @param goodIdList
