@@ -5,6 +5,7 @@ import {NzMessageService} from "ng-zorro-antd";
 import {RegisterServe} from "../../../service/Register.serve";
 import {RouterTool} from "../../../common/routertool/RouterTool";
 import {ActivatedRoute} from "@angular/router";
+import {FormTool} from "../../../common/list/FormTool";
 @Component({
   selector:"seller-register",
   templateUrl:"Register.component.html",
@@ -14,7 +15,8 @@ import {ActivatedRoute} from "@angular/router";
 
 export class RegisterComponent implements OnInit{
   constructor( private fb:FormBuilder,private nzMessage:NzMessageService,private route:ActivatedRoute,
-               private registerService:RegisterServe,private routerTool:RouterTool){}
+               private registerService:RegisterServe,private routerTool:RouterTool,
+               private formTool:FormTool){}
   ngOnInit(){
     this.createValidate();
   }
@@ -54,9 +56,9 @@ export class RegisterComponent implements OnInit{
    */
   delSuccess(flag){
     if(flag==0){
-      this.registerObj.idPhotoFrontUrl = '';
+      this.registerObj.id_photo_front_url = '';
     }else {
-      this.registerObj.idPhotoBgUrl = '';
+      this.registerObj.id_photo_bg_url = '';
     }
   }
 
@@ -67,8 +69,10 @@ export class RegisterComponent implements OnInit{
     if(this.formValidate.valid){
       this.isNext=true;
     }else {
-      //todo:提示表单有误
-      console.log("表单填写有误");
+      for (const i in this.formValidate.controls) {
+        this.formValidate.controls[ i ].markAsDirty();
+      }
+      this.nzMessage.warning("表单填写有误");
     }
   }
 
@@ -76,8 +80,8 @@ export class RegisterComponent implements OnInit{
    * 注册
    */
   register(){
-    if(this.registerObj.idPhotoFrontUrl==''||this.registerObj.idPhotoBgUrl==''||isUndefined(this.registerObj.idPhotoFrontUrl)||
-      isUndefined(this.registerObj.idPhotoBgUrl)){
+    if(this.registerObj.id_photo_front_url==''||this.registerObj.id_photo_bg_url==''||isUndefined(this.registerObj.id_photo_front_url)||
+      isUndefined(this.registerObj.id_photo_bg_url)){
       this.nzMessage.warning("请先上传图片");
     }else {
       this.registerService.register(this.registerObj).subscribe(
@@ -97,5 +101,13 @@ export class RegisterComponent implements OnInit{
    */
   toLogin(){
    this.routerTool.skipToPage("/login",this.route);
+  }
+
+  /**
+   * 校验
+   * @param name : formControlName
+   */
+  check(name:string){
+    return this.formTool.required(this.formValidate,name);
   }
 }

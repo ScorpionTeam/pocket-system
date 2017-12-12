@@ -6,16 +6,21 @@
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">姓名</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="text" class="hk_input" placeholder="请输入姓名"
+          <input type="text" class="hk_input" placeholder="请输入姓名" [class.input_err]="check('name')"
                  formControlName="name" [(ngModel)]="registerObj.name">
         </div>
-        <!--<div class="form_explain">有误会</div>-->
+        <div class="form_explain" *ngIf="formValidate.controls.name.dirty&&formValidate.controls.name.hasError('required')">
+          <i class="anticon anticon-exclamation-circle" style="color: #ff6b6b;margin-right: 5px"></i> 必填
+        </div>
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">手机号</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="text" class="hk_input" placeholder="请输入手机号"
+          <input type="text" class="hk_input" placeholder="请输入手机号" [class.input_err]="check('mobile')"
                  formControlName="mobile" [(ngModel)]="registerObj.mobile">
+        </div>
+        <div class="form_explain" *ngIf="formValidate.controls.mobile.dirty&&formValidate.controls.mobile.hasError('required')">
+          <i class="anticon anticon-exclamation-circle" style="color: #ff6b6b;margin-right: 5px"></i> 必填
         </div>
       </div>
 <!--      <div nz-form-item nz-row>
@@ -27,15 +32,21 @@
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">密码</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="password" class="hk_input" placeholder="请输入密码"
+          <input type="password" class="hk_input" placeholder="请输入密码" [class.input_err]="check('password')"
                  formControlName="password" [(ngModel)]="registerObj.password">
+        </div>
+        <div class="form_explain" *ngIf="formValidate.controls.password.dirty&&formValidate.controls.password.hasError('required')">
+          <i class="anticon anticon-exclamation-circle" style="color: #ff6b6b;margin-right: 5px"></i> 必填
         </div>
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">确认密码</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="password" class="hk_input" placeholder="再次输入密码"
+          <input type="password" class="hk_input" placeholder="再次输入密码" [class.input_err]="check('passwordConfirm')"
                  formControlName="passwordConfirm" [(ngModel)]="registerObj.passwordConfirm">
+        </div>
+        <div class="form_explain" *ngIf="formValidate.controls.passwordConfirm.dirty&&formValidate.controls.passwordConfirm.hasError('required')">
+          <i class="anticon anticon-exclamation-circle" style="color: #ff6b6b;margin-right: 5px"></i> 必填
         </div>
       </div>
     </form>

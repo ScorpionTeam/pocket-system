@@ -94,3 +94,11 @@
 .form_label_bold{
   font-weight: 800;
 }
+
+/*表单输入框错误颜色*/
+.input_err{
+  border-color:#ff6b6b;
+}
+.input_err:hover,.input_err:active{
+  border-color:#ff6b6b;
+}

@@ -128,6 +128,7 @@ import {PictureListComponent} from "../page/picture/list/PictureList.component";
 import {HMenu} from "../common/menu/HMenu";
 import '../styles/styles.scss';
 import {RegisterComponent} from "../page/seller/Register/Register.component";
+import {FormTool} from "../common/list/FormTool";
 @NgModule({
   declarations: [
     HMenu,
@@ -184,6 +185,7 @@ import {RegisterComponent} from "../page/seller/Register/Register.component";
     Interceptor,
     DataTool,
     TimePick,
+    FormTool,
     { provide: NZ_MESSAGE_CONFIG, useValue: { nzMaxStack:1 }} ],
   bootstrap: [AppComponent]
 })

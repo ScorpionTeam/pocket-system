@@ -13,6 +13,9 @@ import {Router, ActivatedRoute} from "@angular/router";
       max-width: 300px;
       margin: 0 auto;
       margin-top: 170px;
+      background: #fff;
+      padding: 19px 20px;
+      border-radius: 8px;
     }
 
     .login-form-forgot {
@@ -21,6 +24,15 @@ import {Router, ActivatedRoute} from "@angular/router";
 
     .login-form-button {
       width: 100%;
+    }
+    .has_tip{
+      text-align: center;
+      margin: 10px 0 5px;
+    }
+    .to_register{
+      color:#5971e8;
+      cursor: pointer;
+      font-size: 14px;
     }
   `]
 })
@@ -76,5 +88,12 @@ export class LoginComponent implements  OnInit{
       }
       this.nzMessage.error("请将信息填写完整")
     }
+  }
+
+  /**
+   * 前往注册界面
+   */
+  toRegister(){
+    this.router.navigate(["/register"],{relativeTo:this.route});
   }
 }
