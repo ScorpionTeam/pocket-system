@@ -1,40 +1,57 @@
 <div class="seller_register">
   <div class="seller_warp">
     <p class="register_tit">商户注册</p>
-    <p class="has_tip">已有账号?<span class="to_login">点击登录</span></p>
-    <div nz-form>
+    <p class="has_tip">已有账号?<span class="to_login" (click)="toLogin()">点击登录</span></p>
+    <form nz-form [formGroup]="formValidate" *ngIf="!isNext">
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">姓名</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="text" class="hk_input" placeholder="请输入姓名">
+          <input type="text" class="hk_input" placeholder="请输入姓名"
+                 formControlName="name" [(ngModel)]="registerObj.name">
         </div>
+        <!--<div class="form_explain">有误会</div>-->
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">手机号</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="text" class="hk_input" placeholder="请输入手机号">
+          <input type="text" class="hk_input" placeholder="请输入手机号"
+                 formControlName="mobile" [(ngModel)]="registerObj.mobile">
         </div>
       </div>
-      <div nz-form-item nz-row>
+<!--      <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">短信验证码</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="text" class="hk_input" placeholder="请输入验证码">
+          <input type="text" class="hk_input" placeholder="请输入验证码" [(ngModel)]="registerObj.code">
         </div>
-      </div>
+      </div>-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">密码</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="text" class="hk_input" placeholder="请输入密码">
+          <input type="password" class="hk_input" placeholder="请输入密码"
+                 formControlName="password" [(ngModel)]="registerObj.password">
         </div>
       </div>
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">确认密码</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="text" class="hk_input" placeholder="再次输入密码">
+          <input type="password" class="hk_input" placeholder="再次输入密码"
+                 formControlName="passwordConfirm" [(ngModel)]="registerObj.passwordConfirm">
         </div>
+      </div>
+    </form>
+    <div nz-row *ngIf="isNext">
+      <div nz-col [nzSpan]="10" [nzOffset]="1">
+        <upload-pic [alt]="'身份证件照正面'" [type]="'7'"
+                    (uploadSuccess)="uploadSuccess($event,0)"></upload-pic>
+      </div>
+      <div nz-col [nzSpan]="10" [nzOffset]="2">
+        <upload-pic [alt]="'身份证件照反面'" [type]="'7'"
+                    (uploadSuccess)="uploadSuccess($event,1)"></upload-pic>
       </div>
     </div>
     <div class="protocol">同意《口袋合作协议》</div>
-    <div class="register_btn">立即注册</div>
+
+    <div class="register_btn" *ngIf="!isNext" (click)="next()">下一步</div>
+    <div class="register_btn" *ngIf="isNext" (click)="register()">立即注册</div>
   </div>
 </div>

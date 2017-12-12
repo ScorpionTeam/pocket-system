@@ -12,7 +12,8 @@
 body{
   background: url("http://static.seecsee.com/seego_plus/static/media/bg.131dfa7e2.jpg") no-repeat;
   background-size:cover ;
-  padding-top: 1px!important;
+  /*去除margin合并坍塌问题*/
+  border-top: 1px solid transparent;
 }
 
 textarea{
