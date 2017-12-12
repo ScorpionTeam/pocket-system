@@ -127,6 +127,7 @@ import {CheckBoxGroup} from "../common/checkbox/CheckBoxGroup";
 import {PictureListComponent} from "../page/picture/list/PictureList.component";
 import {HMenu} from "../common/menu/HMenu";
 import '../styles/styles.scss';
+import {RegisterComponent} from "../page/seller/Register/Register.component";
 @NgModule({
   declarations: [
     HMenu,
@@ -159,7 +160,8 @@ import '../styles/styles.scss';
     CategoryComponent,
     RoleListComponent,
     RoleComponent,
-    PictureListComponent
+    PictureListComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

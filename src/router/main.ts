@@ -27,6 +27,7 @@ import {CategoryComponent} from "../page/category/detail/Category.component";
 import {RoleListComponent} from "../page/system/role/list/RoleList.component";
 import {RoleComponent} from "../page/system/role/detail/Role.component";
 import {PictureListComponent} from "../page/picture/list/PictureList.component";
+import {RegisterComponent} from "../page/seller/Register/Register.component";
 
 const appRoute :Routes = [
   {path:'',redirectTo:'/index',pathMatch: 'full',},
@@ -66,7 +67,9 @@ const appRoute :Routes = [
       {path:'role-detail/:id',component:RoleComponent},
       {path:'pic-list',component:PictureListComponent}
     ]},
-  {path:'login',component:LoginComponent}
+  {path:'login',component:LoginComponent},
+  {path:'register',component:RegisterComponent}
+
 ]
 
 @NgModule({

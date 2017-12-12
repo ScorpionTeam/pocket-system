@@ -1,0 +1,57 @@
+/*主体*/
+.seller_register{
+  width: 800px;
+  margin: 0 auto;
+  color: rgba(0,0,0,0.85);
+
+}
+/*包裹层*/
+.seller_warp{
+  background: #ffffff;
+  width: 560px;
+  margin: 100px auto 0;
+  padding: 20px 10px;
+  border-radius: 8px;
+}
+
+/*卡片标题*/
+.register_tit{
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+}
+
+/*已有账号*/
+.has_tip{
+  text-align: center;
+  margin: 20px 0 5px;
+}
+.to_login{
+  color:#5971e8;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/*协议*/
+.protocol{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
+/*注册按钮*/
+.register_btn{
+  width: 220px;
+  height:40px;
+  color:#fff;
+  background: #5958d2;
+  margin: 0 auto;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 7px;
+  text-align: center;
+  line-height: 40px;
+}
