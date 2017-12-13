@@ -3,64 +3,73 @@
     <div class="card_title">我的店铺</div>
     <!--输入框-->
     <div class="card_content"  *ngIf="isAdd||Audit=='PASS_AUDIT'">
+      <div class="shop_status" nz-row>
+        <span nz-col [nzSpan]="3" [nzOffset]="4">当前店铺状态</span>
+        <span nz-col [nzSpan]="7" [nzOffset]="1" [class.err]="shopObj.status!='NORMAL'">{{justifyStatus(shopObj.status)}}</span>
+      </div>
       <form class="hk_form" [formGroup]="validateForm">
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">店铺名</div>
           <div nz-col [nzSpan]="7" [nzOffset]="1">
-            <nz-input formControlName="name" [(ngModel)]="shopObj.seller_name" [nzReadonly]="!isSelf"></nz-input>
+            <nz-input formControlName="name" [(ngModel)]="shopObj.seller_name"></nz-input>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">手机号</div>
           <div nz-col [nzSpan]="7" [nzOffset]="1">
-            <nz-input formControlName="mobile" [(ngModel)]="shopObj.mobile" [nzReadonly]="!isSelf"></nz-input>
+            <nz-input formControlName="mobile" [(ngModel)]="shopObj.mobile" ></nz-input>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">店铺地址</div>
           <div nz-col [nzSpan]="7" [nzOffset]="1">
-            <nz-input formControlName="address" [(ngModel)]="shopObj.seller_address" [nzReadonly]="!isSelf"></nz-input>
+            <nz-input formControlName="address" [(ngModel)]="shopObj.seller_address" ></nz-input>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">店铺描述</div>
           <div nz-col [nzSpan]="10" [nzOffset]="1">
-            <nz-input [nzType]="'textarea'" formControlName="description" [nzReadonly]="!isSelf"
+            <nz-input [nzType]="'textarea'" formControlName="description"
                       [(ngModel)]="shopObj.seller_description"></nz-input>
           </div>
         </div>
       </form>
       <div class="hk_btn_group">
         <button nz-button [nzType]="'primary'" (click)="save()" >保存</button>
-        <button nz-button [nzType]="'danger'" class="hk_btn_danger"  (click)="close()" *ngIf="Audit=='PASS_AUDIT'">关闭店铺</button>
+        <button nz-button [nzType]="'danger'" class="hk_btn_danger"  (click)="changeStatus('CLOSE')"
+                *ngIf="Audit=='PASS_AUDIT'&&shopObj.status=='NORMAL'">关闭店铺</button>
+        <button nz-button [nzType]="'primary'" (click)="changeStatus('NORMAL')"
+                *ngIf="Audit=='PASS_AUDIT'&&shopObj.status!='NORMAL'">开启店铺</button>
       </div>
     </div>
     <!--审核失败-->
     <div class="card_content"  *ngIf="Audit=='NOT_PASS_AUDIT'">
-      <p>请检查您的商铺信息</p>
+      <p style="text-align: center;color: red;font-size: 16px">
+        审核失败原因:{{shopObj.reason}}
+      </p>
       <form class="hk_form" [formGroup]="validateForm">
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">店铺名</div>
           <div nz-col [nzSpan]="7" [nzOffset]="1">
-            <nz-input formControlName="name" [(ngModel)]="shopObj.seller_name" [nzReadonly]="!isSelf"></nz-input>
+            <nz-input formControlName="name" [(ngModel)]="shopObj.seller_name" ></nz-input>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">手机号</div>
           <div nz-col [nzSpan]="7" [nzOffset]="1">
-            <nz-input formControlName="mobile" [(ngModel)]="shopObj.mobile" [nzReadonly]="!isSelf"></nz-input>
+            <nz-input formControlName="mobile" [(ngModel)]="shopObj.mobile"></nz-input>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">店铺地址</div>
           <div nz-col [nzSpan]="7" [nzOffset]="1">
-            <nz-input formControlName="address" [(ngModel)]="shopObj.seller_address" [nzReadonly]="!isSelf"></nz-input>
+            <nz-input formControlName="address" [(ngModel)]="shopObj.seller_address" ></nz-input>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">店铺描述</div>
           <div nz-col [nzSpan]="10" [nzOffset]="1">
-            <nz-input [nzType]="'textarea'" formControlName="description" [nzReadonly]="!isSelf"
+            <nz-input [nzType]="'textarea'" formControlName="description"
                       [(ngModel)]="shopObj.seller_description"></nz-input>
           </div>
         </div>

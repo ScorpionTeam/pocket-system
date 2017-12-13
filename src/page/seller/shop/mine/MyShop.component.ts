@@ -2,9 +2,27 @@ import {Component, OnInit} from "@angular/core";
 import {ShopServe} from "../../../../service/Shop.serve";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {NzMessageService, NzModalService} from "ng-zorro-antd";
+import {RouterTool} from "../../../../common/routertool/RouterTool";
+import {ActivatedRoute} from "@angular/router";
 @Component({
   selector:"my-shop",
   templateUrl:"MyShop.component.html",
+  styles:[`
+    .shop_status{
+      font-size: 16px;
+      padding:5px;
+      margin-bottom:10px;
+    }
+    .shop_status span:first-child{
+        display: inline-block;
+        font-weight: 600;
+        text-align: right;
+    }
+    .shop_status span:last-child{
+        display: inline-block;
+        text-align: left;
+    }
+  `],
   providers:[ShopServe]
 })
 
@@ -73,18 +91,20 @@ export class MyShopComponent implements OnInit{
       (res:any)=>{
         if(res.result==1){
           this.nzMessage.success("修改成功");
+          this.detail(localStorage.getItem("id"));
         }else {
           this.nzMessage.warning(res.error.message);
         }
       }
     );
   }
-  /*关闭*/
-  close(){
-    this.shopService.changeShopStatus(this.shopObj.id,"CLOSE").subscribe(
+  /*更改店铺状态*/
+  changeStatus(status:string){
+    this.shopService.changeShopStatus(this.shopObj.id,status).subscribe(
       (res:any)=>{
         if(res.result==1){
-          this.nzMessage.success("关闭成功");
+          this.nzMessage.success("修改成功");
+          this.detail(localStorage.getItem("id"));
         }else {
           this.nzMessage.error(res.error.message);
         }
@@ -107,5 +127,15 @@ export class MyShopComponent implements OnInit{
       address:["",[Validators.required]],
       description:["",[Validators.required]]
     })
+  }
+
+  justifyStatus(status:string){
+    if(status=='NORMAL'){
+      return"正常";
+    }else if(status=='CLOSE'){
+      return "关闭";
+    }else if(status=="CLOSE_LEADER"){
+      return "停用";
+    }
   }
 }

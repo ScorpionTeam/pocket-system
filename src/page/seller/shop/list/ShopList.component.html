@@ -6,11 +6,11 @@
     </ng-template>
   </nz-input>
 
-  <span style="font-weight: 600;margin-left: 100px;">审核状态</span>
+  <span style="font-weight: 600;margin:0 10px 0 100px;">审核状态</span>
   <nz-select [(ngModel)]="condition.audit" class="hk_list_select" (nzOpenChange)	= "changeAuditStatus()">
     <nz-option [nzLabel]="'已审核'" [nzValue]="'PASS_AUDIT'"></nz-option>
     <nz-option [nzLabel]="'未审核'" [nzValue]="'AUDITING'"></nz-option>
-    <nz-option [nzLabel]="'审核失败'" [nzValue]="'NOT_AUDIT'"></nz-option>
+    <nz-option [nzLabel]="'审核失败'" [nzValue]="'NOT_PASS_AUDIT'"></nz-option>
   </nz-select>
 </div>
 <nz-table #orderListTable [nzAjaxData]="shopList" [nzPageSize]="page.pageSize" [nzPageIndex]="page.pageNo"

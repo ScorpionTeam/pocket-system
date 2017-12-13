@@ -36,7 +36,11 @@ export class ShopListComponent implements OnInit{
     this.page.pageNo=1;
     this.shopService.pageList(this.page.pageNo,this.page.pageSize,this.condition).subscribe(
       (res:any)=>{
-        this.shopList= res.list;
+        if(res.total==0){
+          this.shopList=[];
+        }else {
+          this.shopList= res['list'];
+        }
       }
     )
   }
@@ -49,7 +53,11 @@ export class ShopListComponent implements OnInit{
     this.page.pageNo = val;
     this.shopService.pageList(this.page.pageNo,this.page.pageSize,this.condition).subscribe(
       (res:any)=>{
-        this.shopList= res.list;
+        if(res.total==0){
+          this.shopList=[];
+        }else {
+          this.shopList= res['list'];
+        }
       }
     )
   }
@@ -61,8 +69,12 @@ export class ShopListComponent implements OnInit{
   pageSizeChangeHandler(val){
     this.page.pageSize = val;
     this.shopService.pageList(this.page.pageNo,this.page.pageSize,this.condition).subscribe(
-      res=>{
-        this.shopList= res['list'];
+      (res:any)=>{
+        if(res.total==0){
+          this.shopList=[];
+        }else {
+          this.shopList= res['list'];
+        }
       }
     )
   }

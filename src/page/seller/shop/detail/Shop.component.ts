@@ -3,6 +3,7 @@ import {ShopServe} from "../../../../service/Shop.serve";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {NzModalService, NzMessageService} from "ng-zorro-antd";
 import {ActivatedRoute} from "@angular/router";
+import {RouterTool} from "../../../../common/routertool/RouterTool";
 @Component({
   selector:"shop",
   templateUrl:"Shop.component.html",
@@ -11,7 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 
 export class ShopComponent implements OnInit{
   constructor( private shopService:ShopServe,private fb:FormBuilder,private nzMessage:NzMessageService,
-               private route:ActivatedRoute,private nzModal:NzModalService){}
+               private route:ActivatedRoute,private nzModal:NzModalService,private routerTool:RouterTool){}
   ngOnInit(){
     this.createFormValidate();
     this.detail(this.route.params["value"].id);
@@ -20,6 +21,7 @@ export class ShopComponent implements OnInit{
   validateForm:FormGroup;//校验对象
   Audit:string;//审核状态
   reason:string='';//审核原因
+  isVisible:boolean=false;//模态控制
 
   /*查找详情*/
   detail(userId:any){
@@ -52,7 +54,8 @@ export class ShopComponent implements OnInit{
     this.shopService.audit(this.shopObj.id,status,this.reason).subscribe(
       (res:any)=>{
         if(res.result==1){
-          this.nzMessage.success("审核成功");
+          this.isVisible=false;
+          this.reason='';
         }else {
           this.nzMessage.error(res.error.message);
         }
@@ -61,8 +64,8 @@ export class ShopComponent implements OnInit{
   }
 
   /*关闭*/
-  close(){
-    this.shopService.changeShopStatus(this.shopObj.id,'CLOSE_LEADER').subscribe(
+  changeStatus(status:string){
+    this.shopService.changeShopStatus(this.shopObj.id,status).subscribe(
       (res:any)=>{
         if(res.result==1){
           this.nzMessage.success("关闭成功");
@@ -73,4 +76,17 @@ export class ShopComponent implements OnInit{
     )
   }
 
+  /**
+   * 打开模态
+   */
+  openModal(){
+    this.isVisible=!this.isVisible;
+  }
+
+  /**
+   * 返回
+   */
+  back(){
+    this.routerTool.skipToPage('/../shop-list',this.route);
+  }
 }

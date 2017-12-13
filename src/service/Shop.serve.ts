@@ -53,7 +53,7 @@ export class ShopServe{
    * @param reason
    * @returns {Observable<R|T>}
    */
-  audit(id:number,status:string,reason:string){
+  audit(id:number,status:string,reason?:string){
     let url='backstage/shop/audit?audit='+status+'&id='+id;
     if(reason!=''&&!isUndefined(reason)){
       url+= '&reason='+reason;
@@ -67,7 +67,7 @@ export class ShopServe{
    * @param status 状态   NORMAL 正常 CLOSE_LEADER 管理员关闭 CLOSE 关闭  DELETE 删除状态
    */
   changeShopStatus(id:number,status:string){
-    let url ='seller//updateStatus/'+id;
+    let url ='seller/updateStatus/'+id+'/'+status;
     return this.http.post(url,null);
   }
 }
