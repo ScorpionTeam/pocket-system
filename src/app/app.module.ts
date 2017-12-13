@@ -129,6 +129,9 @@ import {HMenu} from "../common/menu/HMenu";
 import '../styles/styles.scss';
 import {RegisterComponent} from "../page/seller/Register/Register.component";
 import {FormTool} from "../common/list/FormTool";
+import {ShopListComponent} from "../page/seller/shop/list/ShopList.component";
+import {ShopComponent} from "../page/seller/shop/detail/Shop.component";
+import {MyShopComponent} from "../page/seller/shop/mine/MyShop.component";
 @NgModule({
   declarations: [
     HMenu,
@@ -162,7 +165,10 @@ import {FormTool} from "../common/list/FormTool";
     RoleListComponent,
     RoleComponent,
     PictureListComponent,
-    RegisterComponent
+    RegisterComponent,
+    ShopListComponent,
+    ShopComponent,
+    MyShopComponent
   ],
   imports: [
     BrowserModule,

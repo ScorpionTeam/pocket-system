@@ -1,0 +1,43 @@
+<div class="search_tool">
+  <nz-input [nzType]="'text'" [nzPlaceHolder]="'商铺名称'" [nzSize]="'large'"
+            [(ngModel)]="condition.searchKey" [class]="'search_input'">
+    <ng-template #addOnAfter>
+      <i class="anticon anticon-search search" (click)="search()"></i>
+    </ng-template>
+  </nz-input>
+
+  <span style="font-weight: 600;margin-left: 100px;">审核状态</span>
+  <nz-select [(ngModel)]="condition.audit" class="hk_list_select" (nzOpenChange)	= "changeAuditStatus()">
+    <nz-option [nzLabel]="'已审核'" [nzValue]="'PASS_AUDIT'"></nz-option>
+    <nz-option [nzLabel]="'未审核'" [nzValue]="'AUDITING'"></nz-option>
+    <nz-option [nzLabel]="'审核失败'" [nzValue]="'NOT_AUDIT'"></nz-option>
+  </nz-select>
+</div>
+<nz-table #orderListTable [nzAjaxData]="shopList" [nzPageSize]="page.pageSize" [nzPageIndex]="page.pageNo"
+          [nzShowSizeChanger]="true" [nzShowTotal]="true"
+          (nzPageIndexChange)="pageChangeHandler($event)" [nzTotal]="page.total"
+          [nzShowQuickJumper]="true" (nzPageSizeChange)="pageSizeChangeHandler($event)">
+  <thead nz-thead>
+  <tr>
+    <th nz-th><span>编号</span></th>
+    <th nz-th><span>名称</span></th>
+    <th nz-th><span>地址</span></th>
+    <th nz-th><span>店铺描述</span></th>
+    <th nz-th><span>操作</span></th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let data of orderListTable.data;let index = index;">
+    <td nz-td>{{data.seller_no}}</td>
+    <td nz-td>{{data.seller_name}}</td>
+    <td nz-td>{{data.seller_address}}</td>
+    <td nz-td>{{data.seller_description}}</td>
+    <td nz-td>
+      <a (click)="skipToPage('/shop',data.user_id)">描述</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+
+

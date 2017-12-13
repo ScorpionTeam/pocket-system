@@ -28,6 +28,9 @@ import {RoleListComponent} from "../page/system/role/list/RoleList.component";
 import {RoleComponent} from "../page/system/role/detail/Role.component";
 import {PictureListComponent} from "../page/picture/list/PictureList.component";
 import {RegisterComponent} from "../page/seller/Register/Register.component";
+import {ShopListComponent} from "../page/seller/shop/list/ShopList.component";
+import {ShopComponent} from "../page/seller/shop/detail/Shop.component";
+import {MyShopComponent} from "../page/seller/shop/mine/MyShop.component";
 
 const appRoute :Routes = [
   {path:'',redirectTo:'/index',pathMatch: 'full',},
@@ -65,12 +68,15 @@ const appRoute :Routes = [
       {path:'role-list',component:RoleListComponent},
       {path:'role-add',component:RoleComponent},
       {path:'role-detail/:id',component:RoleComponent},
-      {path:'pic-list',component:PictureListComponent}
+      {path:'pic-list',component:PictureListComponent},
+      {path:'shop-list',component:ShopListComponent},
+      {path:'shop/:id',component:ShopComponent},
+      {path:'myshop',component:MyShopComponent}
     ]},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent}
 
-]
+];
 
 @NgModule({
   imports:[RouterModule.forRoot(appRoute,{ useHash: true })],

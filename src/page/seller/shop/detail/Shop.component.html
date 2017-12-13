@@ -1,0 +1,40 @@
+<div class="shop">
+  <div class="hk_card">
+    <div class="card_title">店铺详情</div>
+    <!--输入框-->
+    <div class="card_content">
+      <form class="hk_form" [formGroup]="validateForm">
+        <div class="hk_form_item" nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">店铺名</div>
+          <div nz-col [nzSpan]="7" [nzOffset]="1">
+            <nz-input formControlName="name" [(ngModel)]="shopObj.seller_name" [nzReadonly]="true"></nz-input>
+          </div>
+        </div>
+        <div class="hk_form_item" nz-row>
+          <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">手机号</div>
+          <div nz-col [nzSpan]="7" [nzOffset]="1">
+            <nz-input formControlName="mobile" [(ngModel)]="shopObj.mobile" [nzReadonly]="true"></nz-input>
+          </div>
+        </div>
+        <div class="hk_form_item" nz-row>
+          <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">店铺地址</div>
+          <div nz-col [nzSpan]="7" [nzOffset]="1">
+            <nz-input formControlName="address" [(ngModel)]="shopObj.seller_address" [nzReadonly]="true"></nz-input>
+          </div>
+        </div>
+        <div class="hk_form_item" nz-row>
+          <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">店铺描述</div>
+          <div nz-col [nzSpan]="10" [nzOffset]="1">
+            <nz-input [nzType]="'textarea'" formControlName="description" [nzReadonly]="true"
+                      [(ngModel)]="shopObj.seller_description"></nz-input>
+          </div>
+        </div>
+      </form>
+      <div class="hk_btn_group">
+        <button nz-button [nzType]="'primary'" (click)="audit('PASS_AUDIT')" *ngIf="Audit=='AUDITING'">审核通过</button>
+        <button nz-button [nzType]="'danger'" class="hk_btn_danger" (click)="audit('NOT_PASS_AUDIT')" *ngIf="Audit=='AUDITING'">审核不通过</button>
+        <button nz-button [nzType]="'danger'" class="hk_btn_danger"  (click)="close()" *ngIf="Audit=='PASS_AUDIT'">关闭店铺</button>
+      </div>
+    </div>
+  </div>
+</div>

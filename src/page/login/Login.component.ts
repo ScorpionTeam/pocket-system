@@ -68,14 +68,15 @@ export class LoginComponent implements  OnInit{
   login(){
     if(this.validateForm.valid){
       let url = this.httpData.Host+'backstage/user/login?mobile='+this.userName+'&password='+this.password;
-      this.http.post(url,null).subscribe(res=>{
+      this.http.post(url,null).subscribe((res:any)=>{
         if(res["result"]==1){
           this.router.navigate(['./index'])
-          localStorage.setItem("token",res["data"].token);
-          localStorage.setItem("name",res["data"].name);
-          localStorage.setItem("mobile",this.userName);
-          localStorage.setItem("id",res["data"].id);
-          localStorage.setItem("city",res["data"].city);
+          localStorage.setItem("token",res.data.token);
+          localStorage.setItem("name",res.data.name);
+          localStorage.setItem("mobile",res.data.mobile);
+          localStorage.setItem("id",res.data.id);
+          localStorage.setItem("city",res.data.city);
+          localStorage.setItem("certification",res.data.certification);
         }else{
           this.nzMessage.error(res['error'].message)
         }

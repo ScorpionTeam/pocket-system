@@ -42,11 +42,10 @@ export class RegisterComponent implements OnInit{
    * @param flag 0:正面 1:反面
    */
   uploadSuccess(res,flag){
-    console.log(res)
     if(flag==0){
-      this.registerObj.idPhotoFrontUrl = res[0].url;
+      this.registerObj.id_photo_front_url = res[0].url;
     }else {
-      this.registerObj.idPhotoBgUrl = res[0].url;
+      this.registerObj.id_photo_bg_url = res[0].url;
     }
   }
 
@@ -66,6 +65,7 @@ export class RegisterComponent implements OnInit{
    * 下一步
    */
   next(){
+    console.log(this.formValidate.controls["passwordConfirm"]);
     if(this.formValidate.valid){
       this.isNext=true;
     }else {
@@ -84,6 +84,7 @@ export class RegisterComponent implements OnInit{
       isUndefined(this.registerObj.id_photo_bg_url)){
       this.nzMessage.warning("请先上传图片");
     }else {
+      //注册部分
       this.registerService.register(this.registerObj).subscribe(
         res=>{
           console.log(res);

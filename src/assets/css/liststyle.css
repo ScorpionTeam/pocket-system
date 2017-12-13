@@ -99,6 +99,26 @@
 .input_err{
   border-color:#ff6b6b;
 }
-.input_err:hover,.input_err:active{
-  border-color:#ff6b6b;
+.input_err:hover,.input_err:focus{
+  border-color:#ff6b6b!important;
+}
+
+/*下拉框*/
+.hk_list_select{
+  width: 150px;
+}
+
+/*表单样式*/
+.hk_form{
+
+}
+
+.hk_form_item{
+  margin-bottom: 20px;
+}
+
+.hk_form_label{
+  text-align: right;
+  vertical-align: middle;
+  font-weight: 600;
 }

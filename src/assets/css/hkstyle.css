@@ -10,6 +10,10 @@
   width: 72px!important;
   height: 30px!important;
 }
+.hk_btn_danger{
+  background: #ff0000!important;
+  color: #fff!important;
+}
 
 .hk_btn_sm{
   font-size: 12px;
@@ -17,6 +21,9 @@
   height: 26px;
 }
 
+.hk_btn_group{
+  text-align: center;
+}
 /*输入框*/
 .hk_input{
   width: 100%;
@@ -32,4 +39,26 @@
 .hk_input:focus,.hk_input:hover{
   border-color:#49a9ee;
   outline: none;
+}
+
+
+/*卡片*/
+.hk_card{
+  background: #ffffff;
+}
+.hk_card .card_title{
+  font-size: 14px;
+  border-bottom: 1px solid hsla(0,0%,85%,.5);
+  margin: 0 10px;
+  padding: 6px 15px 6px 5px!important;
+  font-weight: 600;
+}
+
+.hk_card .card_content{
+  padding: 20px 20px 10px;
+}
+.card_content .content_tip{
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
 }

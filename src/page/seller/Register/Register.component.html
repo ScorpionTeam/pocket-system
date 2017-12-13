@@ -48,6 +48,9 @@
         <div class="form_explain" *ngIf="formValidate.controls.passwordConfirm.dirty&&formValidate.controls.passwordConfirm.hasError('required')">
           <i class="anticon anticon-exclamation-circle" style="color: #ff6b6b;margin-right: 5px"></i> 必填
         </div>
+        <div class="form_explain" *ngIf="formValidate.controls.passwordConfirm.dirty&&formValidate.controls.passwordConfirm.hasError('required')">
+          <i class="anticon anticon-exclamation-circle" style="color: #ff6b6b;margin-right: 5px"></i> 必填
+        </div>
       </div>
     </form>
     <div nz-row *ngIf="isNext">
