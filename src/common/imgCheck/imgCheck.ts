@@ -62,7 +62,6 @@ export class ImgCheck implements OnInit{
   openModal(){
     this.isVisible = !this.isVisible;
     let pic:any = document.getElementById(this.ModalIdName);
-    console.log(pic);
     pic.style.transform = "rotate(0)";
   }
 
@@ -71,7 +70,6 @@ export class ImgCheck implements OnInit{
    console.log(node._el);
    let targtEle = node._el;
    let pic:any = document.getElementById(this.ModalIdName);
-   console.log(pic);
    let degree = this.getDegree(pic);
     pic.style.transform = "rotate("+(degree+90)+"deg)";
  }
@@ -91,7 +89,6 @@ export class ImgCheck implements OnInit{
     let c = values[2];
     let d = values[3];
     let angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
-    console.log('Rotate: ' + angle + 'deg');
     return angle;
   }
 

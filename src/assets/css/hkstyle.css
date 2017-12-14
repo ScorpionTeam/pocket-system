@@ -62,3 +62,10 @@
   font-weight: 600;
   font-size: 16px;
 }
+
+/*全局退出按钮*/
+.back_btn_g{
+  position:fixed!important;
+  top:80px;
+  right: 20px;
+}

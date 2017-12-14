@@ -15,4 +15,20 @@ export class SellerServe{
     let url = 'backstage/user/userList?pageNo='+pageNo+'&pageSize='+pageSize+'&userType='+userType;
     return this.http.get(url);
   }
+
+  /**
+   * 审核
+   * @param sellerId
+   * @param operateId
+   * @param certification NOT_AUTH 未实名认证, IS_AUTH 认证通过， NOT_PASS_AUTH 认证未通过
+   * @param reason
+   * @returns {Observable<R|T>}
+   */
+  audit(sellerId:any,operateId:any,certification:string,reason?:string){
+    let url = 'backstage/user/auditSeller?sellerId='+sellerId+'&operateId='+operateId+'&certification='+certification;
+    if(reason&&reason!=''){
+      url+= "&reason="+reason;
+    }
+    return this.http.post(url,null);
+  }
 }

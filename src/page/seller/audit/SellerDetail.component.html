@@ -66,8 +66,20 @@
        </div>
     </div>
   </div>
-  <div class="hk_btn_group">
-    <button nz-button [nzType]="'primary'">审核通过</button>
-    <button nz-button [nzType]="'danger'" class="hk_btn_danger">审核失败</button>
+  <button nz-button (click)="back()" class="back_btn_g">
+    <i class="anticon anticon-logout"></i>
+  </button>
+  <div class="hk_btn_group" *ngIf="sellObj.certification!='IS_AUTH'">
+    <button nz-button [nzType]="'primary'" (click)="audit('IS_AUTH')">审核通过</button>
+    <button nz-button [nzType]="'danger'" class="hk_btn_danger" (click)="openModal()">审核失败</button>
   </div>
+  <!--审核失败模态-->
+  <nz-modal [nzContent]="modalContent2" [nzVisible]="isVisible" [nzClosable]="false"
+            [nzTitle]="'图片大图'" (nzOnOk)="audit('NOT_PASS_AUTH')" (nzOnCancel)="isVisible=!isVisible;">
+    <ng-template #modalContent2>
+      <div style="text-align: center">
+        <nz-input [(ngModel)]="reason" [nzPlaceHolder]="'审核失败原因'"></nz-input>
+      </div>
+    </ng-template>
+  </nz-modal>
 </div>
