@@ -23,6 +23,10 @@ export class SellerListComponent implements OnInit{
     total:0
   };
 
+  /**
+   * 分页
+   * @param val
+   */
   pageChangeHandler(val){
     this.page.pageNo=val;
     this.sellerService.pageList(this.page.pageNo,this.page.pageSize,"SELLER").subscribe(
@@ -36,6 +40,11 @@ export class SellerListComponent implements OnInit{
       }
     )
   }
+
+  /**
+   * 页面条数变化
+   * @param val
+   */
   pageSizeChangeHandler(val){
     this.page.pageSize=val;
     this.sellerService.pageList(this.page.pageNo,this.page.pageSize,"SELLER").subscribe(
@@ -49,6 +58,8 @@ export class SellerListComponent implements OnInit{
       }
     )
   }
+
+  /*模糊查询*/
   search(){
     this.page.pageNo=1;
     this.sellerService.pageList(this.page.pageNo,this.page.pageSize,"SELLER").subscribe(

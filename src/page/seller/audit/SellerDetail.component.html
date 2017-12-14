@@ -1,0 +1,73 @@
+<div class="seller_detail">
+  <div class="hk_card">
+    <div class="card_title">信息</div>
+    <div class="card_content">
+      <div class="hk_form" >
+        <div class="hk_form_item" nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">姓名</div>
+          <div nz-col [nzSpan]="7" [nzOffset]="1">
+            <nz-input [(ngModel)]="sellObj.name" [nzReadonly]="true"></nz-input>
+          </div>
+        </div>
+        <div class="hk_form_item" nz-row>
+          <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">昵称</div>
+          <div nz-col [nzSpan]="7" [nzOffset]="1">
+            <nz-input  [(ngModel)]="sellObj.nick_name" [nzReadonly]="true"></nz-input>
+          </div>
+        </div>
+        <div class="hk_form_item" nz-row>
+          <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4"> 身份证号码</div>
+          <div nz-col [nzSpan]="7" [nzOffset]="1">
+            <nz-input  [(ngModel)]="sellObj.certificate_id" [nzReadonly]="true"></nz-input>
+          </div>
+        </div>
+        <div class="hk_form_item" nz-row>
+          <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">手机号码</div>
+          <div nz-col [nzSpan]="7" [nzOffset]="1">
+            <nz-input [nzReadonly]="true"
+                      [(ngModel)]="sellObj.mobile"></nz-input>
+          </div>
+        </div>
+        <div class="hk_form_item" nz-row>
+          <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">联系地址</div>
+          <div nz-col [nzSpan]="7" [nzOffset]="1">
+            <nz-input [nzReadonly]="true"
+                      [(ngModel)]="sellObj.address"></nz-input>
+          </div>
+        </div>
+        <div class="hk_form_item" nz-row>
+          <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">城市</div>
+          <div nz-col [nzSpan]="7" [nzOffset]="1">
+            <nz-input [nzReadonly]="true"
+                      [(ngModel)]="sellObj.city"></nz-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hk_card">
+    <div class="card_title">图片</div>
+    <div class="card_content">
+       <div class="hk_form" nz-row>
+         <div class="hk_form_item" nz-row nz-col [nzSpan]="10">
+           <div class="hk_form_label" nz-col [nzSpan]="10">证件照(正)</div>
+           <div nz-col [nzSpan]="10"  [nzOffset]="1">
+             <img-scan [imgPreview]="sellObj.id_photo_front_url"
+                       [ModalIdName]="'one'"></img-scan>
+           </div>
+         </div>
+         <div class="hk_form_item" nz-row nz-col [nzSpan]="10" [nzOffset]="2">
+           <div class="hk_form_label" nz-col [nzSpan]="3">证件照(反)</div>
+           <div nz-col [nzSpan]="10" [nzOffset]="1">
+             <img-scan [imgPreview]="sellObj.id_photo_bg_url"
+                       [ModalIdName]="'two'"></img-scan>
+           </div>
+         </div>
+       </div>
+    </div>
+  </div>
+  <div class="hk_btn_group">
+    <button nz-button [nzType]="'primary'">审核通过</button>
+    <button nz-button [nzType]="'danger'" class="hk_btn_danger">审核失败</button>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="pic_contain">
+  <div class="pic_wapper">
+    <img src="{{imgPreview}}" alt="" class="pic">
+    <div class="pic_modal">
+      <i class="anticon anticon-plus-circle-o pic_icon" (click)="openModal()"></i>
+    </div>
+  </div>
+</div>
+<!--图片放大模态-->
+<nz-modal [nzContent]="modalContent2" [nzVisible]="isVisible" [nzClosable]="false"
+          [nzTitle]="'图片大图'" (nzOnOk)="isVisible=!isVisible;" (nzOnCancel)="isVisible=!isVisible;">
+  <ng-template #modalContent2>
+    <div style="text-align: center">
+      <img src="{{imgPreview}}" alt="" class="pic_detail" [id]="ModalIdName">
+    </div>
+    <div class="hk_btn_group" style="margin: 10px 0">
+      <button nz-button (click)="roratePic(rbtn)" #rbtn>
+        <i class="anticon anticon-reload"></i><span>转动</span>
+      </button>
+    </div>
+  </ng-template>
+</nz-modal>
