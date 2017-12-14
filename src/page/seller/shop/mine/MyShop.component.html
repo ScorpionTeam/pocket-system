@@ -36,9 +36,9 @@
       </form>
       <div class="hk_btn_group">
         <button nz-button [nzType]="'primary'" (click)="save()" >保存</button>
-        <button nz-button [nzType]="'danger'" class="hk_btn_danger"  (click)="changeStatus('CLOSE')"
+        <button nz-button [nzType]="'danger'" class="hk_btn_danger"  (click)="changeStatus('CLOSE','SELLER')"
                 *ngIf="Audit=='PASS_AUDIT'&&shopObj.status=='NORMAL'">关闭店铺</button>
-        <button nz-button [nzType]="'primary'" (click)="changeStatus('NORMAL')"
+        <button nz-button [nzType]="'primary'" (click)="changeStatus('NORMAL','SELLER')"
                 *ngIf="Audit=='PASS_AUDIT'&&shopObj.status!='NORMAL'">开启店铺</button>
       </div>
     </div>

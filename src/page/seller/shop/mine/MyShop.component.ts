@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ShopServe} from "../../../../service/Shop.serve";
+import {ShopServe} from "../../../../service/Shop.service";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {NzMessageService, NzModalService} from "ng-zorro-antd";
 import {RouterTool} from "../../../../common/routertool/RouterTool";
@@ -99,8 +99,8 @@ export class MyShopComponent implements OnInit{
     );
   }
   /*更改店铺状态*/
-  changeStatus(status:string){
-    this.shopService.changeShopStatus(this.shopObj.id,status).subscribe(
+  changeStatus(status:string,opreator:string){
+    this.shopService.changeShopStatus(this.shopObj.id,status,opreator).subscribe(
       (res:any)=>{
         if(res.result==1){
           this.nzMessage.success("修改成功");

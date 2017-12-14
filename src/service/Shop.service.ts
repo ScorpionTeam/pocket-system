@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http} from "../common/http/Http";
 import {isUndefined} from "util";
+import {operators} from "rxjs";
 @Injectable()
 export class ShopServe{
   constructor(private http:Http){}
@@ -65,9 +66,10 @@ export class ShopServe{
    * 更改店铺状态
    * @param id
    * @param status 状态   NORMAL 正常 CLOSE_LEADER 管理员关闭 CLOSE 关闭  DELETE 删除状态
+   * @param opreator PLATFORM("PLATFORM", "平台")  SELLER("SELLER", "商家"),
    */
-  changeShopStatus(id:number,status:string){
-    let url ='seller/updateStatus/'+id+'/'+status;
+  changeShopStatus(id:number,status:string,opreator:string){
+    let url ='seller/updateStatus/'+id+'/'+status+'/'+opreator;
     return this.http.post(url,null);
   }
 }

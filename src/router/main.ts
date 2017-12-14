@@ -31,6 +31,8 @@ import {RegisterComponent} from "../page/seller/Register/Register.component";
 import {ShopListComponent} from "../page/seller/shop/list/ShopList.component";
 import {ShopComponent} from "../page/seller/shop/detail/Shop.component";
 import {MyShopComponent} from "../page/seller/shop/mine/MyShop.component";
+import {SellerListComponent} from "../page/seller/list/SellerList.component";
+import {SellerDetailComponent} from "../page/seller/audit/SellerDetail.component";
 
 const appRoute :Routes = [
   {path:'',redirectTo:'/index',pathMatch: 'full',},
@@ -58,7 +60,7 @@ const appRoute :Routes = [
       {path:'banner-list',component:AdvertisementListComonent},
       {path:'banner-add',component:AdvertisementComponent},
       {path:'banner-detail/:id',component:AdvertisementComponent},
-        {path:'menu-list',component:MenuListComponent},
+      {path:'menu-list',component:MenuListComponent},
       {path:'menu-add',component:MenuComponent},
       {path:'menu-detail/:id',component:MenuComponent},
       {path:'personal',component:PersonalComponent},
@@ -71,7 +73,9 @@ const appRoute :Routes = [
       {path:'pic-list',component:PictureListComponent},
       {path:'shop-list',component:ShopListComponent},
       {path:'shop/:id',component:ShopComponent},
-      {path:'myshop',component:MyShopComponent}
+      {path:'myshop',component:MyShopComponent},
+      {path:'seller-list',component:SellerListComponent},
+      {path:'seller-detail/:id',component:SellerDetailComponent}
     ]},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent}

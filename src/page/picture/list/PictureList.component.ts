@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {NzMessageService, NzModalService} from "ng-zorro-antd";
 import {HttpData} from "../../../http/HttpData";
-import {PictureServe} from "../../../service/Picture.serve";
+import {PictureServe} from "../../../service/Picture.service";
 @Component({
   selector:'picture-list',
   templateUrl:'PictureList.component.html'

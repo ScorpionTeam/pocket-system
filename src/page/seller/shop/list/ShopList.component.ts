@@ -2,7 +2,7 @@
  * Created by admin1 on 2017/12/13.
  */
 import {Component, OnInit} from "@angular/core";
-import {ShopServe} from "../../../../service/Shop.serve";
+import {ShopServe} from "../../../../service/Shop.service";
 import {NzMessageService} from "ng-zorro-antd";
 import {RouterTool} from "../../../../common/routertool/RouterTool";
 import {ActivatedRoute} from "@angular/router";
@@ -41,6 +41,7 @@ export class ShopListComponent implements OnInit{
         }else {
           this.shopList= res['list'];
         }
+        this.page.total = res.total;
       }
     )
   }
@@ -58,6 +59,7 @@ export class ShopListComponent implements OnInit{
         }else {
           this.shopList= res['list'];
         }
+        this.page.total = res.total;
       }
     )
   }
@@ -75,6 +77,7 @@ export class ShopListComponent implements OnInit{
         }else {
           this.shopList= res['list'];
         }
+        this.page.total = res.total;
       }
     )
   }

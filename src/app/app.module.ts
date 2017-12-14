@@ -132,11 +132,15 @@ import {FormTool} from "../common/list/FormTool";
 import {ShopListComponent} from "../page/seller/shop/list/ShopList.component";
 import {ShopComponent} from "../page/seller/shop/detail/Shop.component";
 import {MyShopComponent} from "../page/seller/shop/mine/MyShop.component";
+import {SellerListComponent} from "../page/seller/list/SellerList.component";
+import {SellerDetailComponent} from "../page/seller/audit/SellerDetail.component";
+import {ImgCheck} from "../common/imgCheck/imgCheck";
 @NgModule({
   declarations: [
     HMenu,
     HKeditor,
     ImgUpload,
+    ImgCheck,
     CheckBoxGroup,
     AppComponent,
     LoginComponent,
@@ -168,7 +172,9 @@ import {MyShopComponent} from "../page/seller/shop/mine/MyShop.component";
     RegisterComponent,
     ShopListComponent,
     ShopComponent,
-    MyShopComponent
+    MyShopComponent,
+    SellerListComponent,
+    SellerDetailComponent
   ],
   imports: [
     BrowserModule,

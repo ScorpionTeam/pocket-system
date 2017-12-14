@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {isUndefined} from "util";
 import {NzMessageService} from "ng-zorro-antd";
-import {RegisterServe} from "../../../service/Register.serve";
+import {RegisterServe} from "../../../service/Register.service";
 import {RouterTool} from "../../../common/routertool/RouterTool";
 import {ActivatedRoute} from "@angular/router";
 import {FormTool} from "../../../common/list/FormTool";

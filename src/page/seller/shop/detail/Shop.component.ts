@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ShopServe} from "../../../../service/Shop.serve";
+import {ShopServe} from "../../../../service/Shop.service";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {NzModalService, NzMessageService} from "ng-zorro-antd";
 import {ActivatedRoute} from "@angular/router";
@@ -64,11 +64,13 @@ export class ShopComponent implements OnInit{
   }
 
   /*关闭*/
-  changeStatus(status:string){
-    this.shopService.changeShopStatus(this.shopObj.id,status).subscribe(
+  changeStatus(status:string,opreator:string){
+    this.shopService.changeShopStatus(this.shopObj.id,status,opreator).subscribe(
       (res:any)=>{
         if(res.result==1){
-          this.nzMessage.success("关闭成功");
+          this.nzMessage.success("修改成功");
+          this.detail(this.route.params["value"].id);
+
         }else {
           this.nzMessage.error(res.error.message);
         }
