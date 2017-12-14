@@ -77,6 +77,7 @@ export class LoginComponent implements  OnInit{
           localStorage.setItem("id",res.data.id);
           localStorage.setItem("city",res.data.city);
           localStorage.setItem("certification",res.data.certification);
+          localStorage.setItem("userType",res.data.user_type);
         }else{
           this.nzMessage.error(res['error'].message)
         }

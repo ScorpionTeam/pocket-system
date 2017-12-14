@@ -36,10 +36,13 @@ export class IndexComponent implements OnInit{
 
   /**
    * 页面跳转
-   * @param url
    */
-  skipToPage(url:string){
-    this.router.navigate([url],{relativeTo:this.route});
+  skipToPerson(){
+    if(localStorage.getItem("userType")=="SELLER"){
+      this.router.navigate(['seller-info'],{relativeTo:this.route});
+    }else {
+      this.router.navigate(['personal'],{relativeTo:this.route});
+    }
   }
 
   /**

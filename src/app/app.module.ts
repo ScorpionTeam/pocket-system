@@ -135,6 +135,7 @@ import {MyShopComponent} from "../page/seller/shop/mine/MyShop.component";
 import {SellerListComponent} from "../page/seller/list/SellerList.component";
 import {SellerDetailComponent} from "../page/seller/audit/SellerDetail.component";
 import {ImgCheck} from "../common/imgCheck/imgCheck";
+import {SellerInfoComponent} from "../page/seller/person/SellerInfo.component";
 @NgModule({
   declarations: [
     HMenu,
@@ -174,7 +175,8 @@ import {ImgCheck} from "../common/imgCheck/imgCheck";
     ShopComponent,
     MyShopComponent,
     SellerListComponent,
-    SellerDetailComponent
+    SellerDetailComponent,
+    SellerInfoComponent
   ],
   imports: [
     BrowserModule,

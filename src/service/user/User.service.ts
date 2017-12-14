@@ -35,14 +35,14 @@ export class UserService{
   }
 
   /**
-   * 分页查询用户列表
+   * 分页查询运营用户列表
    * @param pageNo
    * @param pageSize
    * @param condition
    * @returns {any}
    */
   pageList(pageNo:any,pageSize:any,condition?:any){
-    let url = "backstage/user/userList?pageNo="+pageNo+"&pageSize="+pageSize;
+    let url = "backstage/user/userList?pageNo="+pageNo+"&pageSize="+pageSize+"&userType=USER_ADMIN";
     return this.pageService.pageList(url,condition);
   }
 
