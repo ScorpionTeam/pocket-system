@@ -129,13 +129,18 @@ export class MyShopComponent implements OnInit{
     })
   }
 
+  /**
+   * 判断店铺状态
+   * @param status
+   * @returns {any}
+   */
   justifyStatus(status:string){
     if(status=='NORMAL'){
       return"正常";
     }else if(status=='CLOSE'){
       return "关闭";
     }else if(status=="CLOSE_LEADER"){
-      return "停用";
+      return "停用,请联系管理员";
     }
   }
 }
