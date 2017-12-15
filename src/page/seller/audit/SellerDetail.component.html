@@ -1,24 +1,12 @@
 <div class="seller_detail">
   <div class="hk_card">
-    <div class="card_title">信息</div>
+    <div class="card_title">账号信息</div>
     <div class="card_content">
       <div class="hk_form" >
-        <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">姓名</div>
-          <div nz-col [nzSpan]="7" [nzOffset]="1">
-            <nz-input [(ngModel)]="sellObj.name" [nzReadonly]="true"></nz-input>
-          </div>
-        </div>
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">昵称</div>
           <div nz-col [nzSpan]="7" [nzOffset]="1">
             <nz-input  [(ngModel)]="sellObj.nick_name" [nzReadonly]="true"></nz-input>
-          </div>
-        </div>
-        <div class="hk_form_item" nz-row>
-          <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4"> 身份证号码</div>
-          <div nz-col [nzSpan]="7" [nzOffset]="1">
-            <nz-input  [(ngModel)]="sellObj.certificate_id" [nzReadonly]="true"></nz-input>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
@@ -46,18 +34,30 @@
     </div>
   </div>
   <div class="hk_card">
-    <div class="card_title">图片</div>
+    <div class="card_title">认证信息</div>
     <div class="card_content">
-       <div class="hk_form  " nz-row>
-         <div class="hk_form_item" nz-row nz-col [nzSpan]="10">
-           <div class="hk_form_label" nz-col [nzSpan]="10">证件照(正)</div>
+       <div class="hk_form">
+         <div class="hk_form_item" nz-row>
+           <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">姓名</div>
+           <div nz-col [nzSpan]="7" [nzOffset]="1">
+             <nz-input [(ngModel)]="sellObj.name" [nzReadonly]="true"></nz-input>
+           </div>
+         </div>
+         <div class="hk_form_item" nz-row>
+           <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4"> 身份证号码</div>
+           <div nz-col [nzSpan]="7" [nzOffset]="1">
+             <nz-input  [(ngModel)]="sellObj.certificate_id" [nzReadonly]="true"></nz-input>
+           </div>
+         </div>
+         <div class="hk_form_item" nz-row>
+           <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">证件照(正)</div>
            <div nz-col [nzSpan]="10"  [nzOffset]="1">
              <img-scan [imgPreview]="picPubUrl+sellObj.id_photo_front_url"
                        [ModalIdName]="'one'"></img-scan>
            </div>
          </div>
-         <div class="hk_form_item" nz-row nz-col [nzSpan]="10" [nzOffset]="2">
-           <div class="hk_form_label" nz-col [nzSpan]="3">证件照(反)</div>
+         <div class="hk_form_item" nz-row>
+           <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">证件照(反)</div>
            <div nz-col [nzSpan]="10" [nzOffset]="1">
              <img-scan [imgPreview]="picPubUrl+sellObj.id_photo_bg_url"
                        [ModalIdName]="'two'"></img-scan>
