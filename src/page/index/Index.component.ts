@@ -57,6 +57,10 @@ export class IndexComponent implements OnInit{
         localStorage.removeItem("mobile");
         localStorage.removeItem("id");
         localStorage.removeItem("city");
+        localStorage.removeItem("loglevel");
+        localStorage.removeItem("certification");
+        localStorage.removeItem("name");
+        localStorage.removeItem("userType");
         this.router.navigate(['../login'],{relativeTo:this.route})
       }else {
         this.nzMessage.error(res["error"].message);

@@ -31,4 +31,14 @@ export class SellerServe{
     }
     return this.http.post(url,null);
   }
+
+  /**
+   * 修改个人信息
+   * @param selfObj
+   * @returns {any}
+   */
+  modify(selfObj:any){
+    let url ='seller/alter';
+    return this.http.post(url,selfObj);
+  }
 }
