@@ -122,6 +122,7 @@ export class SellerInfoComponent implements OnInit{
 
   /*提交认证*/
   submitCertificate(){
+    this.certificateObj.id = this.selfObj.id;
     this.certificateObj.name = this.selfObj.name;
     this.sellerService.submitCertificate(this.certificateObj).subscribe(
       (res:any)=>{
