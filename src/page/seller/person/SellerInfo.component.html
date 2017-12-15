@@ -61,6 +61,12 @@
         <nz-input  [(ngModel)]="selfObj.name"></nz-input>
       </div>
     </div>
+    <div class="hk_form_item" nz-row>
+      <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">身份证号</div>
+      <div nz-col [nzSpan]="7" [nzOffset]="1">
+        <nz-input  [(ngModel)]="selfObj.certificate_id"></nz-input>
+      </div>
+    </div>
     <div nz-row class="hk_form_item">
       <div nz-col [nzSpan]="3"  [nzOffset]="4" class="hk_form_label">证件照正面</div>
       <div nz-col [nzSpan]="8" [nzOffset]="1">
@@ -90,6 +96,12 @@
       <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">姓名</div>
       <div nz-col [nzSpan]="7" [nzOffset]="1">
         <nz-input  [(ngModel)]="selfObj.name" [nzReadonly]="true"></nz-input>
+      </div>
+    </div>
+    <div class="hk_form_item" nz-row>
+      <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">身份证号</div>
+      <div nz-col [nzSpan]="7" [nzOffset]="1">
+        <nz-input  [(ngModel)]="selfObj.certificate_id" [nzReadonly]="true"></nz-input>
       </div>
     </div>
     <div nz-row class="hk_form_item">
