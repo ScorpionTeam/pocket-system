@@ -1,6 +1,6 @@
 <div class="search_tool">
   <nz-input [nzType]="'text'" [nzPlaceHolder]="'输入关键字'" [nzSize]="'large'"
-            [(ngModel)]="searchKey" [class]="'search_input'">
+            [(ngModel)]="condition.searchKey" [class]="'search_input'">
     <ng-template #addOnAfter>
       <i class="anticon anticon-search search" (click)="search()"></i>
     </ng-template>

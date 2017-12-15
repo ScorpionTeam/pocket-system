@@ -90,12 +90,12 @@ export class RegisterComponent implements OnInit{
           console.log(res);
           if(res.result==1){
             this.nzMessage.success("注册成功,即将跳转至登录页");
+            setTimeout(()=>{
+              this.toLogin();
+            },2000);
           }else {
             this.nzMessage.error(res.error.message);
           }
-          setTimeout(()=>{
-            this.toLogin();
-          },2000);
         }
       )
     }
