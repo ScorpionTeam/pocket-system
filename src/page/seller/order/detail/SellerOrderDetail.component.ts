@@ -15,8 +15,15 @@ export class SellerOrderDetailComponent implements OnInit{
               private route:ActivatedRoute,private routerTool:RouterTool){}
   ngOnInit(){
     this.detail();
+    this.pageChangeHandler(1);
   }
   orderObj:any={};//订单对象
+  page:any = {
+    pageNo:1,
+    pageSize:10,
+    total:0
+  };//页面对象
+  orderLogList:any=[];//日志列表
 
   /*订单详情*/
   detail(){
@@ -36,4 +43,31 @@ export class SellerOrderDetailComponent implements OnInit{
   toGood(id:any){
     this.routerTool.skipToPage('/good-detail',id);
   }
+
+  /*分页*/
+  pageChangeHandler(val:any){
+    this.page.pageNo=val;
+    this.orderService.pageListOrderLog(this.page.pageNo,this.page.pageSize,this.route.params["value"].id).subscribe(res=>{
+      if(res["total"]!=0){
+        this.orderLogList = res["list"];
+        this.page.total = res["total"];
+      }else {
+        this.orderLogList = res["list"];
+        this.page.total = res["total"];
+      }
+    });
+  };
+  /*size改变*/
+  pageSizeChangeHandler(val:any){
+    this.page.pageSize=val;
+    this.orderService.pageListOrderLog(this.page.pageNo,this.page.pageSize,this.route.params["value"].id).subscribe(res=>{
+      if(res["total"]!=0){
+        this.orderLogList = res["list"];
+        this.page.total = res["total"];
+      }else {
+        this.orderLogList = res["list"];
+        this.page.total = res["total"];
+      }
+    });
+  };
 }
