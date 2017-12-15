@@ -86,9 +86,13 @@ export class RegisterComponent implements OnInit{
     }else {
       //注册部分
       this.registerService.register(this.registerObj).subscribe(
-        res=>{
+        (res:any)=>{
           console.log(res);
-          this.nzMessage.success("注册成功,即将跳转至登录页");
+          if(res.result==1){
+            this.nzMessage.success("注册成功,即将跳转至登录页");
+          }else {
+            this.nzMessage.error(res.error.message);
+          }
           setTimeout(()=>{
             this.toLogin();
           },2000);
