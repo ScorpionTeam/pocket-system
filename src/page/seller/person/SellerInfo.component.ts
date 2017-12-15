@@ -37,6 +37,7 @@ export class SellerInfoComponent implements OnInit{
   selfObj:any={
     born_date:null
   };//个人信息
+  certificateObj:any={};
   validateForm:FormGroup;
   picPubUrl:string;
 
@@ -77,10 +78,15 @@ export class SellerInfoComponent implements OnInit{
     }
   }
 
-  /*图片上传成功回调*/
+  /*头像图片上传成功回调*/
   uploadSuccess(res:any,targetKey:any){
-    console.log(res);
     this.selfObj[targetKey] = res[0].url;
+    console.log(this.selfObj);
+  }
+
+  /*证件照图片上传成功回调*/
+  cardUploadSuccess(res:any,targetKey:any){
+    this.certificateObj[targetKey] = res[0].url;
     console.log(this.selfObj);
   }
 
@@ -88,6 +94,11 @@ export class SellerInfoComponent implements OnInit{
   deleteSuccess(targetKey:any){
     this.selfObj[targetKey] = '';
     console.log(this.selfObj);
+  }
+
+  /*证件照图片删除成功回调*/
+  cardDeleteSuccess(targetKey:any){
+    this.certificateObj[targetKey] = '';
   }
 
   /*初始化图片地址*/
@@ -107,5 +118,20 @@ export class SellerInfoComponent implements OnInit{
         }
       }
     )
+  }
+
+  /*提交认证*/
+  submitCertificate(){
+    this.certificateObj.name = this.selfObj.name;
+    this.sellerService.submitCertificate(this.certificateObj).subscribe(
+      (res:any)=>{
+        if(res.result==1){
+          this.nzMessage.success("提交成功");
+          this.detail();
+        }else {
+          this.nzMessage.error(res.error.message);
+        }
+      }
+    );
   }
 }

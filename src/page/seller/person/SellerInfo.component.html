@@ -43,7 +43,7 @@
     </form>
   </div>
   <div class="hk_btn_group">
-    <button nz-button [nzType]="'primary'">保存</button>
+    <button nz-button [nzType]="'primary'" (click)="modify()">保存</button>
   </div>
 </div>
 <div class="hk_card">
@@ -64,19 +64,19 @@
     <div nz-row class="hk_form_item">
       <div nz-col [nzSpan]="3"  [nzOffset]="4" class="hk_form_label">证件照正面</div>
       <div nz-col [nzSpan]="8" [nzOffset]="1">
-        <upload-pic [initUrl]="initPicUrl(selfObj.id_photo_front_url)" (uploadSuccess)="uploadSuccess($event,'id_photo_front_url')"
-                    (delSuccess)="deleteSuccess('id_photo_front_url')" [alt]="'证件照正面'" [type]="'7'"></upload-pic>
+        <upload-pic [initUrl]="initPicUrl(selfObj.id_photo_front_url)" (uploadSuccess)="cardUploadSuccess($event,'id_photo_front_url')"
+                    (delSuccess)="cardDeleteSuccess('id_photo_front_url')" [alt]="'证件照正面'" [type]="'7'"></upload-pic>
       </div>
     </div>
     <div nz-row class="hk_form_item">
       <div nz-col [nzSpan]="3"  [nzOffset]="4" class="hk_form_label">证件照反面</div>
       <div nz-col [nzSpan]="8" [nzOffset]="1">
-        <upload-pic [initUrl]="initPicUrl(selfObj.id_photo_bg_url)" (uploadSuccess)="uploadSuccess($event,'id_photo_bg_url')"
-                    (delSuccess)="deleteSuccess('id_photo_bg_url')" [alt]="'证件照反面'" [type]="'7'"></upload-pic>
+        <upload-pic [initUrl]="initPicUrl(selfObj.id_photo_bg_url)" (uploadSuccess)="cardUploadSuccess($event,'id_photo_bg_url')"
+                    (delSuccess)="cardDeleteSuccess('id_photo_bg_url')" [alt]="'证件照反面'" [type]="'7'"></upload-pic>
       </div>
     </div>
     <div class="hk_btn_group">
-      <button nz-button [nzType]="'primary'">提交认证</button>
+      <button nz-button [nzType]="'primary'" (click)="submitCertificate()">提交认证</button>
     </div>
   </div>
   <!--审核中或审核成功-->

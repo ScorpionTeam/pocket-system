@@ -41,4 +41,10 @@ export class SellerServe{
     let url ='seller/alter';
     return this.http.post(url,selfObj);
   }
+
+  /*提交认证*/
+  submitCertificate(obj:any){
+    let url = 'seller/reauth';
+    return this.http.post(url,obj);
+  }
 }
