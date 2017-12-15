@@ -11,8 +11,11 @@ export class SellerServe{
    * @param userType
    * @returns {Observable<R|T>}
    */
-  pageList(pageNo:number,pageSize:number,userType:string){
+  pageList(pageNo:number,pageSize:number,userType:string,condition?:any){
     let url = 'backstage/user/userList?pageNo='+pageNo+'&pageSize='+pageSize+'&userType='+userType;
+    for(let key in condition){
+      url+= '&'+ key +'='+condition[key];
+    }
     return this.http.get(url);
   }
 

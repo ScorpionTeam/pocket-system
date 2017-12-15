@@ -22,6 +22,8 @@ export class SellerListComponent implements OnInit{
     pageNo:1,
     total:0
   };
+  condition:any={};//条件对象
+  isOpen:boolean=true;//是否打开
 
   /**
    * 分页
@@ -29,7 +31,7 @@ export class SellerListComponent implements OnInit{
    */
   pageChangeHandler(val){
     this.page.pageNo=val;
-    this.sellerService.pageList(this.page.pageNo,this.page.pageSize,"SELLER").subscribe(
+    this.sellerService.pageList(this.page.pageNo,this.page.pageSize,"SELLER",this.condition).subscribe(
       (res:any)=>{
         if(res.total==0){
           this.sellerList=[];
@@ -47,7 +49,7 @@ export class SellerListComponent implements OnInit{
    */
   pageSizeChangeHandler(val){
     this.page.pageSize=val;
-    this.sellerService.pageList(this.page.pageNo,this.page.pageSize,"SELLER").subscribe(
+    this.sellerService.pageList(this.page.pageNo,this.page.pageSize,"SELLER",this.condition).subscribe(
       (res:any)=>{
         if(res.total==0){
           this.sellerList=[];
@@ -62,7 +64,7 @@ export class SellerListComponent implements OnInit{
   /*模糊查询*/
   search(){
     this.page.pageNo=1;
-    this.sellerService.pageList(this.page.pageNo,this.page.pageSize,"SELLER").subscribe(
+    this.sellerService.pageList(this.page.pageNo,this.page.pageSize,"SELLER",this.condition).subscribe(
       (res:any)=>{
         if(res.total==0){
           this.sellerList=[];
@@ -73,8 +75,16 @@ export class SellerListComponent implements OnInit{
       }
     )
   }
+  /*跳转*/
   skipToPage(url:string,val:any){
     this.routerTool.skipToPage(url,this.route,val);
   }
 
+  /*改变认证状态*/
+  changeAuditStatus(){
+    this.isOpen = !this.isOpen;
+    if(this.isOpen){
+      this.search();
+    }
+  }
 }

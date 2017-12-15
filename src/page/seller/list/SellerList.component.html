@@ -5,6 +5,13 @@
       <i class="anticon anticon-search search" (click)="search()"></i>
     </ng-template>
   </nz-input>
+  <span style="font-weight: 600;margin:0 10px 0 100px;">认证状态</span>
+  <nz-select [(ngModel)]="condition.certification" class="hk_list_select" (nzOpenChange)	= "changeAuditStatus()">
+    <nz-option [nzLabel]="'未认证'" [nzValue]="'NOT_AUTH '"></nz-option>
+    <nz-option [nzLabel]="'申请认证'" [nzValue]="'AUDITING'"></nz-option>
+    <nz-option [nzLabel]="'未通过'" [nzValue]="'NOT_PASS_AUTH'"></nz-option>
+    <nz-option [nzLabel]="'已通过'" [nzValue]="'IS_AUTH'"></nz-option>
+  </nz-select>
 </div>
 <nz-table #userListTable [nzAjaxData]="sellerList"  [nzPageSize]="page.pageSize"
           [nzPageIndex]="page.pageNo" [nzShowSizeChanger]="true" [nzShowTotal]="true" (nzPageIndexChange)="pageChangeHandler($event)"
@@ -30,7 +37,7 @@
     <td nz-td>{{data.mobile}}</td>
     <td nz-td>{{data.address}}</td>
     <td nz-td>{{data.city}}</td>
-    <td nz-td>{{data.certification=="NOT_AUTH"?"未认证":data.certification=="NOT_PASS_AUTH"?"认证不通过":"已认证"}}</td>
+    <td nz-td>{{data.certification=="NOT_AUTH"?"未认证":data.certification=="AUDITING"?"申请认证":data.certification=="NOT_PASS_AUTH"?"认证不通过":"已认证"}}</td>
     <td nz-td [class]="dataTool.strTransBool(data.status,'status')?'sta_normal':'sta_del'">{{data.status=="NORMAL"?"正常":"注销"}}</td>
     <td nz-td>
       <span><a (click)="skipToPage('/seller-detail',data.id)">查看</a></span>
