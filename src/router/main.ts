@@ -34,6 +34,7 @@ import {MyShopComponent} from "../page/seller/shop/mine/MyShop.component";
 import {SellerListComponent} from "../page/seller/list/SellerList.component";
 import {SellerDetailComponent} from "../page/seller/audit/SellerDetail.component";
 import {SellerInfoComponent} from "../page/seller/person/SellerInfo.component";
+import {SellerOrderListComponent} from "../page/seller/order/list/SellerOrderList.component";
 
 const appRoute :Routes = [
   {path:'',redirectTo:'/index',pathMatch: 'full',},
@@ -77,7 +78,8 @@ const appRoute :Routes = [
       {path:'myshop',component:MyShopComponent},
       {path:'seller-list',component:SellerListComponent},
       {path:'seller-info',component:SellerInfoComponent},
-      {path:'seller-detail/:id',component:SellerDetailComponent}
+      {path:'seller-detail/:id',component:SellerDetailComponent},
+      {path:'seller-order-list',component:SellerOrderListComponent}
     ]},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent}

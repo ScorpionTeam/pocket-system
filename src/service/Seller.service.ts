@@ -50,4 +50,15 @@ export class SellerServe{
     let url = 'seller/reauth';
     return this.http.post(url,obj);
   }
+
+  /*根据用户ID查询订单列表*/
+  orderPageList(pageNo:number,pageSize:number,sellerId:any,condition?:any){
+    let url = 'seller/order/findByCondition?pageNo='+pageNo+'&pageSize='+pageSize;
+    for(let key in condition){
+      url+= "&"+key+"="+condition[key];
+    }
+    return this.http.get(url);
+  }
+
+  refund(){}
 }
