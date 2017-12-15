@@ -28,10 +28,10 @@
   </thead>
   <tbody nz-tbody>
   <tr nz-tbody-tr *ngFor="let data of orderListTable.data;let index = index;">
-    <td nz-td>{{data.seller_no}}</td>
-    <td nz-td>{{data.seller_name}}</td>
-    <td nz-td>{{data.seller_address}}</td>
-    <td nz-td>{{data.seller_description}}</td>
+    <td nz-td>{{data.store_no}}</td>
+    <td nz-td>{{data.store_name}}</td>
+    <td nz-td>{{data.store_address}}</td>
+    <td nz-td>{{data.store_description}}</td>
     <td nz-td>
       <a (click)="skipToPage('/shop',data.user_id)">描述</a>
     </td>

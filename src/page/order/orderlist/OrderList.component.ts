@@ -29,7 +29,10 @@ export class OrderListComponent implements OnInit{
   };
   returnMoney:number=0;
   failRemark:string;
-  condition:any={};
+  condition:any={
+    startDate:null,
+    endDate:null
+  };
   deliveryObj:any={};
   constructor(private orderService:OrderService,private router:Router,private http:Http,private PicUrl:HttpData,
               private route:ActivatedRoute,private nzMessage:NzMessageService,private nzModal:NzModalService,

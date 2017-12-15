@@ -10,6 +10,6 @@ export class RegisterServe{
    * @returns {Observable<R|T>}
    */
   register(obj:any){
-    return this.http.post("seller/registry",obj);
+    return this.http.post("store/registry",obj);
   }
 }

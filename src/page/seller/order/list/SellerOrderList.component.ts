@@ -22,7 +22,10 @@ export class SellerOrderListComponent implements OnInit{
     this.pageChangeHandler(1);
     this.picUrl =this.PicUrl.PicUrl;
   }
-  condition:any = {};//条件
+  condition:any = {
+    startDate:null,
+    endDate:null
+  };//条件
   orderList:any=[];//订单列表
   page:any={
     pageNo:1,

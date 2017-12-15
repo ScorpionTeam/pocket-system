@@ -11,7 +11,7 @@ export class ShopServe{
    * @param obj
    */
   add(obj:any){
-    let url = "seller/add";
+    let url = "store/add";
     return this.http.post(url,obj);
   }
 
@@ -20,7 +20,7 @@ export class ShopServe{
    * @param obj
    */
   update(obj:any){
-    let url = "seller/modify";
+    let url = "store/modify";
     return this.http.post(url,obj);
   }
 
@@ -29,7 +29,7 @@ export class ShopServe{
    * @param userId
    */
   findMyShop(userId:any){
-    let url = "seller/findByUserId/"+userId;
+    let url = "store/findByUserId/"+userId;
     return this.http.get(url);
   }
 
@@ -69,7 +69,7 @@ export class ShopServe{
    * @param opreator PLATFORM("PLATFORM", "平台")  SELLER("SELLER", "商家"),
    */
   changeShopStatus(id:number,status:string,opreator:string){
-    let url ='seller/updateStatus/'+id+'/'+status+'/'+opreator;
+    let url ='store/updateStatus/'+id+'/'+status+'/'+opreator;
     return this.http.post(url,null);
   }
 }

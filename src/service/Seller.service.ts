@@ -41,13 +41,13 @@ export class SellerServe{
    * @returns {any}
    */
   modify(selfObj:any){
-    let url ='seller/alter';
+    let url ='store/alter';
     return this.http.post(url,selfObj);
   }
 
   /*提交认证*/
   submitCertificate(obj:any){
-    let url = 'seller/reauth';
+    let url = 'store/reauth';
     return this.http.post(url,obj);
   }
 
