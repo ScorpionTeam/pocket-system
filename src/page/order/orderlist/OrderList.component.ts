@@ -211,7 +211,7 @@ export class OrderListComponent implements OnInit{
       this.nzMessage.warning("请将表单填写完整");
       return;
     }
-    this.orderService.sendGood(this.deliveryObj.orderId,this.deliveryObj.deliveryNo,this.deliveryObj.expressName).subscribe(
+    this.orderService.sendGood(this.deliveryObj.orderId,this.deliveryObj.deliveryNo,this.deliveryObj.expressName,localStorage.getItem("id")).subscribe(
       res=>{
         if(res["result"]==1){
           this.pageChangeHandler(1);

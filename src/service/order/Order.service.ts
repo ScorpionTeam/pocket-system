@@ -29,8 +29,9 @@ export class OrderService{
    * @param deliveryNo
    * @param expressName
    */
-  sendGood(orderId:any,deliveryNo:any,expressName:any){
-    let url = "backstage/order/sendGood?orderId="+orderId+"&deliveryNo="+deliveryNo+"&expressName="+expressName;
+  sendGood(orderId:any,deliveryNo:any,expressName:any,senderId:any){
+    let url = "backstage/order/sendGood?orderId="+orderId+"&deliveryNo="+deliveryNo+"&expressName="+expressName+
+      "&senderId="+senderId;
     return this.http.post(url,null);
   }
 

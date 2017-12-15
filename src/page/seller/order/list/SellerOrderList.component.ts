@@ -20,6 +20,7 @@ export class SellerOrderListComponent implements OnInit{
   ngOnInit(){
     this.condition.sellerId = localStorage.getItem("id");
     this.pageChangeHandler(1);
+    this.picUrl =this.PicUrl.PicUrl;
   }
   condition:any = {};//条件
   orderList:any=[];//订单列表
@@ -33,6 +34,7 @@ export class SellerOrderListComponent implements OnInit{
   isDeliveryShow:boolean=false;//快递面板
   failRemark:string='';//拒绝退款原因
   returnMoney:number;//退款金额
+  picUrl:string;//图片公共地址
 
   /**
    * 页面跳转
