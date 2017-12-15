@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {DataTool} from "../../../../common/data/DataTool";
 import {OrderService} from "../../../../service/order/Order.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NzMessageService} from "ng-zorro-antd";
 import {RouterTool} from "../../../../common/routertool/RouterTool";
 @Component({
@@ -12,7 +12,7 @@ import {RouterTool} from "../../../../common/routertool/RouterTool";
 
 export class SellerOrderDetailComponent implements OnInit{
   constructor(private dataTool:DataTool,private orderService:OrderService,private nzMessage:NzMessageService,
-              private route:ActivatedRoute,private routerTool:RouterTool){}
+              private route:ActivatedRoute,private routerTool:RouterTool,private router:Router){}
   ngOnInit(){
     this.detail();
     this.pageChangeHandler(1);
@@ -41,7 +41,7 @@ export class SellerOrderDetailComponent implements OnInit{
 
   /*查看商品详情*/
   toGood(id:any){
-    this.routerTool.skipToPage('/good-detail',id);
+    this.router.navigate(["../../good-detail/"+id],{relativeTo:this.route});
   }
 
   /*分页*/
@@ -70,4 +70,9 @@ export class SellerOrderDetailComponent implements OnInit{
       }
     });
   };
+
+  /*返回*/
+  back(){
+    this.router.navigate(["../../seller-order-list"],{relativeTo:this.route});
+  }
 }
