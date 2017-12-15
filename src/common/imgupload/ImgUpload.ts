@@ -12,7 +12,7 @@ import {HttpData} from "../../http/HttpData";
 export class ImgUpload implements OnInit,OnChanges{
   @Input() type:string;//图片类型
   @Input() alt:string;//图片alt
-  @Input() initUrl:any;//初始化地址
+  @Input() initUrl:any;//初始化地址,不可传动态绑定的值
   @Output() uploadSuccess = new EventEmitter();//上传成功回调
   @Output() delSuccess = new EventEmitter();//删除图片成功回调
 

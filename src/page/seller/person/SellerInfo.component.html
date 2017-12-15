@@ -1,0 +1,77 @@
+<div class="hk_card">
+  <div class="card_title">个人信息</div>
+  <div class="card_content">
+    <div class="seller_status" nz-row>
+      <span nz-col [nzSpan]="3" [nzOffset]="4">当前认证状态</span>
+      <span nz-col [nzSpan]="7" [nzOffset]="1" [class.success]="selfObj.certification=='PASS_AUTH'"
+            [class.err]="selfObj.certification=='NOT_PASS_AUTH'">{{justifyStatus(selfObj.certification)}}</span>
+    </div>
+    <form class="hk_form" [formGroup]="validateForm">
+      <div class="hk_form_item" nz-row>
+        <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">姓名</div>
+        <div nz-col [nzSpan]="7" [nzOffset]="1">
+          <nz-input formControlName="name" [(ngModel)]="selfObj.name"></nz-input>
+        </div>
+      </div>
+      <div class="hk_form_item" nz-row>
+        <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">昵称</div>
+        <div nz-col [nzSpan]="7" [nzOffset]="1">
+          <nz-input formControlName="nickName" [(ngModel)]="selfObj.nick_name"></nz-input>
+        </div>
+      </div>
+      <div class="hk_form_item" nz-row>
+        <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">邮箱</div>
+        <div nz-col [nzSpan]="7" [nzOffset]="1">
+          <nz-input  formControlName="email"
+                     [(ngModel)]="selfObj.email"></nz-input>
+        </div>
+      </div>
+      <div class="hk_form_item" nz-row>
+        <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">手机号</div>
+        <div nz-col [nzSpan]="7" [nzOffset]="1">
+          <nz-input formControlName="mobile" [(ngModel)]="selfObj.mobile" ></nz-input>
+        </div>
+      </div>
+      <div class="hk_form_item" nz-row>
+        <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">地址</div>
+        <div nz-col [nzSpan]="7" [nzOffset]="1">
+          <nz-input formControlName="address" [(ngModel)]="selfObj.address" ></nz-input>
+        </div>
+      </div>
+      <div class="hk_form_item" nz-row>
+        <div class="hk_form_label"  nz-col [nzSpan]="3" [nzOffset]="4">生日</div>
+        <div nz-col [nzSpan]="7" [nzOffset]="1">
+          <nz-datepicker formControlName="born" [(ngModel)]="selfObj.born_date" [nzPlaceHolder]="'生日'"></nz-datepicker>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="hk_card">
+  <div class="card_title">图片信息</div>
+  <div class="card_content">
+    <div nz-row>
+      <div nz-row nz-col [nzSpan]="8">
+        <div nz-col [nzSpan]="3">头像</div>
+        <div nz-col [nzSpan]="8" [nzOffset]="1">
+          <upload-pic [initUrl]="initPicUrl(selfObj.head_picture)" (uploadSuccess)="uploadSuccess($event,'head_picture')"
+                      (delSuccess)="deleteSuccess('head_picture')" [alt]="'头像图片'" [type]="'7'"></upload-pic>
+        </div>
+      </div>
+      <div nz-row nz-col [nzSpan]="8">
+        <div nz-col [nzSpan]="3">证件照正面</div>
+        <div nz-col [nzSpan]="8" [nzOffset]="1">
+          <upload-pic [initUrl]="initPicUrl(selfObj.id_photo_front_url)" (uploadSuccess)="uploadSuccess($event,'id_photo_front_url')"
+                      (delSuccess)="deleteSuccess('id_photo_front_url')" [alt]="'证件照正面'" [type]="'7'"></upload-pic>
+        </div>
+      </div>
+      <div nz-row nz-col [nzSpan]="8">
+        <div nz-col [nzSpan]="3">证件照反面</div>
+        <div nz-col [nzSpan]="8" [nzOffset]="1">
+          <upload-pic [initUrl]="initPicUrl(selfObj.id_photo_bg_url)" (uploadSuccess)="uploadSuccess($event,'id_photo_bg_url')"
+                      (delSuccess)="deleteSuccess('id_photo_bg_url')" [alt]="'证件照反面'" [type]="'7'"></upload-pic>
+        </div>
+      </div>
+    </div>
+  </div>>
+</div>

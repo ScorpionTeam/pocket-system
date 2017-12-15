@@ -52,14 +52,14 @@
          <div class="hk_form_item" nz-row nz-col [nzSpan]="10">
            <div class="hk_form_label" nz-col [nzSpan]="10">证件照(正)</div>
            <div nz-col [nzSpan]="10"  [nzOffset]="1">
-             <img-scan [imgPreview]="sellObj.id_photo_front_url"
+             <img-scan [imgPreview]="picPubUrl+sellObj.id_photo_front_url"
                        [ModalIdName]="'one'"></img-scan>
            </div>
          </div>
          <div class="hk_form_item" nz-row nz-col [nzSpan]="10" [nzOffset]="2">
            <div class="hk_form_label" nz-col [nzSpan]="3">证件照(反)</div>
            <div nz-col [nzSpan]="10" [nzOffset]="1">
-             <img-scan [imgPreview]="sellObj.id_photo_bg_url"
+             <img-scan [imgPreview]="picPubUrl+sellObj.id_photo_bg_url"
                        [ModalIdName]="'two'"></img-scan>
            </div>
          </div>

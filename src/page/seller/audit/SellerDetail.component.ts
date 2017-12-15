@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {NzMessageService} from "ng-zorro-antd";
 import {SellerServe} from "../../../service/Seller.service";
 import {RouterTool} from "../../../common/routertool/RouterTool";
+import {HttpData} from "../../../http/HttpData";
 @Component({
   selector:'seller-detail',
   templateUrl:'SellerDetail.component.html',
@@ -12,13 +13,15 @@ import {RouterTool} from "../../../common/routertool/RouterTool";
 
 export class SellerDetailComponent implements OnInit{
   constructor(private userService:UserService,private route:ActivatedRoute,private routerTool:RouterTool,
-              private sellService:SellerServe,private nzMessage:NzMessageService){}
+              private sellService:SellerServe,private nzMessage:NzMessageService,private httpData:HttpData){}
   ngOnInit(){
     this.detail();
+    this.picPubUrl= this.httpData.PicUrl;
   }
   sellObj:any={};//卖家对象
   reason:string='';//原因
   isVisible:boolean=false;//模态控制
+  picPubUrl:string;//图片公共地址
 
   /*查找详情*/
   detail(){
