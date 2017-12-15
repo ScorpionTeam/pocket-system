@@ -1,3 +1,164 @@
 <div class="sell_order_detail">
-
+  <div class="hk_card">
+    <div class="card_title">
+      订单信息
+    </div>
+    <div class="card_content">
+        <div class="hk_form">
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">订单编号</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{orderObj.order_no}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">微信订单号</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{orderObj.order_no}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">订单状态</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{dataTool.getOrderStatusStr(orderObj.order_status)}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">订单类型</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{dataTool.getOrderTypeStr(orderObj.order_type)}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">商品金额</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{(orderObj.good_fee/100).toFixed(2)}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">优惠金额</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{(orderObj.reduce_fee/100).toFixed(2)}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">实付金额</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{(orderObj.payment_fee/100).toFixed(2)}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">支付类型</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{dataTool.getPayTypeStr(orderObj.pay_type)}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">下单时间</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{orderObj.create_date}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">发货时间</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{orderObj.delivery_date}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">消耗积分</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{orderObj.operate_point}}</span>
+            </div>
+          </div>
+          <div class="hk_form_item"  nz-row>
+            <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">买家留言</div>
+            <div  nz-col [nzSpan]="7" [nzOffset]="1">
+              <span>{{orderObj.message}}</span>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="hk_card">
+    <div class="card_title">
+      商品信息
+    </div>
+    <div class="card_content">
+      <div class="hk_form">
+        <div class="hk_form_item"  nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">商品名称</div>
+          <div  nz-col [nzSpan]="7" [nzOffset]="1">
+            <span>{{orderObj.good_name}}</span>
+          </div>
+        </div>
+        <div class="hk_form_item"  nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">商品编号</div>
+          <div  nz-col [nzSpan]="7" [nzOffset]="1">
+            <span>{{orderObj.good_no}}</span>
+          </div>
+        </div>
+        <div class="hk_form_item"  nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">购买数量</div>
+          <div  nz-col [nzSpan]="7" [nzOffset]="1">
+            <span>{{orderObj.count}}</span>
+          </div>
+        </div>
+        <div style="text-align: center">
+          <button nz-button [nzType]="'primary'" (click)="toGood(order.good_id)">商品详情</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hk_card">
+    <div class="card_title">
+      收货人信息
+    </div>
+    <div class="card_content">
+      <div class="hk_form">
+        <div class="hk_form_item"  nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">收件人</div>
+          <div  nz-col [nzSpan]="7" [nzOffset]="1">
+            <span>{{orderObj.recipients}}</span>
+          </div>
+        </div>
+        <div class="hk_form_item"  nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">收件人电话</div>
+          <div  nz-col [nzSpan]="7" [nzOffset]="1">
+            <span>{{orderObj.phone}}</span>
+          </div>
+        </div>
+        <div class="hk_form_item"  nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">邮政编码</div>
+          <div  nz-col [nzSpan]="7" [nzOffset]="1">
+            <span>{{orderObj.post_code}}</span>
+          </div>
+        </div>
+        <div class="hk_form_item"  nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">省</div>
+          <div  nz-col [nzSpan]="7" [nzOffset]="1">
+            <span>{{orderObj.province}}</span>
+          </div>
+        </div>
+        <div class="hk_form_item"  nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">市</div>
+          <div  nz-col [nzSpan]="7" [nzOffset]="1">
+            <span>{{orderObj.city}}</span>
+          </div>
+        </div>
+        <div class="hk_form_item"  nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">区</div>
+          <div  nz-col [nzSpan]="7" [nzOffset]="1">
+            <span>{{orderObj.area}}</span>
+          </div>
+        </div>
+        <div class="hk_form_item"  nz-row>
+          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="4">详细地址</div>
+          <div  nz-col [nzSpan]="7" [nzOffset]="1">
+            <span>{{orderObj.address}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
