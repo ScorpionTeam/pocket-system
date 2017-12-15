@@ -52,13 +52,24 @@ export class SellerServe{
   }
 
   /*根据用户ID查询订单列表*/
-  orderPageList(pageNo:number,pageSize:number,sellerId:any,condition?:any){
-    let url = 'seller/order/findByCondition?pageNo='+pageNo+'&pageSize='+pageSize;
-    for(let key in condition){
-      url+= "&"+key+"="+condition[key];
-    }
-    return this.http.get(url);
+  orderPageList(condition:any){
+    let url = 'seller/order/findByCondition';
+    return this.http.post(url,condition);
   }
 
-  refund(){}
+  /*退款*/
+  refund(orderId:any,flag:any,remark:string,refundFee?:number){
+    let url = 'seller/order/refund?orderId='+orderId+'&flag='+flag+'&remark='+remark;
+    if(refundFee){
+      url+='&refundFee='+refundFee;
+    }
+    return this.http.post(url,null);
+  }
+
+  /*发货*/
+  sendGood(orderId:any,deliveryNo:string,expressName:string,senderId:any){
+    let url = "seller/order/sendGood?orderId="+orderId+"&deliveryNo="+deliveryNo+"&expressName="+expressName+
+      "&senderId="+senderId;
+    return this.http.post(url,null);
+  }
 }

@@ -17,7 +17,10 @@ export class SellerOrderListComponent implements OnInit{
   constructor( private orderService:OrderService,private router:Router,private PicUrl:HttpData,
                private route:ActivatedRoute,private nzMessage:NzMessageService,private nzModal:NzModalService,
                private  dataTool:DataTool,private timePickTool:TimePick,private sellerService:SellerServe){}
-  ngOnInit(){}
+  ngOnInit(){
+    this.condition.sellerId = localStorage.getItem("id");
+    this.pageChangeHandler(1);
+  }
   condition:any = {};//条件
   orderList:any=[];//订单列表
   page:any={
@@ -47,7 +50,9 @@ export class SellerOrderListComponent implements OnInit{
   /*分页*/
   pageChangeHandler(val:any){
     this.page.pageNo=val;
-      this.sellerService.orderPageList(this.page.pageNo,this.page.pageSize,localStorage.getItem("id"),this.condition).subscribe(res=>{
+    this.condition.pageNo = this.page.pageNo;
+    this.condition.pageSize = this.page.pageSize;
+      this.sellerService.orderPageList(this.condition).subscribe(res=>{
       if(res["total"]!=0){
         this.orderList = res["list"];
         this.page.total = res["total"];
@@ -60,7 +65,9 @@ export class SellerOrderListComponent implements OnInit{
   /*size改变*/
   pageSizeChangeHandler(val:any){
     this.page.pageSize=val;
-    this.sellerService.orderPageList(this.page.pageNo,this.page.pageSize,localStorage.getItem("id"),this.condition).subscribe(res=>{
+    this.condition.pageNo = this.page.pageNo;
+    this.condition.pageSize = this.page.pageSize;
+    this.sellerService.orderPageList(this.condition).subscribe(res=>{
       if(res["total"]!=0){
         this.orderList = res["list"];
         this.page.total = res["total"];
@@ -76,7 +83,9 @@ export class SellerOrderListComponent implements OnInit{
    */
   search(){
     this.page.pageNo=1;
-    this.sellerService.orderPageList(this.page.pageNo,this.page.pageSize,localStorage.getItem("id"),this.condition).subscribe(res=>{
+    this.condition.pageNo = this.page.pageNo;
+    this.condition.pageSize = this.page.pageSize;
+    this.sellerService.orderPageList(this.condition).subscribe(res=>{
       console.log(res);
       if(res["total"]!=0){
         this.orderList = res["list"];
@@ -96,6 +105,7 @@ export class SellerOrderListComponent implements OnInit{
   disabledStartDate=(startValue:any)=>{
     return this.timePickTool.disableStartTime(startValue,this.condition.endDate);
   };
+
   /**
    * 禁止结束时间
    * @param endValue
@@ -128,7 +138,7 @@ export class SellerOrderListComponent implements OnInit{
       this.nzMessage.error("退款金额无法大于订单总额");
       return;
     }
-    this.orderService.areggReturnMoney(id,this.returnMoney).subscribe(
+    this.sellerService.refund(id,'1',this.failRemark,this.returnMoney).subscribe(
       res=>{
         console.log(res)
         if(res["result"]==1){
@@ -151,7 +161,7 @@ export class SellerOrderListComponent implements OnInit{
   }
   returnMoneyFail(id:any){
     console.log(this.failRemark);
-    this.orderService.aginstReturnMoney(id,this.failRemark).subscribe(
+    this.sellerService.refund(id,'0',this.failRemark).subscribe(
       res=>{
         console.log(res);
         if(res["result"]==1){
@@ -178,7 +188,7 @@ export class SellerOrderListComponent implements OnInit{
       this.nzMessage.warning("请将表单填写完整");
       return;
     }
-    this.orderService.sendGood(this.deliveryObj.orderId,this.deliveryObj.deliveryNo,this.deliveryObj.expressName).subscribe(
+    this.sellerService.sendGood(this.deliveryObj.orderId,this.deliveryObj.deliveryNo,this.deliveryObj.expressName,localStorage.getItem('id')).subscribe(
       res=>{
         if(res["result"]==1){
           this.pageChangeHandler(1);
