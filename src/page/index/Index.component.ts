@@ -10,6 +10,7 @@ enableProdMode();
 interface FlagState{
   loadFlag:boolean;
 }
+
 @Component({
   selector:'index',
   templateUrl:'./Index.component.html',
@@ -27,11 +28,6 @@ export class IndexComponent implements OnInit{
   ngOnInit(){
     this.name = localStorage.getItem("name");
     this.findMenuList();
-  }
-
-  menuClasses:any={
-    "menu_item":true,
-    "menu_item_selected":false
   }
 
   /**

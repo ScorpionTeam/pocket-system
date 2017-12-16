@@ -138,6 +138,7 @@ import {ImgCheck} from "../common/imgCheck/imgCheck";
 import {SellerInfoComponent} from "../page/seller/person/SellerInfo.component";
 import {SellerOrderListComponent} from "../page/seller/order/list/SellerOrderList.component";
 import {SellerOrderDetailComponent} from "../page/seller/order/detail/SellerOrderDetail.component";
+import {userIdStore} from "../state/reducer/index/UserIdReducer";
 @NgModule({
   declarations: [
     HMenu,
@@ -191,7 +192,8 @@ import {SellerOrderDetailComponent} from "../page/seller/order/detail/SellerOrde
     BrowserAnimationsModule,
     NgZorroAntdModule.forRoot(),
     StoreModule.forRoot({
-      loadFlag:reducer
+      loadFlag:reducer,
+      userId:userIdStore
     }),
     CKEditorModule
   ],
