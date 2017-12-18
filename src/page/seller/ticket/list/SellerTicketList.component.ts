@@ -11,7 +11,7 @@ import {NzMessageService} from "ng-zorro-antd";
 })
 
 export class SellerTicketListComponent implements OnInit{
-  constructor(private sellerService:SellerServe,private dataTool:DataTool,private nzMessage:NzMessageService,
+  constructor(private sellerService:SellerServe, dataTool:DataTool,private nzMessage:NzMessageService,
               private routerTool:RouterTool,private route:ActivatedRoute){}
   ngOnInit(){
     this.condition.sellerId = localStorage.getItem("id");

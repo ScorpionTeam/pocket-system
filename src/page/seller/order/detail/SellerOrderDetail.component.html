@@ -165,7 +165,7 @@
     <div class="card_title">日志列表</div>
     <div class="card_content">
       <nz-table #orderLogListTable [nzAjaxData]="orderLogList" [nzPageSize]="page.pageSize" [nzPageIndex]="page.pageNo"
-                [nzLoading]="ngLoad" [nzShowSizeChanger]="true" [nzShowTotal]="true"
+                [nzShowSizeChanger]="true" [nzShowTotal]="true"
                 (nzPageIndexChange)="pageChangeHandler($event)" [nzTotal]="page.total"
                 [nzShowQuickJumper]="true" (nzPageSizeChange)="pageSizeChangeHandler($event)">
         <thead nz-thead>

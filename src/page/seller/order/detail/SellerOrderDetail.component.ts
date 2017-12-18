@@ -12,7 +12,7 @@ import {SellerServe} from "../../../../service/Seller.service";
 })
 
 export class SellerOrderDetailComponent implements OnInit{
-  constructor(private dataTool:DataTool,private orderService:OrderService,private nzMessage:NzMessageService,
+  constructor( dataTool:DataTool,private orderService:OrderService,private nzMessage:NzMessageService,
               private route:ActivatedRoute,private routerTool:RouterTool,private router:Router,
               private sellerService:SellerServe){}
   ngOnInit(){
