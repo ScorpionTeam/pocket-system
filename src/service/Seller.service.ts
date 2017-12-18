@@ -113,7 +113,7 @@ export class SellerServe{
 
   /*优惠券详情*/
   ticketDetail(id:any){
-    let url='backstage/ticket/findById/'+id;
+    let url='seller/ticket/findById/'+id;
     return this.http.get(url);
   }
 }
