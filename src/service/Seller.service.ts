@@ -123,6 +123,6 @@ export class SellerServe{
     goodObj.pageNo= pageNo;
     goodObj.pageSize = pageSize;
     let url = 'seller/good/findByCondition';
-    return this.http.post(url,condition);
+    return this.http.post(url,goodObj);
   }
 }
