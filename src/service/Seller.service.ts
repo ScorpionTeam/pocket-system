@@ -118,7 +118,11 @@ export class SellerServe{
   }
 
 //  商品模块
-  goodPageList(){
-
+  goodPageList(pageNo:number,pageSize:number,condition:any){
+    let goodObj:any = Object.assign({},condition);
+    goodObj.pageNo= pageNo;
+    goodObj.pageSize = pageSize;
+    let url = 'seller/good/findByCondition';
+    return this.http.post(url,condition);
   }
 }

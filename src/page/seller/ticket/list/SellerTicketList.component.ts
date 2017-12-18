@@ -32,6 +32,7 @@ export class SellerTicketListComponent implements OnInit{
       (res:any)=>{
         if(res.total==0){
           this.ticketList = [];
+          this.page.total=0;
         }else {
           this.ticketList = res.list;
           this.page.total=res.total;
@@ -46,6 +47,7 @@ export class SellerTicketListComponent implements OnInit{
       (res:any)=>{
         if(res.total==0){
           this.ticketList = [];
+          this.page.total=0;
         }else {
           this.ticketList = res.list;
           this.page.total=res.total;
@@ -60,6 +62,7 @@ export class SellerTicketListComponent implements OnInit{
       (res:any)=>{
         if(res.total==0){
           this.ticketList = [];
+          this.page.total=0;
         }else {
           this.ticketList = res.list;
           this.page.total=res.total;
