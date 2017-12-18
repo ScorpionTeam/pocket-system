@@ -92,4 +92,10 @@ export class SellerServe{
     }
     return this.http.get(url);
   }
+
+  /*删除优惠券根据ID*/
+  ticketOver(id:number){
+    let url = 'seller/ticket/deleteById/'+id;
+    return this.http.post(url,null);
+  }
 }

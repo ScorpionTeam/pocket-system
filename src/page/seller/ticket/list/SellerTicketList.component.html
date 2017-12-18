@@ -42,7 +42,9 @@
     <td nz-td>{{data.num}}</td>
     <td nz-td [class]="dataTool.strTransBool(data.status,'status')?'sta_normal':'sta_del'">{{data.status=="NORMAL"?"正常":"删除"}}</td>
     <td nz-td class="ticket_list_action">
-      <span><a (click)="skipToPage('/seller-ticket-detail',data.id)">编辑</a></span>
+      <span><a (click)="skipToPage('/seller-ticket',data.id)">编辑</a></span>
+      <span nz-form-split></span>
+      <span><a (click)="over(data.id)">结束</a></span>
     </td>
   </tr>
   </tbody>
