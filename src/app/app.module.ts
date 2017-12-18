@@ -141,6 +141,8 @@ import {SellerOrderDetailComponent} from "../page/seller/order/detail/SellerOrde
 import {userIdStore} from "../state/reducer/index/UserIdReducer";
 import {SellerTicketComponent} from "../page/seller/ticket/detail/SellerTicket.component";
 import {SellerTicketListComponent} from "../page/seller/ticket/list/SellerTicketList.component";
+import {SellerGoodListComponent} from "../page/seller/good/list/SellerGoodList.component";
+import {SellerGoodDetailComponent} from "../page/seller/good/detail/SellerGoodDetail.component";
 @NgModule({
   declarations: [
     HMenu,
@@ -185,7 +187,9 @@ import {SellerTicketListComponent} from "../page/seller/ticket/list/SellerTicket
     SellerOrderListComponent,
     SellerOrderDetailComponent,
     SellerTicketComponent,
-    SellerTicketListComponent
+    SellerTicketListComponent,
+    SellerGoodListComponent,
+    SellerGoodDetailComponent
   ],
   imports: [
     BrowserModule,

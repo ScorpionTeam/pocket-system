@@ -118,5 +118,7 @@ export class SellerServe{
   }
 
 //  商品模块
+  goodPageList(){
 
+  }
 }
