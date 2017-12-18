@@ -36,6 +36,8 @@ import {SellerDetailComponent} from "../page/seller/audit/SellerDetail.component
 import {SellerInfoComponent} from "../page/seller/person/SellerInfo.component";
 import {SellerOrderListComponent} from "../page/seller/order/list/SellerOrderList.component";
 import {SellerOrderDetailComponent} from "../page/seller/order/detail/SellerOrderDetail.component";
+import {SellerTicketListComponent} from "../page/seller/ticket/list/SellerTicketList.component";
+import {SellerTicketComponent} from "../page/seller/ticket/detail/SellerTicket.component";
 
 const appRoute :Routes = [
   {path:'',redirectTo:'/index',pathMatch: 'full',},
@@ -81,7 +83,10 @@ const appRoute :Routes = [
       {path:'seller-info',component:SellerInfoComponent},
       {path:'seller-detail/:id',component:SellerDetailComponent},
       {path:'seller-order-list',component:SellerOrderListComponent},
-      {path:'seller-order-detail/:id',component:SellerOrderDetailComponent}
+      {path:'seller-order-detail/:id',component:SellerOrderDetailComponent},
+      {path:'seller-ticket-list',component:SellerTicketListComponent},
+      {path:'seller-ticket-add',component:SellerTicketComponent},
+      {path:'seller-ticket/:id',component:SellerTicketComponent}
     ]},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent}

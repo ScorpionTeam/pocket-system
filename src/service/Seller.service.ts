@@ -82,4 +82,14 @@ export class SellerServe{
     let url ='seller/order/modify';
     return this.http.post(url,orderObj);
   }
+
+  //优惠券模块
+  /*优惠券列表*/
+  sellerTicketPageList(pageNo:number,pageSize:number,condition?:any){
+    let url = 'seller/ticket/findAll?pageNo='+pageNo+'&pageSize='+pageSize;
+    for(let key in condition){
+      url+= '&'+key + '='+condition[key];
+    }
+    return this.http.get(url);
+  }
 }

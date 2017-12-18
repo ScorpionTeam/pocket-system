@@ -139,6 +139,8 @@ import {SellerInfoComponent} from "../page/seller/person/SellerInfo.component";
 import {SellerOrderListComponent} from "../page/seller/order/list/SellerOrderList.component";
 import {SellerOrderDetailComponent} from "../page/seller/order/detail/SellerOrderDetail.component";
 import {userIdStore} from "../state/reducer/index/UserIdReducer";
+import {SellerTicketComponent} from "../page/seller/ticket/detail/SellerTicket.component";
+import {SellerTicketListComponent} from "../page/seller/ticket/list/SellerTicketList.component";
 @NgModule({
   declarations: [
     HMenu,
@@ -181,7 +183,9 @@ import {userIdStore} from "../state/reducer/index/UserIdReducer";
     SellerDetailComponent,
     SellerInfoComponent,
     SellerOrderListComponent,
-    SellerOrderDetailComponent
+    SellerOrderDetailComponent,
+    SellerTicketComponent,
+    SellerTicketListComponent
   ],
   imports: [
     BrowserModule,
