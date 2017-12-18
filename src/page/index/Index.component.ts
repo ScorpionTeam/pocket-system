@@ -3,7 +3,7 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {NzMessageService} from "ng-zorro-antd";
 import {Http} from "../../common/http/Http";
 import {Store} from "@ngrx/store";
-import {Observable} from "rxjs";
+import {Observable, Observer} from "rxjs";
 import {MenuService} from "../../service/menu/Menu.service";
 import {HMenu} from "../../common/menu/HMenu";
 enableProdMode();

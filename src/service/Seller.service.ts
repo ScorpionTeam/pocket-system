@@ -4,6 +4,7 @@ import {Http} from "../common/http/Http";
 export class SellerServe{
   constructor(private http:Http){}
 
+  //用户模块
   /**
    * 根据用户类型分页查询用户列表
    * @param pageNo
@@ -51,6 +52,9 @@ export class SellerServe{
     return this.http.post(url,obj);
   }
 
+
+
+  //订单模块
   /*根据用户ID查询订单列表*/
   orderPageList(condition:any){
     let url = 'seller/order/findByCondition';
@@ -71,5 +75,11 @@ export class SellerServe{
     let url = "seller/order/sendGood?orderId="+orderId+"&deliveryNo="+deliveryNo+"&expressName="+expressName+
       "&senderId="+senderId;
     return this.http.post(url,null);
+  }
+
+  /*修改订单*/
+  modifyOrder(orderObj:any){
+    let url ='seller/order/modify';
+    return this.http.post(url,orderObj);
   }
 }

@@ -4,15 +4,17 @@ import {OrderService} from "../../../../service/order/Order.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NzMessageService} from "ng-zorro-antd";
 import {RouterTool} from "../../../../common/routertool/RouterTool";
+import {SellerServe} from "../../../../service/Seller.service";
 @Component({
   selector:'seller-order-detail',
   templateUrl:'SellerOrderDetail.component.html',
-  providers:[OrderService]
+  providers:[OrderService,SellerServe]
 })
 
 export class SellerOrderDetailComponent implements OnInit{
   constructor(private dataTool:DataTool,private orderService:OrderService,private nzMessage:NzMessageService,
-              private route:ActivatedRoute,private routerTool:RouterTool,private router:Router){}
+              private route:ActivatedRoute,private routerTool:RouterTool,private router:Router,
+              private sellerService:SellerServe){}
   ngOnInit(){
     this.detail();
     this.pageChangeHandler(1);
@@ -70,6 +72,17 @@ export class SellerOrderDetailComponent implements OnInit{
       }
     });
   };
+
+  /*修改订单*/
+  modify(){
+    this.sellerService.modifyOrder(this.orderObj).subscribe(
+      (res:any)=>{
+        if(res.result==1){
+          this.nzMessage.success("修改成功");
+        }
+      }
+    );
+  }
 
   /*返回*/
   back(){
