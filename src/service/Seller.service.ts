@@ -98,4 +98,22 @@ export class SellerServe{
     let url = 'seller/ticket/deleteById/'+id;
     return this.http.post(url,null);
   }
+
+  /*新增优惠券*/
+  addTicket(ticket:any){
+    let url='seller/ticket/add';
+    return this.http.post(url,ticket);
+  }
+
+  /*修改优惠券*/
+  midifyTicket(ticket:any){
+    let url='seller/ticket/modify';
+    return this.http.post(url,ticket);
+  }
+
+  /*优惠券详情*/
+  ticketDetail(id:any){
+    let url='backstage/ticket/findById/'+id;
+    return this.http.get(url);
+  }
 }

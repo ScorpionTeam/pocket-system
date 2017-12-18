@@ -1,10 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="seller_ticket">
+  <div class="hk_form">
+    <div class="hk_form_item" nz-row>
+      <div class="hk_form_label" nz-col [nzSpan]="3">优惠券名称</div>
+      <div nz-col [nzSpan]="5" [nzOffset]="1">
+        <input type="text" class="hk_input" [(ngModel)]="ticketObj.ticket_name">
+      </div>
+    </div>
+    <div class="hk_form_item" nz-row>
+      <div class="hk_form_label" nz-col [nzSpan]="3">面额</div>
+      <div nz-col [nzSpan]="5" [nzOffset]="1">
+        <input type="text" class="hk_input" [(ngModel)]="ticketObj.reduce_money">
+      </div>
+      <span style="margin-left: 10px">元</span>
+    </div>
+    <div class="hk_form_item" nz-row>
+      <div class="hk_form_label" nz-col [nzSpan]="3">使用门槛</div>
+      <div nz-col [nzSpan]="1" [nzOffset]="1">
+        满
+      </div>
+      <div nz-col [nzSpan]="4">
+        <input type="text" class="hk_input" [(ngModel)]="ticketObj.money">
+      </div>
+      <span style="margin-left: 10px">元可用</span>
+    </div>
+    <div class="hk_form_item" nz-row>
+      <div class="hk_form_label" nz-col [nzSpan]="3">发行量</div>
+      <div nz-col [nzSpan]="5" [nzOffset]="1">
+        <input type="text" class="hk_input" [(ngModel)]="ticketObj.num">
+      </div>
+      <span style="margin-left: 10px">张</span>
+    </div>
+    <div class="hk_form_item" nz-row>
+      <div class="hk_form_label" nz-col [nzSpan]="3">有效期</div>
+      <div nz-col [nzSpan]="5" [nzOffset]="1">
+        <nz-datepicker style="width: 100%;" [(ngModel)]="ticketObj.start_date" [nzDisabledDate]="disabledStartDate"
+                       nzShowTime [nzFormat]="'YYYY-MM-DD HH:mm:ss'" [nzPlaceHolder]="'开始时间'"></nz-datepicker>
+      </div>
+      <span nz-col [nzSpan]="1" style="margin:0 10px">至</span>
+      <div nz-col [nzSpan]="5">
+        <nz-datepicker style="width: 100%;" [(ngModel)]="ticketObj.end_date" [nzDisabledDate]="disabledEndDate"
+                       nzShowTime [nzFormat]="'YYYY-MM-DD HH:mm:ss'" [nzPlaceHolder]="'结束时间'"></nz-datepicker>
+      </div>
+    </div>
+    <div class="hk_form_item" nz-row>
+      <div class="hk_form_label" nz-col [nzSpan]="3">说明</div>
+      <div nz-col [nzSpan]="5" [nzOffset]="1">
+        <nz-input [nzType]="'textarea'" [(ngModel)]="ticketObj.content"></nz-input>
+      </div>
+    </div>
+  </div>
+  <div class="hk_btn_group">
+    <button nz-button [nzType]="'primary'" *ngIf="!isDetail" (click)="add()">新增</button>
+    <button nz-button [nzType]="'primary'" *ngIf="isDetail">修改</button>
+  </div>
+</div>
