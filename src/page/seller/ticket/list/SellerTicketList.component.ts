@@ -92,7 +92,7 @@ export class SellerTicketListComponent implements OnInit{
   }
   /*启用优惠券*/
   start(id:number,status:string){
-    this.sellerService.modify({id:id,status:status}).subscribe(
+    this.sellerService.modifyTicket({id:id,status:status}).subscribe(
       (res:any)=>{
         if(res.result==1){
           this.nzMessage.success("开启成功");
