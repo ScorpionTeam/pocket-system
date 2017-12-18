@@ -15,7 +15,7 @@ import {TableTool} from "../../../../common/list/TableTool";
 
 export class SellerGoodListComponent implements OnInit{
   constructor(private timeTool:TimePick,private routerTool:RouterTool,private httpData:HttpData,
-              private route:ActivatedRoute,private dataTool:DataTool,private sellerService:SellerServe,
+              private route:ActivatedRoute,public dataTool:DataTool,private sellerService:SellerServe,
               private nzMessage:NzMessageService,private tableTool:TableTool){}
   ngOnInit(){
     this.picUrl = this.httpData.PicUrl;

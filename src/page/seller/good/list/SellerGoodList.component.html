@@ -145,7 +145,7 @@
   <thead nz-thead>
   <tr>
     <th nz-th [nzCheckbox]="true" [nzWidth]="'60px'">
-      <label #checkboxAll nz-checkbox  [(ngModel)]="checkAll" [nzDisabled]="doCheckAll" (ngModelChange)="selectItem(checkAll,0,idList,goodList)">
+      <label #checkboxAll nz-checkbox  [(ngModel)]="checkAll"  (ngModelChange)="selectItem(checkAll,0,idList,goodList)">
       </label>
     </th>
     <th nz-th [nzWidth]="'80px'"><span>商品图片</span></th>
