@@ -44,8 +44,8 @@
     <td nz-td class="ticket_list_action">
       <span><a (click)="skipToPage('/seller-ticket',data.id)">编辑</a></span>
       <span nz-table-divider></span>
-      <span><a (click)="over(data.id)" *ngIf="data.status=='NORMAL'">结束</a></span>
-      <span><a (click)="start(data.id,'NORMAL')" *ngIf="data.status=='UN_NORMAL'">开启</a></span>
+      <span><a class="success" (click)="over(data.id)" *ngIf="data.status=='NORMAL'">结束</a></span>
+      <span><a  class="success" (click)="start(data.id,'NORMAL')" *ngIf="data.status=='UN_NORMAL'">开启</a></span>
     </td>
   </tr>
   </tbody>

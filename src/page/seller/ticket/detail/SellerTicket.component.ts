@@ -4,6 +4,8 @@ import {ActivatedRoute} from "@angular/router";
 import {SellerServe} from "../../../../service/Seller.service";
 import {NzMessageService} from "ng-zorro-antd";
 import {FormGroup, FormBuilder} from "@angular/forms";
+import {RouterTool} from "../../../../common/routertool/RouterTool";
+import {DataTool} from "../../../../common/data/DataTool";
 @Component({
   selector:'seller-ticket',
   templateUrl:'SellerTicket.component.html',
@@ -12,7 +14,8 @@ import {FormGroup, FormBuilder} from "@angular/forms";
 
 export class SellerTicketComponent implements OnInit{
   constructor(private timeTool:TimePick,private route:ActivatedRoute,private nzMessage:NzMessageService,
-              private sellerService:SellerServe,private fb:FormBuilder){}
+              private sellerService:SellerServe,private fb:FormBuilder,private routerTool:RouterTool,
+              private dataTool:DataTool){}
   ngOnInit(){
     this.ticketObj.seller_id = Number(localStorage.getItem("id"));//初始化优惠券商户id
    //判断是否详情
@@ -34,7 +37,14 @@ export class SellerTicketComponent implements OnInit{
     this.sellerService.ticketDetail(id).subscribe(
       (res:any)=>{
         if(res.result==1){
+          //判断当前优惠券是否为该商户的
+          if(res.data.seller_id!=Number(localStorage.getItem("id"))){
+            this.nzMessage.error("查找不到当前优惠券详情");
+            return;
+          }
           this.ticketObj = res.data;
+          this.ticketObj.money = this.dataTool.fTransYuan(Number(this.ticketObj.money));
+          this.ticketObj.reduce_money = this.dataTool.fTransYuan(Number(this.ticketObj.reduce_money));
         }else {
           this.nzMessage.error(res.error.message);
         }
@@ -84,16 +94,25 @@ export class SellerTicketComponent implements OnInit{
   /*修改优惠券*/
   modify(){
     this.ticketObj.num = Number(this.ticketObj.num);
-    this.ticketObj.money = Number(this.ticketObj.money);
-    this.ticketObj.reduce_money = Number(this.ticketObj.reduce_money);
-    this.sellerService.modify(this.ticketObj).subscribe(
+    this.ticketObj.money = this.dataTool.yTransFen(Number(this.ticketObj.money));
+    this.ticketObj.reduce_money = this.dataTool.yTransFen(Number(this.ticketObj.reduce_money));
+    this.sellerService.modifyTicket(this.ticketObj).subscribe(
       (res:any)=>{
         if(res.result==1){
-          this.nzMessage.success("新增成功");
+          this.nzMessage.success("修改成功");
+          this.ticketObj.money = this.dataTool.fTransYuan(Number(this.ticketObj.money));
+          this.ticketObj.reduce_money = this.dataTool.fTransYuan(Number(this.ticketObj.reduce_money));
         }else{
           this.nzMessage.error(res.error.message);
+          this.ticketObj.money = this.dataTool.fTransYuan(Number(this.ticketObj.money));
+          this.ticketObj.reduce_money = this.dataTool.fTransYuan(Number(this.ticketObj.reduce_money));
         }
       }
     );
+  }
+
+  /*返回*/
+  back(){
+    this.routerTool.skipToPage("/../seller-ticket-list",this.route);
   }
 }

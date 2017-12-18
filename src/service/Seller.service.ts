@@ -106,7 +106,7 @@ export class SellerServe{
   }
 
   /*修改优惠券*/
-  midifyTicket(ticket:any){
+  modifyTicket(ticket:any){
     let url='seller/ticket/modify';
     return this.http.post(url,ticket);
   }
