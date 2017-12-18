@@ -33,6 +33,10 @@ export class SellerOrderDetailComponent implements OnInit{
       (res:any)=>{
         console.log(res);
         if(res.result==1){
+          if(res.data.seller_id!=Number(localStorage.getItem("id"))){
+            this.nzMessage.error("未找到对应订单");
+            return;
+          }
           this.orderObj = res.data;
         }else {
           this.nzMessage.error(res.error.message);

@@ -116,4 +116,7 @@ export class SellerServe{
     let url='seller/ticket/findById/'+id;
     return this.http.get(url);
   }
+
+//  商品模块
+
 }
