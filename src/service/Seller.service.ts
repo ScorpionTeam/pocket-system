@@ -125,4 +125,9 @@ export class SellerServe{
     let url = 'seller/good/findByCondition';
     return this.http.post(url,goodObj);
   }
+
+  batchModifyGoodStatus(obj:any){
+    let url = "seller/good/batchModifySaleStatus";
+    return this.http.post(url,obj);
+  }
 }

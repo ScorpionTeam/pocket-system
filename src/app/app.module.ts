@@ -143,6 +143,7 @@ import {SellerTicketComponent} from "../page/seller/ticket/detail/SellerTicket.c
 import {SellerTicketListComponent} from "../page/seller/ticket/list/SellerTicketList.component";
 import {SellerGoodListComponent} from "../page/seller/good/list/SellerGoodList.component";
 import {SellerGoodDetailComponent} from "../page/seller/good/detail/SellerGoodDetail.component";
+import {TableTool} from "../common/list/TableTool";
 @NgModule({
   declarations: [
     HMenu,
@@ -214,6 +215,7 @@ import {SellerGoodDetailComponent} from "../page/seller/good/detail/SellerGoodDe
     DataTool,
     TimePick,
     FormTool,
+    TableTool,
     { provide: NZ_MESSAGE_CONFIG, useValue: { nzMaxStack:1 }} ],
   bootstrap: [AppComponent]
 })
