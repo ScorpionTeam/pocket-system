@@ -4,28 +4,43 @@ import {NzMessageService} from "ng-zorro-antd";
 import {RouterTool} from "../../../../common/routertool/RouterTool";
 import {ActivatedRoute} from "@angular/router";
 import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
+import {CategoryService} from "../../../../service/category/Category.service";
+import {isUndefined} from "util";
+import {DataTool} from "../../../../common/data/DataTool";
 @Component({
   selector:'seller-good',
   templateUrl:'SellerGoodDetail.component.html',
-  providers:[SellerServe]
+  providers:[SellerServe,CategoryService]
 })
 
 export class SellerGoodDetailComponent implements OnInit{
   constructor(private sellerService:SellerServe,private nzMessage:NzMessageService,
-              private routerTool:RouterTool,private route:ActivatedRoute,private fb:FormBuilder){}
+              private categoryService:CategoryService, private routerTool:RouterTool,
+              private route:ActivatedRoute,private fb:FormBuilder,private dataTool:DataTool){}
   ngOnInit(){
-    this.good.sell_id=Number(localStorage.getItem("id"));//初始化商户id
+    this.good.seller_id=Number(localStorage.getItem("id"));//初始化商户id
     this.createValidate();
+    this.getCategoryList();
+    //检查是否查询详情信息
+    if(this.route.params['value'].id){
+      this.isDetail=true;
+      this.detail();
+    }
   }
   good:any={
-    imageList:[],
-    promotion:1
+    discount:100
   };//商品对象
+  imageList:any=[];//商品图片列表
   isDetail:boolean=false;//是否详情页
-  initUrl :any = {};//图片初始化
+  initUrlList :any = [];//图片初始化
   validateForm:FormGroup;//表单验证
   categoryList:any=[];//类目列表
 
+  /*计算促销价*/
+  computePromotion(){
+    this.good.promotion = Number(this.good.price) * Number(this.good.discount)/100;
+  }
+  /*创建表单校验规则*/
   createValidate(){
     this.validateForm = this.fb.group({
       name:["",Validators.required],
@@ -46,10 +61,17 @@ export class SellerGoodDetailComponent implements OnInit{
   }
   /*查找详情*/
   detail(){
-    this.sellerService.sellGoodDetail(localStorage.getItem('id')).subscribe(
+    this.sellerService.sellGoodDetail(this.route.params["value"].id).subscribe(
       (res:any)=>{
         if(res.result==1){
           this.good = res.data;
+          this.good.price = this.dataTool.fTransYuan(this.good.price);
+          this.good.promotion = this.dataTool.fTransYuan(this.good.promotion);
+          this.imageList = res.data.imgList;
+          /*获取图片列表*/
+          res.data.imgList.forEach((item:any)=>{
+            this.initUrlList.push(item.url);
+          });
         }else {
           this.nzMessage.error(res.error.message);
         }
@@ -60,6 +82,24 @@ export class SellerGoodDetailComponent implements OnInit{
   save(){
     console.log(this.good);
     console.log(this.validateForm.valid);
+    //判断信息是否填写完整
+   if(this.imageList.length==0||this.good.main_image_url==''||isUndefined(this.good.main_image_url)){
+      this.nzMessage.warning("请检查图片是否上传");
+      return;
+    }else if(!this.validateForm.valid){
+      this.nzMessage.warning("请检查商品信息是否填写完整");
+      return;
+    }else if(isUndefined(this.good.rich_content)){
+      this.nzMessage.warning("请检查富文本内容");
+      return;
+    }
+
+    //判断是新增还是修改
+    if(this.isDetail){
+      this.modify();
+    }else {
+      this.add();
+    }
   }
 
   /**
@@ -70,9 +110,9 @@ export class SellerGoodDetailComponent implements OnInit{
   successUpload(urlList:any,type:number){
     if(type==0){
       this.good.main_image_url = urlList[0].url;
-      this.good.imageList.unshift(urlList);
+      this.imageList.unshift(urlList[0]);
     }else {
-      this.good.imageList.splice(type,0,urlList);
+      this.imageList.splice(type,0,urlList[0]);
     }
   }
   /*删除图片*/
@@ -82,21 +122,26 @@ export class SellerGoodDetailComponent implements OnInit{
     }
     //查找删除图片在列表中的位置,并删除
     let indexInList;
-    for(let i =0;i<this.good.imageList.length;i++){
-      if(this.good.imageList[i].url==url){
+    for(let i =0;i<this.imageList.length;i++){
+      if(this.imageList[i].url==url){
         indexInList=i;
         break;
       }
     }
-    this.good.imageList.splice(indexInList,1);
+    this.imageList.splice(indexInList,1);
   }
   /*新增*/
   add(){
-    this.sellerService.addGood(this.good).subscribe(
+    this.good.price = this.dataTool.yTransFen(this.good.price);
+    this.good.promotion = this.dataTool.yTransFen(this.good.promotion);
+    this.sellerService.addGood({good:this.good,imageList:this.imageList}).subscribe(
       (res:any)=>{
+        this.good.price = this.dataTool.fTransYuan(this.good.price);
+        this.good.promotion = this.dataTool.fTransYuan(this.good.promotion);
         if(res.result==1){
           this.nzMessage.success("新增完成");
           //Todo:清空表单
+          this.validateForm.reset();
         }else {
           this.nzMessage.error(res.error.message);
         }
@@ -105,8 +150,12 @@ export class SellerGoodDetailComponent implements OnInit{
   }
   /*修改*/
   modify(){
-    this.sellerService.modifyGood(this.good).subscribe(
+    this.good.price = this.dataTool.yTransFen(this.good.price);
+    this.good.promotion = this.dataTool.yTransFen(this.good.promotion);
+    this.sellerService.modifyGood({good:this.good,imageList:this.imageList}).subscribe(
       (res:any)=>{
+        this.good.price = this.dataTool.fTransYuan(this.good.price);
+        this.good.promotion = this.dataTool.fTransYuan(this.good.promotion);
         if(res.result==1){
           this.nzMessage.success("修改完成");
         }else {
@@ -122,5 +171,16 @@ export class SellerGoodDetailComponent implements OnInit{
     }else {
       this.routerTool.skipToPage("/seller-good-list",this.route);
     }
+  }
+  /*获取类目列表*/
+  getCategoryList(){
+    this.categoryService.findRootOrChildCategory("CHILD").subscribe(
+      (res:any)=>{
+        if(res.total==0){
+          this.categoryList=[];
+        }
+        this.categoryList = res.list;
+      }
+    );
   }
 }

@@ -3,7 +3,7 @@
   <div class="hk_card">
     <div class="card_title">主图</div>
     <div class="card_content">
-      <upload-pic [type]="'0'" [alt]="'主图'" [initUrl]="" (delSuccess)="deletePic($event,0)"
+      <upload-pic [type]="'0'" [alt]="'主图'" [initUrl]="initUrlList[0]" (delSuccess)="deletePic($event,0)"
                   (uploadSuccess)="successUpload($event,0)" [isShowConfig]="true" ></upload-pic>
     </div>
   </div>
@@ -12,13 +12,13 @@
     <div class="card_title">辅图</div>
     <div class="card_content">
       <div nz-row>
-        <upload-pic [type]="'0'" [alt]="'辅图1'" [initUrl]="" nz-col [nzSpan]="5"
+        <upload-pic [type]="'0'" [alt]="'辅图1'" [initUrl]="initUrlList[1]" nz-col [nzSpan]="5"
                     (delSuccess)="deletePic($event)" (uploadSuccess)="successUpload($event,1)"></upload-pic>
-        <upload-pic [type]="'0'" [alt]="'辅图2'" [initUrl]="" nz-col [nzSpan]="5" [nzOffset]="1"
+        <upload-pic [type]="'0'" [alt]="'辅图2'" [initUrl]="initUrlList[2]" nz-col [nzSpan]="5" [nzOffset]="1"
                     (delSuccess)="deletePic($event)" (uploadSuccess)="successUpload($event,2)"></upload-pic>
-        <upload-pic [type]="'0'" [alt]="'辅图3'" [initUrl]="" nz-col [nzSpan]="5" [nzOffset]="1"
+        <upload-pic [type]="'0'" [alt]="'辅图3'" [initUrl]="initUrlList[3]" nz-col [nzSpan]="5" [nzOffset]="1"
                     (delSuccess)="deletePic($event)" (uploadSuccess)="successUpload($event,31)"></upload-pic>
-        <upload-pic [type]="'0'" [alt]="'辅图4'" [initUrl]="" nz-col [nzSpan]="5" [nzOffset]="1"
+        <upload-pic [type]="'0'" [alt]="'辅图4'" [initUrl]="initUrlList[4]" nz-col [nzSpan]="5" [nzOffset]="1"
                     (delSuccess)="deletePic($event)" (uploadSuccess)="successUpload($event,4)"></upload-pic>
       </div>
     </div>
@@ -29,32 +29,35 @@
     <div class="card_content">
       <form class="hk_form" [formGroup]="validateForm">
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">名称</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">名称</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
             <input type="text" class="hk_input" [(ngModel)]="good.good_name " formControlName="name">
           </div>
         </div>
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">描述</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">描述</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
-            <input type="text" class="hk_input" [(ngModel)]="good.description " formControlName="description">
+            <nz-input [nzType]="'textarea'" class="hk_input" [(ngModel)]="good.description "
+                      formControlName="description">
+            </nz-input>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">SEO</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">SEO</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
-            <input type="text" class="hk_input" [(ngModel)]="good.seo" formControlName="seo">
+            <nz-input [nzType]="'textarea'" class="hk_input" [(ngModel)]="good.seo" formControlName="seo">
+            </nz-input>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">商品编码</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">商品编码</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
             <input type="text" class="hk_input" [(ngModel)]="good.good_no " formControlName="goodNo">
           </div>
         </div>
         <!--类目-->
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">类目</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">类目</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
             <nz-select  [nzPlaceHolder]="'请选择'" [(ngModel)]="good.category_id"  formControlName="categoryId">
               <nz-option [nzLabel]="data.category_name" [nzValue]="data.id" *ngFor="let data of categoryList"></nz-option>
@@ -63,7 +66,7 @@
         </div>
         <!--品牌-->
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">品牌</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">品牌</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
             <nz-select  [nzPlaceHolder]="'请选择'" [(ngModel)]="good.brand_id"  formControlName="brandId">
               <nz-option [nzLabel]="'耐克'" [nzValue]="1"></nz-option>
@@ -71,15 +74,17 @@
           </div>
         </div>
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">单价</div>
+          <div class="hk_form_label" nz-form-item-required  nz-col [nzSpan]="3" [nzOffset]="5">单价</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
-            <input type="text" class="hk_input" [(ngModel)]="good.price " formControlName="price">
+            <hk-input-number [(ngModel)]="good.price" (change)="computePromotion()"
+                             formControlName="price"></hk-input-number>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">折扣</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">折扣</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
-            <input type="text" class="hk_input" [(ngModel)]="good.discount " formControlName="discount">
+            <hk-input-number [(ngModel)]="good.discount" (change)="computePromotion()"
+                             formControlName="discount"></hk-input-number>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
@@ -89,13 +94,13 @@
           </div>
         </div>
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">库存</div>
+          <div class="hk_form_label" nz-form-item-required  nz-col [nzSpan]="3" [nzOffset]="5">库存</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
-            <input type="text" class="hk_input" [(ngModel)]="good.stock " formControlName="stock">
+            <hk-input-number [(ngModel)]="good.stock" formControlName="stock"></hk-input-number>
           </div>
         </div>
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">新品</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">新品</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
             <nz-radio-group [(ngModel)]="good.is_new" formControlName="isNew">
               <label nz-radio [nzValue]="'IS_NEW'">
@@ -108,7 +113,7 @@
           </div>
         </div>
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">热销</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">热销</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
             <nz-radio-group [(ngModel)]="good.hot" formControlName="isHot">
               <label nz-radio [nzValue]="'HOT'">
@@ -121,9 +126,9 @@
           </div>
         </div>
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">包邮</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">包邮</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
-            <nz-radio-group [(ngModel)]="good.freight_fee" formControlName="isFreight">
+            <nz-radio-group [(ngModel)]="good.freight" formControlName="isFreight">
               <label nz-radio [nzValue]="'FREIGHT'">
                 <span>是</span>
               </label>
@@ -134,7 +139,7 @@
           </div>
         </div>
         <div class="hk_form_item" nz-row>
-          <div class="hk_form_label" nz-col [nzSpan]="3" [nzOffset]="5">状态</div>
+          <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">状态</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
             <nz-radio-group [(ngModel)]="good.on_sale" formControlName="isOnSale">
               <label nz-radio [nzValue]="'ON_SALE'">
@@ -152,7 +157,9 @@
   <!--富文本-->
   <div class="hk_card">
     <div class="card_title">富文本</div>
-    <div class="card_content"></div>
+    <div class="card_content">
+      <hk-editor [ckeditorContent]="good.rich_content" (change)="good.rich_content=$event"></hk-editor>
+    </div>
   </div>
   <div class="hk_btn_group">
     <button nz-button [nzType]="'primary'" (click)="back()">返回</button>
