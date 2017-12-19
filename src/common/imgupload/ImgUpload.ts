@@ -35,7 +35,6 @@ export class ImgUpload implements OnInit,OnChanges{
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.initUrl);
     this.init();
   }
 
@@ -115,7 +114,6 @@ export class ImgUpload implements OnInit,OnChanges{
    */
   delPic(){
     let delName = this.imgPreview.substring(18);
-    console.log(delName);
     this.https.get("file/deleteImage?imageName="+delName).subscribe(
       res=>{
         if(res["result"]==1){
