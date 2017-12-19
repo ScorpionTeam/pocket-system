@@ -118,6 +118,7 @@ export class SellerServe{
   }
 
 //  商品模块
+  /*商户商品列表*/
   goodPageList(pageNo:number,pageSize:number,condition:any){
     let goodObj:any = Object.assign({},condition);
     goodObj.pageNo= pageNo;
@@ -126,8 +127,27 @@ export class SellerServe{
     return this.http.post(url,goodObj);
   }
 
+  /*商户商品上下架*/
   batchModifyGoodStatus(obj:any){
     let url = "seller/good/batchModifySaleStatus";
     return this.http.post(url,obj);
+  }
+
+  /*根据商品id查询商品详情*/
+  sellGoodDetail(id:any){
+    let url = 'seller/good/findById/'+id;
+    return this.http.get(url);
+  }
+
+  /*新建商品*/
+  addGood(goodObj:any){
+    let url = 'seller/good/add';
+    return this.http.post(url,goodObj);
+  }
+
+  /*修改商品*/
+  modifyGood(goodObj:any){
+    let url = 'seller/good/update';
+    return this.http.post(url,goodObj);
   }
 }

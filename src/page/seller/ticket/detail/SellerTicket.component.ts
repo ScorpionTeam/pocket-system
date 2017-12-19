@@ -113,6 +113,10 @@ export class SellerTicketComponent implements OnInit{
 
   /*返回*/
   back(){
-    this.routerTool.skipToPage("/../seller-ticket-list",this.route);
+    if(this.isDetail){
+      this.routerTool.skipToPage("/../seller-ticket-list",this.route);
+    }else {
+      this.routerTool.skipToPage("/seller-ticket-list",this.route);
+    }
   }
 }
