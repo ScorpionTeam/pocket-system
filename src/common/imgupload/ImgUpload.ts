@@ -74,7 +74,7 @@ export class ImgUpload implements OnInit,OnChanges{
    * 图片
    */
   imgUpload = (val:any)=>{
-    if(this.imgObj.watermark&&this.imgObj.cut&&this.imgObj.cutSizeList.length==0){
+    if(this.imgObj.watermark&&(!this.imgObj.cut||this.imgObj.cutSizeList.length==0)){
       this.nzMessage.warning("添加水印必须选择裁剪尺寸!");
       return;
     }

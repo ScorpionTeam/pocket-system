@@ -2,13 +2,23 @@
   <div class="hk_card">
     <div class="card_title">主图</div>
     <div class="card_content">
-      <upload-pic [type]="'0'" [alt]="'主图'" [initUrl]="" (uploadSuccess)="successUpload($event,0)"></upload-pic>
+      <upload-pic [type]="'0'" [alt]="'主图'" [initUrl]=""
+                  (uploadSuccess)="successUpload($event,0)" [isShowConfig]="true" ></upload-pic>
     </div>
   </div>
   <div class="hk_card">
     <div class="card_title">辅图</div>
     <div class="card_content">
-      <upload-pic [type]="'0'" [alt]="'辅图1'" [initUrl]="" (uploadsuccess)="successUpload($event),1"></upload-pic>
+      <div nz-row>
+        <upload-pic [type]="'0'" [alt]="'辅图1'" [initUrl]="" nz-col [nzSpan]="5"
+                    (uploadsuccess)="successUpload($event,1)"></upload-pic>
+        <upload-pic [type]="'0'" [alt]="'辅图2'" [initUrl]="" nz-col [nzSpan]="5" [nzOffset]="1"
+                    (uploadsuccess)="successUpload($event,2)"></upload-pic>
+        <upload-pic [type]="'0'" [alt]="'辅图3'" [initUrl]="" nz-col [nzSpan]="5" [nzOffset]="1"
+                    (uploadsuccess)="successUpload($event,31)"></upload-pic>
+        <upload-pic [type]="'0'" [alt]="'辅图4'" [initUrl]="" nz-col [nzSpan]="5" [nzOffset]="1"
+                    (uploadsuccess)="successUpload($event,4)"></upload-pic>
+      </div>
     </div>
   </div>
   <form class="hk_form">
