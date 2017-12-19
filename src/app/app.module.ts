@@ -146,6 +146,7 @@ import {SellerGoodDetailComponent} from "../page/seller/good/detail/SellerGoodDe
 import {TableTool} from "../common/list/TableTool";
 import {InputNumber} from "../common/inputnumber/InputNumber";
 import {GoodAuditListComponent} from "../page/good/auditlist/GoodAuditList.component";
+import {GoodAuditComponent} from "../page/good/auditdetail/GoodAudit.component";
 @NgModule({
   declarations: [
     InputNumber,
@@ -160,6 +161,7 @@ import {GoodAuditListComponent} from "../page/good/auditlist/GoodAuditList.compo
     GoodComponent,
     GoodListComponent,
     GoodAuditListComponent,
+    GoodAuditComponent,
     OrderComponent,
     OrderListComponent,
     UserListComponent,
