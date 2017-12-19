@@ -93,7 +93,7 @@ export class GoodService{
   audit(status:string,id:number,reason?:string){
     let url = 'backstage/good/auditGood?audit='+status+'&id='+id;
     if(reason){
-      url+="&reason"+reason;
+      url+="&reason="+reason;
     }
     return this.http.post(url,null);
   }

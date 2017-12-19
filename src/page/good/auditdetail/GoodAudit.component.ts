@@ -3,9 +3,10 @@ import {GoodService} from "../../../service/good/Good.service";
 import {RouterTool} from "../../../common/routertool/RouterTool";
 import {ActivatedRoute} from "@angular/router";
 import {CategoryService} from "../../../service/category/Category.service";
-import {NzMessageService} from "ng-zorro-antd";
+import {NzMessageService, NzModalService} from "ng-zorro-antd";
 import {DataTool} from "../../../common/data/DataTool";
 import {HttpData} from "../../../http/HttpData";
+import {isUndefined} from "util";
 @Component({
   selector:'good-audit',
   templateUrl:'GoodAudit.component.html',
@@ -26,6 +27,8 @@ export class GoodAuditComponent implements OnInit{
   picUrl:string;//图片公共地址
   good:any={};//商品
   categoryList:any=[];//类目列表
+  reason:string;//审核失败原因
+  isVisible:boolean=false;//模态显示
 
   /*获取类目列表*/
   getCategoryList(){
@@ -56,7 +59,28 @@ export class GoodAuditComponent implements OnInit{
       }
     );
   }
-  audit(){}
+  /*打开审核失败模态框*/
+  openModal(){
+    this.isVisible = true;
+  }
+  /*审核*/
+  audit(status:string){
+    if(status=="NOT_PASS_AUDIT"&&(this.reason==''||isUndefined(this.reason))){
+      this.nzMessage.warning("请填写原因");
+      return;
+    }
+    let id= Number(this.route.params["value"].id);
+    this.goodService.audit(status,id,this.reason).subscribe(
+      (res:any)=>{
+        if(res.result==1){
+          this.nzMessage.success(res.data);
+          this.isVisible=false;
+        }else {
+          this.nzMessage.error(res.error.message);
+        }
+      }
+    );
+  }
   /*返回*/
   back(){
     this.routerTool.skipToPage('/../good-audit-list',this.route);
