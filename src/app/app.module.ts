@@ -144,8 +144,10 @@ import {SellerTicketListComponent} from "../page/seller/ticket/list/SellerTicket
 import {SellerGoodListComponent} from "../page/seller/good/list/SellerGoodList.component";
 import {SellerGoodDetailComponent} from "../page/seller/good/detail/SellerGoodDetail.component";
 import {TableTool} from "../common/list/TableTool";
+import {InputNumber} from "../common/inputnumber/InputNumber";
 @NgModule({
   declarations: [
+    InputNumber,
     HMenu,
     HKeditor,
     ImgUpload,
