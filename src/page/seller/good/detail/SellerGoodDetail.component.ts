@@ -140,8 +140,12 @@ export class SellerGoodDetailComponent implements OnInit{
         this.good.promotion = this.dataTool.fTransYuan(this.good.promotion);
         if(res.result==1){
           this.nzMessage.success("新增完成");
-          //Todo:清空表单
           this.validateForm.reset();
+          //清空富文本内容
+          this.good.rich_content='';
+          //清空图片
+          this.imageList = [];
+          this.initUrlList=[];
         }else {
           this.nzMessage.error(res.error.message);
         }

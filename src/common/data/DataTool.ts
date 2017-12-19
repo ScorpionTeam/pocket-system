@@ -90,6 +90,17 @@ export  class DataTool{
     }
   }
 
+  /*审核状态转换成字符串*/
+  auditToStr(audit:string){
+    switch (audit){
+      case "AUDITING":
+        return "审核中";
+      case "PASS_AUDIT":
+        return "通过";
+      case "NOT_PASS_AUDIT":
+        return "不通过";
+    }
+  }
 
   /**
    * 转换得到具体值

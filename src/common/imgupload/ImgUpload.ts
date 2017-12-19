@@ -45,6 +45,7 @@ export class ImgUpload implements OnInit,OnChanges{
       this.previewPic(this.initUrl);
     }else if(this.initUrl==''||isUndefined(this.initUrl)){
       this.imgPreview='';
+      this.isUpload=false;
     }
   }
   /**
@@ -105,6 +106,7 @@ export class ImgUpload implements OnInit,OnChanges{
    * @param url
    */
   previewPic(url:string){
+    console.log(this.isUpload);
     this.isUpload = !this.isUpload;
     this.imgPreview =this.httpData.PicUrl+ url;
   }
