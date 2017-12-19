@@ -67,7 +67,6 @@ export class ImgCheck implements OnInit{
 
 /*旋转图片*/
  roratePic(node:any){
-   console.log(node._el);
    let targtEle = node._el;
    let pic:any = document.getElementById(this.ModalIdName);
    let degree = this.getDegree(pic);

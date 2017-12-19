@@ -3,7 +3,7 @@
   <div class="hk_card">
     <div class="card_title">主图</div>
     <div class="card_content">
-      <img-scan [imgPreview]="initUrlList[0]" [ModalIdName]="'main'"></img-scan>
+      <img-scan [imgPreview]="picUrl+initUrlList[0]" [ModalIdName]="'main'"></img-scan>
     </div>
   </div>
   <!--辅图-->
@@ -11,10 +11,10 @@
     <div class="card_title">辅图</div>
     <div class="card_content">
       <div nz-row>
-        <img-scan [imgPreview]="initUrlList[1]" [ModalIdName]="'one'"  nz-col [nzSpan]="5"></img-scan>
-        <img-scan [imgPreview]="initUrlList[2]" [ModalIdName]="'two'"  nz-col [nzSpan]="5" [nzOffset]="1"></img-scan>
-        <img-scan [imgPreview]="initUrlList[3]" [ModalIdName]="'three'"  nz-col [nzSpan]="5" [nzOffset]="1"></img-scan>
-        <img-scan [imgPreview]="initUrlList[4]" [ModalIdName]="'four'"  nz-col [nzSpan]="5" [nzOffset]="1"></img-scan>
+        <img-scan [imgPreview]="picUrl+initUrlList[1]" [ModalIdName]="'one'"  nz-col [nzSpan]="5"></img-scan>
+        <img-scan [imgPreview]="picUrl+initUrlList[2]" [ModalIdName]="'two'"  nz-col [nzSpan]="5" [nzOffset]="1"></img-scan>
+        <img-scan [imgPreview]="picUrl+initUrlList[3]" [ModalIdName]="'three'"  nz-col [nzSpan]="5" [nzOffset]="1"></img-scan>
+        <img-scan [imgPreview]="picUrl+initUrlList[4]" [ModalIdName]="'four'"  nz-col [nzSpan]="5" [nzOffset]="1"></img-scan>
       </div>
     </div>
   </div>
@@ -53,7 +53,7 @@
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">类目</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
-            <nz-select  [nzPlaceHolder]="'请选择'" [(ngModel)]="good.category_id"  readonly>
+            <nz-select  [nzPlaceHolder]="'请选择'" [(ngModel)]="good.category_id" style="width: 100%;">
               <nz-option [nzLabel]="data.category_name" [nzValue]="data.id" *ngFor="let data of categoryList"></nz-option>
             </nz-select>
           </div>
@@ -62,7 +62,7 @@
         <div class="hk_form_item" nz-row>
           <div class="hk_form_label" nz-form-item-required nz-col [nzSpan]="3" [nzOffset]="5">品牌</div>
           <div nz-col [nzSpan]="6" [nzOffset]="1">
-            <nz-select  [nzPlaceHolder]="'请选择'" [(ngModel)]="good.brand_id"  readonly>
+            <nz-select  [nzPlaceHolder]="'请选择'" [(ngModel)]="good.brand_id" style="width: 100%;">
               <nz-option [nzLabel]="'耐克'" [nzValue]="1"></nz-option>
             </nz-select>
           </div>
