@@ -1,8 +1,5 @@
 import {Injectable} from "@angular/core";
 import {Http} from "../../common/http/Http";
-import {isNull} from "util";
-import {isUndefined} from "util";
-import {PageService} from "../page/Page.service";
 @Injectable()
 export class GoodService{
   constructor(private http:Http){}
@@ -85,5 +82,19 @@ export class GoodService{
    */
   batchGoodDown(status:any,idList:any){
     return this.http.post('backstage/good/batchModifySaleStatus',{saleStatus:status,goodsIdList:idList});
+  }
+
+  /*商品审核列表*/
+  auditList(condition:any){
+    let url = 'backstage/good/findByCondition';
+    return this.http.post(url,condition);
+  }
+  /*审核商品*/
+  audit(status:string,id:number,reason?:string){
+    let url = 'backstage/good/auditGood?audit='+status+'&id='+id;
+    if(reason){
+      url+="&reason"+reason;
+    }
+    return this.http.post(url,null);
   }
 }

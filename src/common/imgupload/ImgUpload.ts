@@ -106,7 +106,6 @@ export class ImgUpload implements OnInit,OnChanges{
    * @param url
    */
   previewPic(url:string){
-    console.log(this.isUpload);
     this.isUpload = !this.isUpload;
     this.imgPreview =this.httpData.PicUrl+ url;
   }

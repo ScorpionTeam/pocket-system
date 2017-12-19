@@ -40,6 +40,7 @@ import {SellerTicketListComponent} from "../page/seller/ticket/list/SellerTicket
 import {SellerTicketComponent} from "../page/seller/ticket/detail/SellerTicket.component";
 import {SellerGoodListComponent} from "../page/seller/good/list/SellerGoodList.component";
 import {SellerGoodDetailComponent} from "../page/seller/good/detail/SellerGoodDetail.component";
+import {GoodAuditListComponent} from "../page/good/auditlist/GoodAuditList.component";
 
 const appRoute :Routes = [
   {path:'',redirectTo:'/index',pathMatch: 'full',},
@@ -47,6 +48,7 @@ const appRoute :Routes = [
     children:[
       {path:'good-list',component:GoodListComponent},
       {path:'good-detail/:id',component:GoodComponent},
+      {path:'good-audit-list',component:GoodAuditListComponent},
       {path:'good-add',component:GoodComponent},
       {path:'order-list',component:OrderListComponent},
       {path:'order-detail/:id',component:OrderComponent},
