@@ -13,7 +13,7 @@ export class ImgUpload implements OnInit,OnChanges{
   @Input() type:string;//图片类型
   @Input() alt:string;//图片alt
   @Input() initUrl:any;//初始化地址,不可传动态绑定的值
-  @Input() isShowConfig:any = false;//是否显示配置信息
+  @Input() isShowConfig:boolean = false;//是否显示配置信息
   @Output() uploadSuccess = new EventEmitter();//上传成功回调
   @Output() delSuccess = new EventEmitter();//删除图片成功回调
 
