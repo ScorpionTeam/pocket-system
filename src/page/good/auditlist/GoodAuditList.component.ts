@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {GoodService} from "../../../service/good/Good.service";
 import {DataTool} from "../../../common/data/DataTool";
 import {HttpData} from "../../../http/HttpData";
+import {RouterTool} from "../../../common/routertool/RouterTool";
+import {ActivatedRoute} from "@angular/router";
 @Component({
   selector:"good-audit-list",
   templateUrl:"GoodAuditList.component.html",
@@ -9,7 +11,8 @@ import {HttpData} from "../../../http/HttpData";
 })
 
 export class GoodAuditListComponent implements OnInit{
-  constructor(private goodService:GoodService,public dataTool:DataTool,private httpData:HttpData){
+  constructor(private goodService:GoodService,public dataTool:DataTool,private routerTool:RouterTool,
+              private httpData:HttpData,private route:ActivatedRoute){
     this.picUrl = this.httpData.PicUrl;
   }
   ngOnInit(){
@@ -23,6 +26,8 @@ export class GoodAuditListComponent implements OnInit{
   picUrl:string;//图片公共地址
   auditList:any=[];//审核列表
   condition:any={};//条件
+  isOpen:boolean=false;//打开
+
   /*搜索*/
   search(){
     this.page.pageNo = 1;
@@ -73,5 +78,18 @@ export class GoodAuditListComponent implements OnInit{
         }
       }
     )
+  }
+
+  /*修改审核状态*/
+  changeAuditStatus(){
+    if(this.isOpen){
+     this.search();
+    }
+    this.isOpen=!this.isOpen;
+  }
+
+  /*页面跳转*/
+  skipToPage(url:string,val?:any){
+    this.routerTool.skipToPage(url,this.route,val);
   }
 }

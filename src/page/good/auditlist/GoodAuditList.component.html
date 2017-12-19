@@ -5,6 +5,12 @@
       <i class="anticon anticon-search search" (click)="search()"></i>
     </ng-template>
   </nz-input>
+  <span style="font-weight: 600;margin:0 10px 0 100px;">审核状态</span>
+  <nz-select [(ngModel)]="condition.audit" class="hk_list_select" (nzOpenChange)	= "changeAuditStatus()">
+    <nz-option [nzLabel]="'已审核'" [nzValue]="'PASS_AUDIT'"></nz-option>
+    <nz-option [nzLabel]="'未审核'" [nzValue]="'AUDITING'"></nz-option>
+    <nz-option [nzLabel]="'审核失败'" [nzValue]="'NOT_PASS_AUDIT'"></nz-option>
+  </nz-select>
 </div>
 <nz-table #goodListTable [nzAjaxData]="auditList" [nzPageSize]="page.pageSize"
           [nzPageIndex]="page.pageNo" [nzShowSizeChanger]="true" [nzShowTotal]="true"
@@ -31,7 +37,7 @@
     <td nz-td>{{data.stock}}</td>
     <td nz-td [class]="dataTool.strTransBool(data.on_sale,'onsale')?'sta_normal':'sta_del'">{{data.on_sale=="ON_SALE"?"上架":"下架"}}</td>
     <td nz-td>{{dataTool.auditToStr(data.audit)}}</td>
-    <td nz-td><span><a (click)="skipToPage('/good-detail',data.id)">编辑</a></span></td>
+    <td nz-td><span><a (click)="skipToPage('/good-audit-detail',data.id)">详情</a></span></td>
   </tr>
   </tbody>
 </nz-table>
