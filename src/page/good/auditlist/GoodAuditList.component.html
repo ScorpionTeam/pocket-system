@@ -37,7 +37,7 @@
     <td nz-td>{{data.stock}}</td>
     <td nz-td [class]="dataTool.strTransBool(data.on_sale,'onsale')?'sta_normal':'sta_del'">{{data.on_sale=="ON_SALE"?"上架":"下架"}}</td>
     <td nz-td>{{dataTool.auditToStr(data.audit)}}</td>
-    <td nz-td><span><a (click)="skipToPage('/good-audit-detail',data.id)">详情</a></span></td>
+    <td nz-td><span><a (click)="skipToPage('/good-audit',data.id)">详情</a></span></td>
   </tr>
   </tbody>
 </nz-table>

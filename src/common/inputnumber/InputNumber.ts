@@ -4,7 +4,7 @@ import {isUndefined} from "util";
 @Component({
   selector:'hk-input-number',
   template:`
-    <input type="text" class="hk_input" [(ngModel)]="value">
+    <input type="text" class="hk_input" [(ngModel)]="value" [readonly]="isReadonly">
   `,
   providers:[{
     provide: NG_VALUE_ACCESSOR,
@@ -20,6 +20,7 @@ export class InputNumber implements OnInit,ControlValueAccessor {
   onChangeCallback(_: any){}
   @Input() max:number;
   @Input() min:number;
+  @Input() isReadonly:boolean=false;
   constructor(){}
   ngOnInit(){}
 
