@@ -70,7 +70,6 @@ export class IndexComponent implements OnInit{
   findMenuList(){
     this.menuService.findMenuByUserid(localStorage.getItem("id")).subscribe(
       (res:any)=>{
-        console.log(res);
         if(res["result"]==1){
           this.menuList = res["data"];
         }

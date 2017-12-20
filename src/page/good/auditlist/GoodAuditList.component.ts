@@ -25,7 +25,9 @@ export class GoodAuditListComponent implements OnInit{
   };
   picUrl:string;//图片公共地址
   auditList:any=[];//审核列表
-  condition:any={};//条件
+  condition:any={
+    audit:"Auditing"
+  };//条件
   isOpen:boolean=false;//打开
 
   /*搜索*/

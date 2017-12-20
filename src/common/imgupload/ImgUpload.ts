@@ -74,8 +74,10 @@ export class ImgUpload implements OnInit,OnChanges{
    * 图片
    */
   imgUpload = (val:any)=>{
+    console.log(val);
     if(this.imgObj.watermark&&(!this.imgObj.cut||this.imgObj.cutSizeList.length==0)){
       this.nzMessage.warning("添加水印必须选择裁剪尺寸!");
+      val.target.value='';//清空input.file的val可以重复上传一个图片
       return;
     }
     let formData= new FormData();
@@ -92,13 +94,15 @@ export class ImgUpload implements OnInit,OnChanges{
         }
         this.imgObj.watermark = this.dataTool.strTransBool(this.imgObj.watermark,'water');
         this.imgObj.cut = this.dataTool.strTransBool(this.imgObj.cut,'cut');
+        val.target.value='';
       },
       err=>{
         this.imgObj.watermark = this.dataTool.strTransBool(this.imgObj.watermark,'water');
         this.imgObj.cut = this.dataTool.strTransBool(this.imgObj.cut,'cut');
+        val.target.value='';
         console.log(err);
       }
-    )
+    );
   };
 
   /**
