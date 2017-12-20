@@ -149,6 +149,7 @@ import {GoodAuditListComponent} from "../page/good/auditlist/GoodAuditList.compo
 import {GoodAuditComponent} from "../page/good/auditdetail/GoodAudit.component";
 import {Modal} from "../common/modal/Modal";
 import {JoinActivityComponent} from "../page/seller/active/join/JoinActivity.component";
+import {QuitActivityComponent} from "../page/seller/active/quit/QuitActivity.component";
 @NgModule({
   declarations: [
     Modal,
@@ -200,7 +201,8 @@ import {JoinActivityComponent} from "../page/seller/active/join/JoinActivity.com
     SellerTicketListComponent,
     SellerGoodListComponent,
     SellerGoodDetailComponent,
-    JoinActivityComponent
+    JoinActivityComponent,
+    QuitActivityComponent
   ],
   imports: [
     BrowserModule,

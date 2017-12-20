@@ -43,6 +43,7 @@ import {SellerGoodDetailComponent} from "../page/seller/good/detail/SellerGoodDe
 import {GoodAuditListComponent} from "../page/good/auditlist/GoodAuditList.component";
 import {GoodAuditComponent} from "../page/good/auditdetail/GoodAudit.component";
 import {JoinActivityComponent} from "../page/seller/active/join/JoinActivity.component";
+import {QuitActivityComponent} from "../page/seller/active/quit/QuitActivity.component";
 
 const appRoute :Routes = [
   {path:'',redirectTo:'/index',pathMatch: 'full',},
@@ -98,6 +99,7 @@ const appRoute :Routes = [
       {path:'seller-good-add',component:SellerGoodDetailComponent},
       {path:'seller-good/:id',component:SellerGoodDetailComponent},
       {path:'join-activity',component:JoinActivityComponent},
+      {path:'quit-activity',component:QuitActivityComponent}
     ]},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent}
