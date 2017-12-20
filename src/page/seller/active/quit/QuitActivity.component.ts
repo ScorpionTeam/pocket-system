@@ -292,11 +292,7 @@ export class QuitActivityComponent implements OnInit{
         }else{
           this.nzMessage.success("解绑失败");
         }
-      },
-      err=>{
-        console.log(err);
-      }
-    )
+      });
   }
 
   /**
