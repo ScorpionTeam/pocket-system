@@ -31,6 +31,7 @@ export class SellerTicketComponent implements OnInit{
   };//优惠券对象
   isDetail:boolean=false;//是否详情页
   validateForm:FormGroup;
+  isShowModal:boolean=false;//模态框显示标志
 
 
   /*建立表单规则*/
@@ -86,24 +87,19 @@ export class SellerTicketComponent implements OnInit{
 
   /**
    * 操作提示
-   * @param type 0:新增 1:修改
    */
-  confirm(type:any){
+  confirm(){
     console.log(this.ticketObj);
     if(this.validateForm.invalid){
       this.nzMessage.warning("请将表单填写完整");
       return;
     }
-    if(type==0){
-      this.add();
-    }else {
-      this.modify();
-    }
-
+    this.isShowModal = !this.isShowModal;
   }
 
   /*新增优惠券*/
   add(){
+    this.isShowModal = !this.isShowModal;
     this.ticketObj.reduce_money = this.dataTool.yTransFen(this.ticketObj.reduce_money);
     this.ticketObj.money = this.dataTool.yTransFen(this.ticketObj.money);
     this.sellerService.addTicket(this.ticketObj).subscribe(
@@ -122,6 +118,7 @@ export class SellerTicketComponent implements OnInit{
 
   /*修改优惠券*/
   modify(){
+    this.isShowModal = !this.isShowModal;
     this.ticketObj.money = this.dataTool.yTransFen(Number(this.ticketObj.money));
     this.ticketObj.reduce_money = this.dataTool.yTransFen(Number(this.ticketObj.reduce_money));
     this.sellerService.modifyTicket(this.ticketObj).subscribe(

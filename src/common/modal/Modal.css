@@ -1,8 +1,49 @@
+/*模态背景*/
+.hk_modal_window{
+  background:rgba(0,0,0,0.6);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top:0;
+  left: 0;
+  z-index:10;
+}
+/*模态*/
 .hk_modal{
   position: fixed;
   top:100px;
   width: 600px;
   left: 50%;
   margin-left: -300px;
-  border: 1px solid #f1f1f1;
+  z-index: 55;
+}
+/*模态标题*/
+.modal_tit{
+  min-height: 16.43px;
+  padding:10px 15px;
+  background-color: #5971e8!important;
+  font-size: 16px;
+  color:#fff;
+}
+.modal_close{
+  color: white;
+  float: right;
+  cursor: pointer;
+}
+/*模态内容*/
+.modal_content{
+  position: relative;
+  padding: 15px;
+  background: #fff;
+  border-bottom: 1px solid #f1f1f1 ;
+}
+
+/*模态底部*/
+.modal_footer{
+  padding: 5px 14px;
+  text-align: right;
+  background: #fff;
+}
+.modal_footer .modal_btn{
+  margin-right:10px ;
 }

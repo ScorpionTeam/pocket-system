@@ -1,7 +1,17 @@
-<div class="hk_modal">
-  <div class="modal_tit">{{title}}</div>
-  <div class="modal_content"></div>
-  <div class="modal_footer">
-
+<!--有蒙层版本-->
+<div class="hk_modal_window" *ngIf="show">
+  <div class="hk_modal" *ngIf="show">
+    <div class="modal_tit">
+      {{title}}
+      <i class="anticon anticon-close modal_close" (click)="close()"></i></div>
+    <div class="modal_content">
+      <p>{{content}}</p>
+    </div>
+    <div class="modal_footer">
+      <ng-container *ngTemplateOutlet="footer;"></ng-container>
+      <!--<button nz-button [nzType]="'primary'" (click)="onOk()">确定</button>-->
+    </div>
   </div>
 </div>
+
+
