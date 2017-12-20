@@ -7,9 +7,20 @@ import {SellerServe} from "../../../../service/Seller.service";
 import {CategoryService} from "../../../../service/category/Category.service";
 import {HttpData} from "../../../../http/HttpData";
 @Component({
-  selector:"act-concat-good",
-  templateUrl:"ConcatGood.component.html",
-  styleUrls:["ConcatGood.component.css"],
+  selector:"join-good-activity",
+  templateUrl:"JoinActivity.component.html",
+  styles:[`
+      /*活动下拉框*/
+      .select-contain{
+        float: right;
+        margin-right: 15px;
+      }
+      
+      .activity-select{
+        margin-left: 5px;
+        width: 100px;
+      }
+  `],
   providers:[ActivityService,SellerServe,CategoryService]
 })
 
@@ -29,19 +40,17 @@ export class  JoinActivityComponent implements OnInit{
   picUrl:string = '';//图片公共地址
   condition:any={};//条件
   idList:any=[];//选中商品ID集合
-  nowDate:any;//当前时间
   constructor(private actService:ActivityService,private goodService:SellerServe,private categoryService:CategoryService,
               private router:Router,private route :ActivatedRoute,private  PicUrl:HttpData,
               private nzModal :NzModalService ,private nzMessage:NzMessageService){}
 
   ngOnInit(){
     this.picUrl = this.PicUrl.PicUrl;
-    let date = new Date();
-    this.nowDate = date.getTime();
+    this.condition.sellerId = Number(localStorage.getItem("id"));
+    this.condition.type = "UNBIND_ACTIVITY";
     this.init();
     this.getActivityList();
     this.getCategoryList();
-    this.condition.sellerId = Number(localStorage.getItem("id"));
   }
   /**
    * 初始化
@@ -57,7 +66,6 @@ export class  JoinActivityComponent implements OnInit{
    * @param val
    */
   skipToPage(name:string,val?:any){
-    console.log(name);
     if(val){
       this.router.navigate([".."+name,val],{relativeTo:this.route});
     }else{
@@ -87,13 +95,8 @@ export class  JoinActivityComponent implements OnInit{
       res=>{
         if(res["total"]!=0){
           this.activityList = res["list"];
-          console.log(this.activityList);
         }
-      },
-      err=>{
-        console.log(err);
-      }
-    )
+      });
   }
 
   /*分页*/
@@ -133,9 +136,6 @@ export class  JoinActivityComponent implements OnInit{
           this.goodList = [];
           this.page.total=0;
         }
-      },
-      err=>{
-        console.log(err);
       });
   };
 

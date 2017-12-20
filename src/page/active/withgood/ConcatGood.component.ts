@@ -30,15 +30,12 @@ export class  ConcatGoodComponent implements OnInit{
   picUrl:string = '';//图片公共地址
   condition:any={};//条件
   idList:any=[];//选中商品ID集合
-  nowDate:any;//当前时间
   constructor(private actService:ActivityService,private goodService:GoodService,private categoryService:CategoryService,
               private router:Router,private route :ActivatedRoute,private  PicUrl:HttpData,
               private nzModal :NzModalService ,private nzMessage:NzMessageService){}
 
   ngOnInit(){
     this.picUrl = this.PicUrl.PicUrl;
-    let date = new Date();
-    this.nowDate = date.getTime();
     this.init();
     this.getActivityList();
     this.getCategoryList();
