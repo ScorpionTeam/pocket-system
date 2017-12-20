@@ -1,19 +1,19 @@
 import {Component, OnInit} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 import {NzModalService, NzMessageService} from "ng-zorro-antd";
-import {HttpData} from "../../../http/HttpData";
 import {isUndefined} from "util";
-import {ActivityService} from "../../../service/active/Activity.service";
-import {GoodService} from "../../../service/good/Good.service";
-import {CategoryService} from "../../../service/category/Category.service";
+import {ActivityService} from "../../../../service/active/Activity.service";
+import {SellerServe} from "../../../../service/Seller.service";
+import {CategoryService} from "../../../../service/category/Category.service";
+import {HttpData} from "../../../../http/HttpData";
 @Component({
   selector:"act-concat-good",
   templateUrl:"ConcatGood.component.html",
   styleUrls:["ConcatGood.component.css"],
-  providers:[ActivityService,GoodService,CategoryService]
+  providers:[ActivityService,SellerServe,CategoryService]
 })
 
-export class  ConcatGoodComponent implements OnInit{
+export class  JoinActivityComponent implements OnInit{
   curActivity:any;//当前活动
   goodList:any=[];//商品列表
   activityList:any=[];//活动列表
@@ -21,7 +21,6 @@ export class  ConcatGoodComponent implements OnInit{
   isCollapse:boolean=false;
   checkAll:boolean = false;//全选
   doCheckAll:boolean=false;//是否可以全选
-  searchKey:any= '';
   page:any = {
     pageNo:1,
     pageSize:10,
@@ -31,7 +30,7 @@ export class  ConcatGoodComponent implements OnInit{
   condition:any={};//条件
   idList:any=[];//选中商品ID集合
   nowDate:any;//当前时间
-  constructor(private actService:ActivityService,private goodService:GoodService,private categoryService:CategoryService,
+  constructor(private actService:ActivityService,private goodService:SellerServe,private categoryService:CategoryService,
               private router:Router,private route :ActivatedRoute,private  PicUrl:HttpData,
               private nzModal :NzModalService ,private nzMessage:NzMessageService){}
 
@@ -42,19 +41,14 @@ export class  ConcatGoodComponent implements OnInit{
     this.init();
     this.getActivityList();
     this.getCategoryList();
+    this.condition.sellerId = Number(localStorage.getItem("id"));
   }
   /**
    * 初始化
    */
   init(){
     /*数据初始化*/
-    this.goodService.pageConcatWithActivity(this.page.pageNo,this.page.pageSize,this.searchKey).subscribe(res=>{
-        console.log(res);
-        if(res["total"]!=0){
-          this.goodList = res["list"];
-          this.page.total=res["total"];
-        }
-      });
+    this.pageChangeHandler(1);
   }
 
   /**
@@ -106,7 +100,7 @@ export class  ConcatGoodComponent implements OnInit{
   pageChangeHandler(val:any){
     this.page.pageNo=val;
     //拼接地址
-    this.goodService.pageConcatWithActivity(this.page.pageNo,this.page.pageSize,this.searchKey).subscribe(res=>{
+    this.goodService.goodPageList(this.page.pageNo,this.page.pageSize,this.condition).subscribe(res=>{
         /*给checkbox赋值*/
         for(let i =0;i<res["list"].length;i++){
           res["list"].checked=false
@@ -120,16 +114,13 @@ export class  ConcatGoodComponent implements OnInit{
           this.goodList = [];
           this.page.total=0;
         }
-      },
-      err=>{
-        console.log(err);
       });
   };
 
   /*size改变*/
   pageSizeChangeHandler(val:any){
     this.page.pageSize=val;
-    this.goodService.pageConcatWithActivity(this.page.pageNo,this.page.pageSize,this.searchKey).subscribe(res=>{
+    this.goodService.goodPageList(this.page.pageNo,this.page.pageSize,this.condition).subscribe(res=>{
         for(let i =0;i<res["list"].length;i++){
           res["list"].checked=false
         }
@@ -153,20 +144,20 @@ export class  ConcatGoodComponent implements OnInit{
    */
   search(){
     this.page.pageNo=1;
-    this.goodService.pageConcatWithActivity(this.page.pageNo,this.page.pageSize,this.searchKey,this.condition).subscribe(res=>{
-        for(let i =0;i<res["list"].length;i++){
-          res["list"].checked=false
-        }
-        this.idList=[];
-        if(res["total"]!=0){
-          this.checkAll=false;
-          this.goodList = res["list"];
-          this.page.total=res["total"]
-        }else {
-          this.goodList = [];
-          this.page.total=0;
-        }
-      });
+    this.goodService.goodPageList(this.page.pageNo,this.page.pageSize,this.condition).subscribe(res=>{
+      for(let i =0;i<res["list"].length;i++){
+        res["list"].checked=false
+      }
+      this.idList=[];
+      if(res["total"]!=0){
+        this.checkAll=false;
+        this.goodList = res["list"];
+        this.page.total=res["total"]
+      }else {
+        this.goodList = [];
+        this.page.total=0;
+      }
+    });
   }
 
 
@@ -180,8 +171,8 @@ export class  ConcatGoodComponent implements OnInit{
   selectItem(flag:any,val:any,type:any,stock?:any,index?:any){
     if(type==1){
       if(flag){
-        //单选勾选操作
-        //封装good选中的good对象
+//单选勾选操作
+//封装good选中的good对象
         if(isUndefined(stock)||stock<=0){
           this.nzMessage.warning("请先将参加活动库存填写完毕");
           setTimeout(()=>{this.goodList[index]['checked']=false;},0);
@@ -198,17 +189,17 @@ export class  ConcatGoodComponent implements OnInit{
           this.checkAll=false;
         }
       }else {
-        //单选取消操作
+//单选取消操作
         this.checkAll=false;
         let index = this.idList.indexOf(val);
         this.idList.splice(index,1);
       }
     }else {
       if(flag){
-        //全选
+//全选
         let good :any ={};
         for(let i =0;i<val.length;i++){
-          //判断是否已经填写了参加活动库存
+//判断是否已经填写了参加活动库存
           if(isUndefined(val[i].inStock)||val[i].inStock<=0){
             console.log(val);
             this.nzMessage.warning("请先将参加活动库存填写完毕");
@@ -218,7 +209,7 @@ export class  ConcatGoodComponent implements OnInit{
             }
             return;
           }
-          //判断是否加入的id是否是列表里的第一个
+//判断是否加入的id是否是列表里的第一个
           if(this.idList.length==0){
             this.goodList[i]['checked']=true;
             good.id=val[i].id;
@@ -226,7 +217,7 @@ export class  ConcatGoodComponent implements OnInit{
             this.idList.push(Object.assign({},good));
             continue;
           }
-          //检测是否在idList中已存在
+//检测是否在idList中已存在
           for(let index in this.idList){
             if(val[i].id==this.idList[index].goodId){
               break;
@@ -239,7 +230,7 @@ export class  ConcatGoodComponent implements OnInit{
           }
         }
       }else {
-        //全不选
+//全不选
         for(let i =0;i<val.length;i++){
           this.goodList[i]['checked']=false;
         }

@@ -147,8 +147,11 @@ import {TableTool} from "../common/list/TableTool";
 import {InputNumber} from "../common/inputnumber/InputNumber";
 import {GoodAuditListComponent} from "../page/good/auditlist/GoodAuditList.component";
 import {GoodAuditComponent} from "../page/good/auditdetail/GoodAudit.component";
+import {Modal} from "../common/modal/Modal";
+import {JoinActivityComponent} from "../page/seller/active/join/JoinActivity.component";
 @NgModule({
   declarations: [
+    Modal,
     InputNumber,
     HMenu,
     HKeditor,
@@ -196,7 +199,8 @@ import {GoodAuditComponent} from "../page/good/auditdetail/GoodAudit.component";
     SellerTicketComponent,
     SellerTicketListComponent,
     SellerGoodListComponent,
-    SellerGoodDetailComponent
+    SellerGoodDetailComponent,
+    JoinActivityComponent
   ],
   imports: [
     BrowserModule,

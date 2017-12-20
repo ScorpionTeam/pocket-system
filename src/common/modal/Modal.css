@@ -1,0 +1,8 @@
+.hk_modal{
+  position: fixed;
+  top:100px;
+  width: 600px;
+  left: 50%;
+  margin-left: -300px;
+  border: 1px solid #f1f1f1;
+}
