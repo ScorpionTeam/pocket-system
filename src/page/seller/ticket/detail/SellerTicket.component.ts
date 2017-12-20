@@ -58,6 +58,8 @@ export class SellerTicketComponent implements OnInit{
             return;
           }
           this.ticketObj = res.data;
+          this.ticketObj.start_date = new Date(res["data"].start_date);
+          this.ticketObj.end_date = new Date(res["data"].end_date);
           this.ticketObj.money = this.dataTool.fTransYuan(Number(this.ticketObj.money));
           this.ticketObj.reduce_money = this.dataTool.fTransYuan(Number(this.ticketObj.reduce_money));
         }else {
