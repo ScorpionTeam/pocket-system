@@ -219,7 +219,7 @@ export class  JoinActivityComponent implements OnInit{
           }
 //检测是否在idList中已存在
           for(let index in this.idList){
-            if(val[i].id==this.idList[index].goodId){
+            if(val[i].id==this.idList[index].id){
               break;
             }else if((Number(index)+1)==this.idList.length){
               this.goodList[i]['checked']=true;
