@@ -9,7 +9,6 @@ import {Router, ActivatedRoute} from "@angular/router";
 export class HMenu{
   @Input() dataList:any[];
   constructor(private router:Router,private route:ActivatedRoute){}
-
   /**
    * 选一级菜单
    * @param index
@@ -38,7 +37,6 @@ export class HMenu{
     let nowVal = el.parentElement.previousElementSibling.className;
     let allSubEl=document.getElementsByClassName("sub_menu_item");
     let allParEl = document.getElementsByClassName("menu_item_warp");
-    console.log(nowVal);
     //给所有子目录去除样式
     for(let i =0;i<allSubEl.length;i++){
       allSubEl[i].className = allSubEl[i].className.replace("sub_menu_item_selected","");
@@ -51,10 +49,11 @@ export class HMenu{
       allParEl[i].className = allParEl[i].className.replace("menu_item_selected","");
     }
     //判断是否已经存在menu_item_selected样式
-      el.parentElement.previousElementSibling.className+=" menu_item_selected";
+    el.parentElement.previousElementSibling.className+=" menu_item_selected";
     //partTwo:路由跳转
     this.router.navigate([url],{relativeTo:this.route});
   }
+
 
 
 }
