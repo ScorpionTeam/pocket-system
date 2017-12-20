@@ -3,7 +3,7 @@ import {TimePick} from "../../../../common/data/TimePick";
 import {ActivatedRoute} from "@angular/router";
 import {SellerServe} from "../../../../service/Seller.service";
 import {NzMessageService} from "ng-zorro-antd";
-import {FormGroup, FormBuilder} from "@angular/forms";
+import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {RouterTool} from "../../../../common/routertool/RouterTool";
 import {DataTool} from "../../../../common/data/DataTool";
 @Component({
@@ -18,7 +18,8 @@ export class SellerTicketComponent implements OnInit{
               private dataTool:DataTool){}
   ngOnInit(){
     this.ticketObj.seller_id = Number(localStorage.getItem("id"));//初始化优惠券商户id
-   //判断是否详情
+    this.createValidate();
+    //判断是否详情
     if(this.route.params["value"].id){
       this.isDetail=true;
       this.detail();
@@ -31,6 +32,19 @@ export class SellerTicketComponent implements OnInit{
   isDetail:boolean=false;//是否详情页
   validateForm:FormGroup;
 
+
+  /*建立表单规则*/
+  createValidate(){
+    this.validateForm = this.fb.group({
+      name:["",Validators.required],
+      reduceMoney:["",Validators.required],
+      money:["",Validators.required],
+      num:["",Validators.required],
+      content:["",Validators.required],
+      startDate:["",Validators.required],
+      endDate:["",Validators.required]
+    });
+  }
   /*根据id查找详情*/
   detail(){
     let id = this.route.params["value"].id;
@@ -70,22 +84,37 @@ export class SellerTicketComponent implements OnInit{
     return this.timeTool.disableEndTime(endValue,this.ticketObj.start_date);
   };
 
-  /*操作提示*/
-  confirm(){
+  /**
+   * 操作提示
+   * @param type 0:新增 1:修改
+   */
+  confirm(type:any){
+    console.log(this.ticketObj);
+    if(this.validateForm.invalid){
+      this.nzMessage.warning("请将表单填写完整");
+      return;
+    }
+    if(type==0){
+      this.add();
+    }else {
+      this.modify();
+    }
 
   }
 
   /*新增优惠券*/
   add(){
-    this.ticketObj.num = Number(this.ticketObj.num);
-    this.ticketObj.money = Number(this.ticketObj.money);
-    this.ticketObj.reduce_money = Number(this.ticketObj.reduce_money);
+    this.ticketObj.reduce_money = this.dataTool.yTransFen(this.ticketObj.reduce_money);
+    this.ticketObj.money = this.dataTool.yTransFen(this.ticketObj.money);
     this.sellerService.addTicket(this.ticketObj).subscribe(
       (res:any)=>{
         if(res.result==1){
           this.nzMessage.success("新增成功");
+          this.validateForm.reset();
         }else{
           this.nzMessage.error(res.error.message);
+          this.ticketObj.money = this.dataTool.fTransYuan(Number(this.ticketObj.money));
+          this.ticketObj.reduce_money = this.dataTool.fTransYuan(Number(this.ticketObj.reduce_money));
         }
       }
     );
@@ -93,7 +122,6 @@ export class SellerTicketComponent implements OnInit{
 
   /*修改优惠券*/
   modify(){
-    this.ticketObj.num = Number(this.ticketObj.num);
     this.ticketObj.money = this.dataTool.yTransFen(Number(this.ticketObj.money));
     this.ticketObj.reduce_money = this.dataTool.yTransFen(Number(this.ticketObj.reduce_money));
     this.sellerService.modifyTicket(this.ticketObj).subscribe(
