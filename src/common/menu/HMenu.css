@@ -70,23 +70,29 @@
 .sub_menu{
   background: #404040;
   font-size: 13px;
-  /*display: none;*/
   max-height: 0;
 }
+/*折叠效果样式*/
 .menu_item_open .sub_menu{
   max-height: 1000px;
-  -webkit-transition:  max-height 1s;
-  -moz-transition:  max-height 1s;
-  -o-transition:  max-height 1s;
-  transition:  max-height 1s;
+  display: block;
+  -webkit-transition:  max-height 2s;
+  -moz-transition:  max-height 2s;
+  -o-transition:  max-height 2s;
+  transition:  max-height 2s;
 }
-
+.menu_item_open .sub_menu li{
+  display: block;
+}
 .menu_item_close .sub_menu{
   max-height:0;
-  -webkit-transition:  max-height 0.25s;
-  -moz-transition:  max-height 0.25s;
-  -o-transition:  max-height 0.25s;
-  transition:  max-height 0.25s;
+  -webkit-transition:  max-height 0.1s;
+  -moz-transition:  max-height 0.1s;
+  -o-transition:  max-height 0.1s;
+  transition:  max-height 0.1s;
+}
+.menu_item_close .sub_menu li{
+  display: none;
 }
 
 .sub_menu_item:first-child{
