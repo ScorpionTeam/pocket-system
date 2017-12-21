@@ -69,3 +69,17 @@
   top:80px;
   right: 20px;
 }
+
+/*下拉框*/
+.hk_select{
+  width: 100%;
+  font-family: "Helvetica Neue,Helvetica,Arial,Hiragino Sans GB,PingFang SC,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif!important";
+  height: 32px;
+  font-size: 16px;
+  color: rgba(0,0,0,.65);
+  border: 1px solid #ecedee;
+}
+.hk_select:hover,.hk_select:focus{
+  border-color:#49a9ee;
+  outline: none;
+}
