@@ -1,12 +1,36 @@
 /*模态背景*/
 .hk_modal_window{
   background:rgba(0,0,0,0.6);
-  height: 100vh;
-  width: 100vw;
   position: fixed;
   top:0;
   left: 0;
   z-index:10;
+}
+.hk_modal_open{
+  max-height:1000px;
+  height: 100vh;
+  width: 100vw;
+  animation: modalIn 300ms;
+}
+.hk_modal_close{
+  max-height: 0;
+  animation: modalOut 300ms;
+}
+@keyframes modalIn {
+   0%{
+     transform: scale(0);
+   }
+   100%{
+     transform: scale(1);
+   }
+ }
+@keyframes modalOut {
+  0%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(0);
+  }
 }
 /*模态*/
 .hk_modal{

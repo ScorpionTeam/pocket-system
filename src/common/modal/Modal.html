@@ -1,6 +1,20 @@
 <!--有蒙层版本-->
-<div class="hk_modal_window" *ngIf="show">
+<!--<div class="hk_modal_window" *ngIf="show" [@modalAnimation]="show?'in':'out'">
   <div class="hk_modal" *ngIf="show">
+    <div class="modal_tit">
+      {{title}}
+      <i class="anticon anticon-close modal_close" (click)="close()"></i></div>
+    <div class="modal_content">
+      <p>{{content}}</p>
+    </div>
+    <div class="modal_footer">
+      <ng-container *ngTemplateOutlet="footer;"></ng-container>
+      &lt;!&ndash;<button nz-button [nzType]="'primary'" (click)="onOk()">确定</button>&ndash;&gt;
+    </div>
+  </div>
+</div>-->
+<div class="hk_modal_window" *ngIf="show"  [class.hk_modal_open]="show" [class.hk_modal_close]="!show">
+  <div class="hk_modal">
     <div class="modal_tit">
       {{title}}
       <i class="anticon anticon-close modal_close" (click)="close()"></i></div>
@@ -13,5 +27,4 @@
     </div>
   </div>
 </div>
-
 
