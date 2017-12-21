@@ -24,7 +24,10 @@ export class GoodListComponent implements OnInit{
     pageSize:10,
     total:0
   };
-  condition:any={};//条件
+  condition:any={
+    startDate:null,
+    endDate:null
+  };//条件
   categoryList:any = [];
 
   //是否展开

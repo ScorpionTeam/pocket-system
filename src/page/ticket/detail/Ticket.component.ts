@@ -14,7 +14,10 @@ import {TicketService} from "../../../service/ticket/Ticket.service";
 })
 
 export class TicketComponent implements OnInit{
-  ticket:any={};
+  ticket:any={
+    start_date:null,
+    end_date:null,
+  };
   validateForm:FormGroup;
   isDetail:boolean=false;
   constructor(private fb:FormBuilder,private router:Router,private dataTool:DataTool,

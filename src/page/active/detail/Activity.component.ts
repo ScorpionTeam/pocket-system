@@ -19,7 +19,9 @@ export class ActivityComponent implements OnInit{
   validateForm:FormGroup;
   activity:any={
     status:true,
-    target:'3'
+    target:'3',
+    start_date:null,
+    end_date:null
   };
   constructor(private fb:FormBuilder,private router:Router,private nzMessage:NzMessageService,
               private route:ActivatedRoute,private http:Http,private dataTool:DataTool,
