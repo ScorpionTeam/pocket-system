@@ -3,7 +3,7 @@ import {TimePick} from "../../../../common/data/TimePick";
 import {ActivatedRoute} from "@angular/router";
 import {SellerServe} from "../../../../service/Seller.service";
 import {NzMessageService} from "ng-zorro-antd";
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
 import {RouterTool} from "../../../../common/routertool/RouterTool";
 import {DataTool} from "../../../../common/data/DataTool";
 @Component({
@@ -92,6 +92,7 @@ export class SellerTicketComponent implements OnInit{
    */
   confirm(){
     console.log(this.ticketObj);
+    console.log(this.validateForm);
     if(this.validateForm.invalid){
       this.nzMessage.warning("请将表单填写完整");
       return;
