@@ -6,7 +6,7 @@ import {isUndefined} from "util";
   template:`
     <div nz-row>
       <div nz-col [nzSpan]="5">
-           <select class="hk_select" [(ngModel)]="operator">
+           <select class="hk_select" [(ngModel)]="operator" (change)="selectChange()">
             <option value="+">+</option>
             <option value="-">-</option>
           </select>
@@ -111,4 +111,8 @@ export class InputNumber implements OnInit,ControlValueAccessor {
     return val<this.min?false:true;
   }
 
+  /*下拉框值变化回调*/
+  selectChange(){
+    this.value = this.innerValue;
+  }
 }
