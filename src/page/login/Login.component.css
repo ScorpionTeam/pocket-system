@@ -1,0 +1,129 @@
+/*登录页面样式*/
+/*
+.login-form {
+  max-width: 300px;
+  margin: 0 auto;
+  margin-top: 170px;
+  background: #fff;
+  padding: 19px 20px;
+  border-radius: 8px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+.has_tip{
+  text-align: center;
+  margin: 10px 0 5px;
+}
+.to_register{
+  color:#5971e8;
+  cursor: pointer;
+  font-size: 14px;
+}
+*/
+
+
+/*新版登录页面样式*/
+/*登录表单*/
+.hk_login{
+  max-width: 560px;
+  margin:35px auto 0;
+  padding: 30px;
+  border-radius: 5px;
+  color:#fff;
+  background: rgba(73,131,142,0.3);
+  -webkit-box-shadow: 0 0 20px #fff;
+  -moz-box-shadow: 0 0 20px #fff;
+  box-shadow: 0 0 20px #fff;
+}
+/*logo*/
+.hk_login_logo{
+  font-size: 44px;
+  font-family: "HYk2gj";
+  letter-spacing: 6px;
+  text-align: center;
+}
+/*登录标题*/
+.hk_login_tit{
+  font-size: 35px;
+  margin-top: 10px;
+  letter-spacing: 2px;
+  font-family: "Microsoft YaHei UI";
+  text-align: center;
+
+}
+/*登录表单*/
+.login_form{
+  margin-top: 40px;
+}
+/*表单项*/
+.login_form_item{
+  width: 260px;
+  height: 45px;
+  background: #3c6575;
+  margin: 0 auto;
+}
+
+.login_form_item:first-child{
+  margin-bottom: 45px;
+}
+
+.login_form_item_label{
+  font-size: 16px;
+  height: 45px;
+  padding-left: 20px;
+  letter-spacing: 7px;
+  line-height: 45px;
+  font-family: "Microsoft YaHei UI";
+  color: #fffefc;
+}
+
+/*登录输入框*/
+.login_input{
+  width: 100%;
+  height: 45px;
+  background: #3c6575;
+  border: 0;
+  outline: none;
+}
+
+/*登录操作选择*/
+.login_choose{
+  overflow: hidden;
+  width: 260px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+.login_checkbox{
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.rem_account{
+  font-size: 14px;
+}
+.login_choose a{
+  float: right;
+  color:#fff;
+  font-size: 14px;
+}
+
+/*登录按钮*/
+.login_btn{
+  background: #5885db;
+  font-size: 20px;
+  letter-spacing: 10px;
+  width: 260px;
+  height: 40px;
+  line-height: 40px;
+  margin: 40px auto 0;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}

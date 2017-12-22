@@ -8,38 +8,13 @@ import {Router, ActivatedRoute} from "@angular/router";
 @Component({
   selector:"login",
   templateUrl:"Login.component.html",
-  styles:[`
-   .login-form {
-      max-width: 300px;
-      margin: 0 auto;
-      margin-top: 170px;
-      background: #fff;
-      padding: 19px 20px;
-      border-radius: 8px;
-    }
-
-    .login-form-forgot {
-      float: right;
-    }
-
-    .login-form-button {
-      width: 100%;
-    }
-    .has_tip{
-      text-align: center;
-      margin: 10px 0 5px;
-    }
-    .to_register{
-      color:#5971e8;
-      cursor: pointer;
-      font-size: 14px;
-    }
-  `]
+  styleUrls:["Login.component.css"]
 })
 
 export class LoginComponent implements  OnInit{
   userName:any="15757135983";
   password:any="123456";
+  isRemember:boolean = false;//是否记住账号
   validateForm :FormGroup;
 
   constructor(private fb:FormBuilder,private http:HttpClient,
@@ -50,6 +25,10 @@ export class LoginComponent implements  OnInit{
 
   ngOnInit() {
     this.createFormValidate();
+    /*查看是否本地有记住的账号*/
+    this.haveAccount();
+    /*检验是否已经登录*/
+    this.isLogin();
   }
 
   /**
@@ -70,6 +49,7 @@ export class LoginComponent implements  OnInit{
       let url = this.httpData.Host+'backstage/user/login?mobile='+this.userName+'&password='+this.password;
       this.http.post(url,null).subscribe((res:any)=>{
         if(res["result"]==1){
+          this.rememberAccount();//记住账号
           this.router.navigate(['./index'])
           localStorage.setItem("token",res.data.token);
           localStorage.setItem("name",res.data.name);
@@ -81,8 +61,6 @@ export class LoginComponent implements  OnInit{
         }else{
           this.nzMessage.error(res['error'].message)
         }
-      },err=>{
-        console.log("err"+err);
       })
     }else {
       for (const i in this.validateForm.controls) {
@@ -97,5 +75,26 @@ export class LoginComponent implements  OnInit{
    */
   toRegister(){
     this.router.navigate(["/register"],{relativeTo:this.route});
+  }
+
+  /*是否记住账号*/
+  rememberAccount(){
+    if(this.isRemember){
+      localStorage.setItem("remAccount",this.userName);
+    }
+  }
+
+  /*查看是否有本地记住的账号*/
+  haveAccount(){
+    if(localStorage.getItem("remAccount")){
+      this.userName = localStorage.getItem("remAccount");
+    }
+  }
+
+  /*检测是否已经登录*/
+  isLogin(){
+    if(localStorage.getItem("token")){
+      this.router.navigate(["/index"],{relativeTo:this.route});
+    }
   }
 }

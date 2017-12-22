@@ -1,4 +1,4 @@
-<form nz-form  [formGroup]="validateForm" class="login-form" >
+<!--<form nz-form  [formGroup]="validateForm" class="login-form" >
   <div nz-form-item>
     <div nz-form-control [nzValidateStatus]="validateForm.controls.userName">
       <nz-input  formControlName="userName" [(ngModel)]="userName"
@@ -29,4 +29,29 @@
     </div>
     <p class="has_tip">还没有账号?<span class="to_register" (click)="toRegister()">立即注册</span></p>
   </div>
-</form>
+</form>-->
+
+<div class="hk_login">
+  <p class="hk_login_logo">妆口袋</p>
+  <p class="hk_login_tit">登录</p>
+  <form class="login_form" [formGroup]="validateForm">
+    <div class="login_form_item" nz-row>
+      <div class="login_form_item_label" nz-col [nzSpan]="7">账号</div>
+      <div nz-col [nzSpan]="12" [nzOffset]="3">
+        <input type="text" class="login_input" [(ngModel)]="userName" formControlName="userName">
+      </div>
+    </div>
+    <div class="login_form_item" nz-row>
+      <div class="login_form_item_label" nz-col [nzSpan]="7">密码</div>
+      <div nz-col [nzSpan]="12" [nzOffset]="3">
+        <input type="password" class="login_input" [(ngModel)]="password" formControlName="password">
+      </div>
+    </div>
+  </form>
+  <div class="login_choose">
+    <input type="checkbox" class="login_checkbox" [(ngModel)]="isRemember">
+    <span class="rem_account">记住账号</span>
+    <a (click)="toRegister()">没有账号?立即注册</a>
+  </div>
+  <div class="login_btn" (click)="login()">登录</div>
+</div>
