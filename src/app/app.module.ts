@@ -105,7 +105,6 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import {HKeditor} from "../common/editor/editor";
 import {TicketListComponent} from "../page/ticket/list/TicketList.component";
 import {TicketComponent} from "../page/ticket/detail/Ticket.component";
-import {Interceptor} from "../common/interceptor/interceptor";
 import {ConcatGoodComponent} from "../page/active/withgood/ConcatGood.component";
 import {OutGoodComponent} from "../page/active/outgood/OutGood.component";
 import {MenuListComponent} from "../page/system/menu/list/MenuList.component";
@@ -218,12 +217,12 @@ import {QuitActivityComponent} from "../page/seller/active/quit/QuitActivity.com
     }),
     CKEditorModule
   ],
-  providers: [PageService,
+  providers: [
+    PageService,
     HttpData,
     Http,
     RouteGuard,
     RouterTool,
-    Interceptor,
     DataTool,
     TimePick,
     FormTool,

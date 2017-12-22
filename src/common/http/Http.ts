@@ -1,7 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {HttpData} from "../../http/HttpData";
 import {Injectable} from "@angular/core";
-import {Interceptor} from "../interceptor/interceptor";
 import {HttpHandler} from "@angular/common/http";
 import {Observable} from "rxjs";
 import 'rxjs/add/observable/throw';
@@ -15,8 +14,7 @@ import {HttpHeaders} from "@angular/common/http";
 @Injectable()
 export class Http{
   constructor(private http:HttpClient,private httpData:HttpData,private nzMessage:NzMessageService,
-              private interceptor:Interceptor,private next :HttpHandler,private router:Router,
-              private route:ActivatedRoute,private store:Store<boolean>){}
+              private router:Router, private route:ActivatedRoute,private store:Store<boolean>){}
 
   /**
    * Post请求
