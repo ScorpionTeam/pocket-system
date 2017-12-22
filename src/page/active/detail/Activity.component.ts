@@ -24,7 +24,7 @@ export class ActivityComponent implements OnInit{
     end_date:null
   };
   constructor(private fb:FormBuilder,private router:Router,private nzMessage:NzMessageService,
-              private route:ActivatedRoute,private http:Http,private dataTool:DataTool,
+              private route:ActivatedRoute,private http:Http,public dataTool:DataTool,
               private service:ActivityService){}
   ngOnInit() {
     this.init();

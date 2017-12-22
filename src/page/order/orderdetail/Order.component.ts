@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit{
   };
   ngLoad:boolean=false;
   constructor(private router:Router,private route:ActivatedRoute,private nzMessage:NzMessageService,
-              private dataTool:DataTool,private nzModal:NzModalService, private orderService:OrderService){}
+              public dataTool:DataTool,private nzModal:NzModalService, private orderService:OrderService){}
   ngOnInit(){
     this.init();
     this.pageChangeHandler(1);

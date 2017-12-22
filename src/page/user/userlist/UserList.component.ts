@@ -25,7 +25,7 @@ export class UserListComponent{
   idList:any=[];//id集合
   curRoleId:number;//当前选择的角色ID
   roleList:any=[];
-  constructor(private roleService:RoleService,private dataTool:DataTool,private nzMessage:NzMessageService,
+  constructor(private roleService:RoleService,public dataTool:DataTool,private nzMessage:NzMessageService,
               private router:Router,private route :ActivatedRoute,private userService:UserService,
               private nzService :NzModalService,private nzModal:NzModalService,private table:TableTool){
   }

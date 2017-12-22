@@ -22,7 +22,7 @@ export class AdvertisementListComonent{
   condition:any={};
   idList:any=[];//批量操作id集合
   checkAll:boolean=false;
-  constructor(private router:Router,private dataTool:DataTool,private table : TableTool,
+  constructor(private router:Router,public dataTool:DataTool,private table : TableTool,
               private route:ActivatedRoute,private nzMessage:NzMessageService,private nzModal:NzModalService,
               private advertisementService:AdvertisementService){}
 

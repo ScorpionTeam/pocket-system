@@ -36,7 +36,7 @@ export class OrderListComponent implements OnInit{
   deliveryObj:any={};
   constructor(private orderService:OrderService,private router:Router,private http:Http,private PicUrl:HttpData,
               private route:ActivatedRoute,private nzMessage:NzMessageService,private nzModal:NzModalService,
-              private  dataTool:DataTool,private timePickTool:TimePick){}
+              public  dataTool:DataTool,private timePickTool:TimePick){}
 
   ngOnInit(){
     this.picUrl = this.PicUrl.PicUrl;

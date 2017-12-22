@@ -23,7 +23,7 @@ export class MenuListComponent implements OnInit{
   checkAll:boolean=false;
   searchKey:string='';
   constructor(private http:Http,public routerTool:RouterTool,public route:ActivatedRoute,private table:TableTool,
-                private dataTool:DataTool,private menuService:MenuService,private nzMessage:NzMessageService){}
+                public dataTool:DataTool,private menuService:MenuService,private nzMessage:NzMessageService){}
   ngOnInit(){
     this.pageChangeHandler(1);
   }

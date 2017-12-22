@@ -14,16 +14,16 @@ import {it} from "selenium-webdriver/testing";
 })
 
 export class RoleListComponent implements OnInit {
-  constructor(private roleService: RoleService, private routerTool: RouterTool, private dataTool: DataTool,
+  constructor(private roleService: RoleService, private routerTool: RouterTool, public dataTool: DataTool,
               private route: ActivatedRoute, private nzModal: NzModalService, private menuService: MenuService,
               private nzMessage: NzMessageService) {
   }
-  
+
   ngOnInit() {
     this.pageChangeHandler(1);
     this.getMenuList();
   }
-  
+
   roleList: any = [];//角色列表
   page: any = {
     pageNo: 1,
@@ -33,7 +33,7 @@ export class RoleListComponent implements OnInit {
   searchKey: string; //关键字
   menuList: any = []; //菜单列表
   menuIdList: any = [];
-  
+
   /**
    * 跳转
    * @param url
@@ -42,7 +42,7 @@ export class RoleListComponent implements OnInit {
   skipToPage(url: string, val?: any) {
     this.routerTool.skipToPage(url, this.route, val);
   }
-  
+
   /**
    * 改变页码
    * @param val
@@ -56,7 +56,7 @@ export class RoleListComponent implements OnInit {
       }
     )
   }
-  
+
   /**
    * 改变每页展现条数
    * @param val
@@ -70,7 +70,7 @@ export class RoleListComponent implements OnInit {
       }
     )
   }
-  
+
   /**
    * 搜索
    */
@@ -83,7 +83,7 @@ export class RoleListComponent implements OnInit {
       }
     )
   }
-  
+
   /**
    * 根据Id删除
    * @param id
@@ -97,7 +97,7 @@ export class RoleListComponent implements OnInit {
       }
     })
   }
-  
+
   delById(id: number) {
     this.roleService.delRoleById(id).subscribe(
       res=> {
@@ -111,7 +111,7 @@ export class RoleListComponent implements OnInit {
       }
     );
   }
-  
+
   /**
    * 打开模态
    * @param id
@@ -133,7 +133,7 @@ export class RoleListComponent implements OnInit {
       }
     });
   }
-  
+
   /**
    * 获取菜单列表
    */
@@ -152,7 +152,7 @@ export class RoleListComponent implements OnInit {
       }
     )
   }
-  
+
   /**
    * 获取菜单IdList
    */
@@ -171,7 +171,7 @@ export class RoleListComponent implements OnInit {
     );
     this.menuIdList = arry;
   }
-  
+
   /**
    * 初始化角色权限
    * @param id:角色id

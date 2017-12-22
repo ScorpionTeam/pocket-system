@@ -16,7 +16,7 @@ import {isUndefined} from "util";
 export class SellerOrderListComponent implements OnInit{
   constructor( private orderService:OrderService,private router:Router,private PicUrl:HttpData,
                private route:ActivatedRoute,private nzMessage:NzMessageService,private nzModal:NzModalService,
-               private  dataTool:DataTool,private timePickTool:TimePick,private sellerService:SellerServe){}
+               public  dataTool:DataTool,private timePickTool:TimePick,private sellerService:SellerServe){}
   ngOnInit(){
     this.condition.sellerId = localStorage.getItem("id");
     this.pageChangeHandler(1);

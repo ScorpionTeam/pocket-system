@@ -12,7 +12,7 @@ import {TableTool} from "../../../common/list/TableTool";
 
 export class CategoryListComponent implements OnInit{
   constructor( private routeTool:RouterTool,private route:ActivatedRoute,private categoryService:CategoryService,
-               private dataTool:DataTool,private table:TableTool){}
+               public dataTool:DataTool,private table:TableTool){}
   ngOnInit(){
     this.pageChangeHandler(1);
   }

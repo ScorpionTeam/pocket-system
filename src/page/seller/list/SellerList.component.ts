@@ -11,7 +11,7 @@ import {DataTool} from "../../../common/data/DataTool";
 
 export class SellerListComponent implements OnInit{
   constructor( private sellerService:SellerServe,private route:ActivatedRoute,
-               private dataTool:DataTool,private routerTool:RouterTool){}
+               public dataTool:DataTool,private routerTool:RouterTool){}
   ngOnInit(){
     this.pageChangeHandler(1);
   }

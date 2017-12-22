@@ -25,7 +25,7 @@ export class ActivityListComponent{
   condition:any={};
   idList:any=[];//批量操作id集合
   checkAll:boolean=false;
-  constructor(private pageObj:PageService,private router:Router,private dataTool:DataTool,private table : TableTool,
+  constructor(private pageObj:PageService,private router:Router,public dataTool:DataTool,private table : TableTool,
               private route:ActivatedRoute,private nzMessage:NzMessageService,private nzModal:NzModalService,
               private service:ActivityService){}
 

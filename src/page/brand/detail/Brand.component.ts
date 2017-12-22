@@ -23,7 +23,7 @@ export class BrandDetailComponent implements OnInit{
   validateForm:FormGroup;
   constructor(private fb:FormBuilder,private router:Router,private route:ActivatedRoute,
               private brandService:BrandService, private http:Http,
-              private  nzMessage :NzMessageService,private dataTool:DataTool){
+              private  nzMessage :NzMessageService,public dataTool:DataTool){
     this.initFormValidate();
   }
 

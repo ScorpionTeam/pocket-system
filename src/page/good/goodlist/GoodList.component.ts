@@ -33,7 +33,7 @@ export class GoodListComponent implements OnInit{
   //是否展开
   isCollapse:boolean = false;
   idList:any=[];//id集合
-  constructor(private dataTool:DataTool,private goodService:GoodService,private categoryService:CategoryService,
+  constructor(public dataTool:DataTool,private goodService:GoodService,private categoryService:CategoryService,
               private router:Router,private route :ActivatedRoute,private  PicUrl:HttpData,
               private nzService :NzModalService ,private nzMessage:NzMessageService,
               private timePickTool:TimePick,private tableTool:TableTool){}

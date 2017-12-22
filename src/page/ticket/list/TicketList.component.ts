@@ -25,7 +25,7 @@ export class  TicketListComponent{
     total:0
   };
   condition:any={};
-  constructor(private pageObj:PageService,private router:Router,private http:Http,private dataTool:DataTool,
+  constructor(private pageObj:PageService,private router:Router,private http:Http,public dataTool:DataTool,
               private route:ActivatedRoute,private nzMessage:NzMessageService,
               private ticketService:TicketService,private table:TableTool){}
 

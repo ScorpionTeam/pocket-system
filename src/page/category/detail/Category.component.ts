@@ -12,7 +12,7 @@ import {RouterTool} from "../../../common/routertool/RouterTool";
 })
 
 export class CategoryComponent implements OnInit{
-  constructor( private fb:FormBuilder ,private nzMessage:NzMessageService,private dataTool:DataTool,
+  constructor( private fb:FormBuilder ,private nzMessage:NzMessageService,public dataTool:DataTool,
                private route:ActivatedRoute,private categoryService:CategoryService,private routeTool:RouterTool){}
   ngOnInit(){
     this.init();

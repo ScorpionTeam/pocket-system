@@ -56,7 +56,7 @@ export class GoodComponent implements OnInit{
   categoryList:any=[];//类目列表
   brandList:any=[];//品牌列表
   constructor(private route:ActivatedRoute,private router :Router,private nzMessage:NzMessageService,
-              private fb :FormBuilder,private https:Http,private dataTool:DataTool,
+              private fb :FormBuilder,private https:Http,public dataTool:DataTool,
               private categoryService:CategoryService,private goodService:GoodService){}
   ngOnInit(){
     this.init();

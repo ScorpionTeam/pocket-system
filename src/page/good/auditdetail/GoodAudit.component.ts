@@ -16,7 +16,7 @@ import {isUndefined} from "util";
 export class GoodAuditComponent implements OnInit{
   constructor(private goodService:GoodService,private routerTool:RouterTool,private nzMessage:NzMessageService,
               private route:ActivatedRoute,private categoryService:CategoryService,private httpData:HttpData,
-              private dataTool:DataTool){
+              public dataTool:DataTool){
     this.picUrl = this.httpData.PicUrl;
   }
   ngOnInit(){

@@ -22,7 +22,7 @@ export class AdvertisementComponent implements OnInit{
   validateForm:FormGroup;
   constructor(private fb:FormBuilder,private http:Http,private nzMessage:NzMessageService,
               private advertisementService:AdvertisementService,private router:Router,
-              private route:ActivatedRoute,private dataTool:DataTool){}
+              private route:ActivatedRoute,public dataTool:DataTool){}
   ngOnInit(){
     this.crateValidate();
     this.init();

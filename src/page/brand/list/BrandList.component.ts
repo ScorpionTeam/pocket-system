@@ -29,7 +29,7 @@ export class BrandListComponent{
   condition:any={};
   constructor(private router:Router,private PicUrl:HttpData,private timePickerTool:TimePick,private table:TableTool,
               private route:ActivatedRoute,private nzMessage:NzMessageService,private brandService:BrandService,
-              private dataTool:DataTool,private nzModal:NzModalService){}
+              public dataTool:DataTool,private nzModal:NzModalService){}
 
   ngOnInit(){
     this.picUrl = this.PicUrl.PicUrl;
