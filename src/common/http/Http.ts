@@ -1,7 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {HttpData} from "../../http/HttpData";
 import {Injectable} from "@angular/core";
-import {HttpHandler} from "@angular/common/http";
 import {Observable} from "rxjs";
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
@@ -86,4 +85,5 @@ export class Http{
       return false;
     }
   }
+
 }

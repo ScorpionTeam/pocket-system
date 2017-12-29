@@ -4,7 +4,7 @@
 }
 /*菜单栏*/
 .index_sider{
-  background:#333544;
+  background:#283241;
   overflow: hidden;
 }
 
@@ -17,13 +17,13 @@
 }
 
 .userlog img{
-  width: 64px;
-  height: 64px;
+  width: 82px;
+  height: 82px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #323442;
+  border: 3px solid #fff;
   display: block;
-  margin:0 auto 5px;
+  margin:0 auto 15px;
 }
 
 .userlog_text{
@@ -142,10 +142,10 @@
 
 /*内容部分*/
 .index_content{
-  padding:12px 12px 0;
+  padding:20px 20px 0;
   position: relative;
   overflow: hidden;
-  background: #f9f9f9;
+  background: #f0f0f0;
 }
 .sub_out{
   position: absolute;
@@ -184,7 +184,7 @@
 .menu_logo{
   height: 50px;
   line-height: 50px;
-  background: #333544;
+  background: #343d4f;
   color: #fff;
   text-align: center;
   font-size: 18px;
@@ -192,9 +192,18 @@
 
 /*头部*/
 .index_header{
-  background: #fff;
+  background: #343d4f;
   height: 50px;
   box-shadow: 0 2px 4px 0 hsla(0,0%,91%,.5);
   z-index: 10;
   padding: 0 20px;
+}
+
+/*底部*/
+.index_footer{
+  text-align: center;
+  background: #f0f0f0;
+  font-size: 14px;
+  font-family: "Microsoft YaHei UI";
+  color:#646464;
 }

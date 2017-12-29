@@ -76,22 +76,22 @@
 .menu_item_open .sub_menu{
   max-height: 1000px;
   display: block;
-  -webkit-transition:  max-height 2s;
-  -moz-transition:  max-height 2s;
-  -o-transition:  max-height 2s;
-  transition:  max-height 2s;
+  -webkit-transition:  max-height 3s;
+  -moz-transition:  max-height 3s;
+  -o-transition:  max-height 3s;
+  transition:  max-height 3s;
 }
 .menu_item_open .sub_menu li{
   display: block;
 }
 .menu_item_close .sub_menu{
   max-height:0;
-  -webkit-transition:  max-height 0.1s;
-  -moz-transition:  max-height 0.1s;
-  -o-transition:  max-height 0.1s;
-  transition:  max-height 0.1s;
+  -webkit-transition:  max-height 0.7s;
+  -moz-transition:  max-height 0.7s;
+  -o-transition:  max-height 0.7s;
+  transition:  max-height 0.7s;
 }
-.menu_item_close .sub_menu li{
+.menu_item_close:last-child .sub_menu li{
   display: none;
 }
 
