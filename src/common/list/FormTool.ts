@@ -17,6 +17,20 @@ export class FormTool{
     }
   }
 
+  /**
+   * 表单控件错误校验
+   * @param obj
+   * @param errorName
+   * @returns {boolean}
+   */
+  formErrorCheck(obj:FormGroup,errorName:string){
+    return obj.hasError(errorName);
+  }
+
+  /**
+   * 将所有表单控件变为警告色
+   * @param obj
+   */
   makeDirty(obj:FormGroup){
     for (const i in obj.controls) {
       obj.controls[ i ].markAsDirty();

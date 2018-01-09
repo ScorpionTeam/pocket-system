@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, FormControl} from "@angular/forms";
 import {isUndefined} from "util";
 import {NzMessageService} from "ng-zorro-antd";
 import {RegisterServe} from "../../../service/Register.service";
@@ -33,8 +33,21 @@ export class RegisterComponent implements OnInit{
       mobile:['',[Validators.required]],
       password:['',[Validators.required]],
       passwordConfirm:['',[Validators.required]]
-    });
+    },{validator:this.passwordMatcher()});
   }
+
+  /**
+   * 密码自定义校验函数
+   * @returns {boolean}
+   */
+  passwordMatcher(){
+    return (control: AbstractControl): {[key: string]: any} => {
+      const pwd1 = control.get('password');
+      const pwd2 = control.get('passwordConfirm');
+      if(!pwd1||!pwd2){return null}
+      return pwd1.value!=pwd2.value? {"notMatch":true} : null;
+    };
+  };
 
   /**
    * 上传成功
@@ -65,7 +78,6 @@ export class RegisterComponent implements OnInit{
    * 下一步
    */
   next(){
-    console.log(this.formValidate.controls["passwordConfirm"]);
     if(this.formValidate.valid){
       this.isNext=true;
     }else {
@@ -105,7 +117,7 @@ export class RegisterComponent implements OnInit{
    * 跳转至登录
    */
   toLogin(){
-   this.routerTool.skipToPage("/login",this.route);
+    this.routerTool.skipToPage("/login",this.route);
   }
 
   /**
@@ -115,4 +127,16 @@ export class RegisterComponent implements OnInit{
   check(name:string){
     return this.formTool.required(this.formValidate,name);
   }
+
+  /**
+   * 校验密码
+   * @returns {boolean}
+   */
+  matchPwd(){
+    return  this.formValidate.get("password").dirty&&
+      this.formValidate.get("passwordConfirm").dirty&&
+      this.formTool.formErrorCheck(this.formValidate,"notMatch");
+  }
+
+
 }

@@ -1,7 +1,8 @@
 <div class="seller_register">
   <div class="seller_warp">
     <p class="register_tit">商户注册</p>
-    <p class="has_tip">已有账号?<span class="to_login" (click)="toLogin()">点击登录</span></p>
+    <p class="has_tip" *ngIf="!isNext">已有账号?<span class="to_login" (click)="toLogin()">点击登录</span></p>
+    <p class="has_tip" *ngIf="isNext">图片上传</p>
     <form nz-form [formGroup]="formValidate" *ngIf="!isNext">
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">姓名</div>
@@ -42,14 +43,17 @@
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">确认密码</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="password" class="hk_input" placeholder="再次输入密码" [class.input_err]="check('passwordConfirm')"
+          <input type="password" class="hk_input" placeholder="再次输入密码" [class.input_err]="check('passwordConfirm')||matchPwd()"
                  formControlName="passwordConfirm" [(ngModel)]="registerObj.passwordConfirm">
         </div>
-        <div class="form_explain" *ngIf="formValidate.controls.passwordConfirm.dirty&&formValidate.controls.passwordConfirm.hasError('required')">
+        <div class="form_explain" *ngIf="formValidate.controls.passwordConfirm.dirty&&formValidate.get('passwordConfirm').hasError('required')">
           <i class="anticon anticon-exclamation-circle" style="color: #ff6b6b;margin-right: 5px"></i> 必填
         </div>
-        <div class="form_explain" *ngIf="formValidate.controls.passwordConfirm.dirty&&formValidate.controls.passwordConfirm.hasError('required')">
-          <i class="anticon anticon-exclamation-circle" style="color: #ff6b6b;margin-right: 5px"></i> 必填
+        <div class="form_explain" *ngIf="formValidate.controls.password.dirty&&
+        !formValidate.controls.passwordConfirm.hasError('required')&&
+        formValidate.controls.passwordConfirm.dirty&&
+        formValidate.hasError('notMatch')">
+          <i class="anticon anticon-exclamation-circle" style="color: #ff6b6b;margin-right: 5px"></i> 密码校验失败
         </div>
       </div>
     </form>
