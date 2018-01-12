@@ -24,12 +24,6 @@
           <i class="anticon anticon-exclamation-circle" style="color: #ff6b6b;margin-right: 5px"></i> 必填
         </div>
       </div>
-<!--      <div nz-form-item nz-row>
-        <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">短信验证码</div>
-        <div nz-col [nzSpan]="12" [nzOffset]="1">
-          <input type="text" class="hk_input" placeholder="请输入验证码" [(ngModel)]="registerObj.code">
-        </div>
-      </div>-->
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6" class="form_label_bold">密码</div>
         <div nz-col [nzSpan]="12" [nzOffset]="1">
@@ -58,6 +52,12 @@
       </div>
     </form>
     <div nz-row *ngIf="isNext">
+      <div nz-col [nzSpan]="24" nz-row>
+        <div nz-form-label nz-form-item-required nz-col [nzSpan]="5">身份证号</div>
+        <div nz-form-item nz-col [nzSpan]="16" [nzOffset]="1">
+          <input class="hk_input" type="text" [(ngModel)]="registerObj.certificateId">
+        </div>
+      </div>
       <div nz-col [nzSpan]="10" [nzOffset]="1">
         <upload-pic [alt]="'身份证件照正面'" [type]="'7'"
                     (uploadSuccess)="uploadSuccess($event,0)"></upload-pic>
@@ -67,8 +67,10 @@
                     (uploadSuccess)="uploadSuccess($event,1)"></upload-pic>
       </div>
     </div>
-    <div class="protocol">同意《口袋合作协议》</div>
-
+    <div class="protocol" *ngIf="!isNext">
+      <input class="register_checkbox" type="checkbox" [(ngModel)]="isAgree" name="a">
+      <span>同意《口袋合作协议》</span>
+    </div>
     <div class="register_btn" *ngIf="!isNext" (click)="next()">下一步</div>
     <div class="register_btn" *ngIf="isNext" (click)="register()">立即注册</div>
   </div>

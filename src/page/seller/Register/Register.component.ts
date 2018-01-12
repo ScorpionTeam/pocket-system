@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit{
   registerObj :any = {};//注册实体对象
   formValidate:FormGroup;//表单校验
   isNext:boolean=false;//下一步
+  isAgree:boolean=false;//是否同意协议
 
   /**
    * 创建表单规则
@@ -80,6 +81,8 @@ export class RegisterComponent implements OnInit{
   next(){
     if(this.formValidate.valid){
       this.isNext=true;
+    }else if(!this.isAgree){
+      this.nzMessage.warning("请仔细阅读协议,并同意才可进行下一步。");
     }else {
       for (const i in this.formValidate.controls) {
         this.formValidate.controls[ i ].markAsDirty();
@@ -92,9 +95,13 @@ export class RegisterComponent implements OnInit{
    * 注册
    */
   register(){
-    if(this.registerObj.id_photo_front_url==''||this.registerObj.id_photo_bg_url==''||isUndefined(this.registerObj.id_photo_front_url)||
-      isUndefined(this.registerObj.id_photo_bg_url)){
-      this.nzMessage.warning("请先上传图片");
+    if(this.registerObj.id_photo_front_url==''||
+      this.registerObj.id_photo_bg_url==''||
+      isUndefined(this.registerObj.id_photo_front_url)||
+      isUndefined(this.registerObj.id_photo_bg_url)||
+      isUndefined(this.registerObj.certificateId)||
+      this.registerObj.certificateId==''){
+      this.nzMessage.warning("请先检查身份证号和证件照是否都填写完毕");
     }else {
       //注册部分
       this.registerService.register(this.registerObj).subscribe(

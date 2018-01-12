@@ -47,6 +47,27 @@
   margin-bottom: 10px;
 }
 
+.protocol span{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.protocol span:hover{
+  color:blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/*同意协议checkbox*/
+.register_checkbox{
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  margin-right:4px;
+  cursor: pointer;
+}
+
 
 /*注册按钮*/
 .register_btn{
@@ -64,3 +85,4 @@
   text-align: center;
   line-height: 40px;
 }
+

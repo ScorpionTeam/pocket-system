@@ -29,6 +29,7 @@ export class LoginComponent implements  OnInit{
     this.haveAccount();
     /*检验是否已经登录*/
     this.isLogin();
+
   }
 
   /**
